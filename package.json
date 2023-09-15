@@ -1,0 +1,12 @@
+{
+  "name": "content-headless-form-js-sdk",
+  "version": "1.0.0",
+  "description": "Workspace root",
+  "workspaces": [
+    "src/@optimizely/forms-react",
+    "src/@optimizely/forms-sdk"
+  ],
+  "author": "Optimizely",
+  "license": "ISC",
+  "private": true
+}
