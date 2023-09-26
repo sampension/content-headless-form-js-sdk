@@ -7,7 +7,7 @@ export interface InputElementBase extends DataElementBlockBase {
 
 export interface InputElementBaseProperties extends DataElementBlockBaseProperties {
     satisfiedAction: string
-    conditionCombination: number
+    conditionCombination: string
     conditions: Condition[]
     placeHolder: string
 }

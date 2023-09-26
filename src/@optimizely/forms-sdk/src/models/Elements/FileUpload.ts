@@ -7,7 +7,7 @@ export interface FileUpload extends ValidatableElementBase {
 
 export interface FileUploadProperties extends ValidatableElementBaseProperties{
     satisfiedAction: string
-    conditionCombination: number
+    conditionCombination: string
     conditions: Condition[]
     allowMultiple: boolean
     fileTypes: string

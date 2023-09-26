@@ -8,5 +8,5 @@ export interface Selection extends SelectionBase {
 }
 
 export interface SelectionProperties extends SelectionBaseProperties {
-    autoComplete: number
+    autoComplete: string
 }
