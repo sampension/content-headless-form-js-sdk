@@ -1,5 +1,8 @@
 import { FormElementBase } from "./elements/base/FormElementBase"
 
+/**
+ * Represent the Form and will be rendered as a hidden container
+ */
 export interface FormContainer {
     key : string
     properties : FormContainerProperties

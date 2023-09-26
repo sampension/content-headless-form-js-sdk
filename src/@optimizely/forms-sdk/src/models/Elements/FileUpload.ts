@@ -1,14 +1,13 @@
-import {Condition} from "../conditions/Conditions";
+import { ConditionBlock } from "../conditions/ConditionBlock";
 import {ValidatableElementBase, ValidatableElementBaseProperties} from "./base/ValidatableElementBase";
-
+/**
+ * Allow user to select file(s) to be included as part of a form submission
+ */
 export interface FileUpload extends ValidatableElementBase {
     properties: FileUploadProperties
 }
 
-export interface FileUploadProperties extends ValidatableElementBaseProperties{
-    satisfiedAction: string
-    conditionCombination: string
-    conditions: Condition[]
+export interface FileUploadProperties extends ValidatableElementBaseProperties, ConditionBlock{
     allowMultiple: boolean
     fileTypes: string
     fileSize: number

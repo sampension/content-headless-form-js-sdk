@@ -1,3 +1,6 @@
+/** 
+* Validator for validating input entered into the element
+*/
 export interface Validators {
     type: string
     description: string

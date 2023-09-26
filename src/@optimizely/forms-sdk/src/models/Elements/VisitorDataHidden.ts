@@ -1,7 +1,11 @@
-import {FormElementBase} from "./base/FormElementBase";
-
-interface VisitorDataHidden extends FormElementBase {
-
+import {FormElementBase,FormElementPropertiesBase} from "./base/FormElementBase";
+/**
+ * Collecting visitor data (ip, geo, browser ...) using a hidden input
+ */
+export interface VisitorDataHidden extends FormElementBase {
+    properties: VisitorDataHiddenProperties
 }
 
-export default VisitorDataHidden
+export interface VisitorDataHiddenProperties extends FormElementPropertiesBase {
+
+}

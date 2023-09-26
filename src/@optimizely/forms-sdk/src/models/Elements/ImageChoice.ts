@@ -1,9 +1,11 @@
-import { FormElementBase, FormElementPropertiesBase } from "./base/FormElementBase"
-
-export interface ImageChoice extends FormElementBase {
+import { InputElementBase, InputElementBaseProperties } from "./base/InputElementBase"
+/**
+ *  Allow users to select from a set of images
+ */
+export interface ImageChoice extends InputElementBase {
     properties: ImageChoiceProperties
 }
 
-export interface ImageChoiceProperties extends FormElementPropertiesBase {
+export interface ImageChoiceProperties extends InputElementBaseProperties {
     showSelectionInputControl: boolean
 }

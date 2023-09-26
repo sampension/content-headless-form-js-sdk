@@ -1,5 +1,7 @@
 import { FormElementBase, FormElementPropertiesBase } from "./base/FormElementBase"
-
+/**
+ * Indicate a form step has ended
+ */
 export interface FormStep extends FormElementBase {
     properties: FormStepProperties
 }

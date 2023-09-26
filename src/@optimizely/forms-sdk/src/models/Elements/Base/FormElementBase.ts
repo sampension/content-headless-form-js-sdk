@@ -1,3 +1,6 @@
+/**
+ * Base class for all elements of Forms
+ */
 export interface FormElementBase {
     key: string
     contentType: string

@@ -1,7 +1,7 @@
 import { SelectionBase, SelectionBaseProperties } from "./base/SelectionBase"
 
-/***
- * This element can be rendered as Combobox or Listbox, base on property SelectionElementkBase.AllowMultiSelect
+/**
+ * This element can be rendered as Combobox or Listbox, base on SelectionBase's allowMultiSelect property
  */
 export interface Selection extends SelectionBase {
     properties: SelectionProperties

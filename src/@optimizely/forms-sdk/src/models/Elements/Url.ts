@@ -1,5 +1,7 @@
 import { InputElementBase, InputElementBaseProperties } from "./base/InputElementBase";
-
+/**
+ * Allows users to input and display a url
+ */
 export interface Url extends InputElementBase {
     properties:UrlProperties
 }
