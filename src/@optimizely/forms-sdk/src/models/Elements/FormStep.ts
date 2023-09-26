@@ -8,7 +8,7 @@ export interface FormStepProperties extends FormElementPropertiesBase {
     attachedContentLink: string
     dependField: DependField
     dependCondition: number
-    dependValue: number
+    dependValue: string
 }
 
 export interface DependField {
