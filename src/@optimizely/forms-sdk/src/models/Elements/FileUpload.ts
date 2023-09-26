@@ -1,5 +1,5 @@
-import {Condition} from "../Conditions/Conditions";
-import {ValidatableElementBase, ValidatableElementBaseProperties} from "./Base/ValidatableElementBase";
+import {Condition} from "../conditions/Conditions";
+import {ValidatableElementBase, ValidatableElementBaseProperties} from "./base/ValidatableElementBase";
 
 export interface FileUpload extends ValidatableElementBase {
     properties: FileUploadProperties

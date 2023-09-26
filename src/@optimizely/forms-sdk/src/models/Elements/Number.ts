@@ -1,4 +1,4 @@
-import { FormElementBase, FormElementPropertiesBase } from "./Base/FormElementBase";
+import { FormElementBase, FormElementPropertiesBase } from "./base/FormElementBase";
 
 export interface Number extends FormElementBase {
 

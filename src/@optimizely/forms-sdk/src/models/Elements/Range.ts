@@ -1,4 +1,4 @@
-import { InputElementBase, InputElementBaseProperties } from "./Base/InputElementBase"
+import { InputElementBase, InputElementBaseProperties } from "./base/InputElementBase"
 
 interface Range extends InputElementBase {
     properties: RangeProperties

@@ -1,4 +1,4 @@
-import { SelectionBase, SelectionBaseProperties } from "./Base/SelectionBase"
+import { SelectionBase, SelectionBaseProperties } from "./base/SelectionBase"
 
 /***
  * This element can be rendered as Combobox or Listbox, base on property SelectionElementkBase.AllowMultiSelect

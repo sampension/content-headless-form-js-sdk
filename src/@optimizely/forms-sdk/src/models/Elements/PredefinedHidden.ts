@@ -1,4 +1,4 @@
-import { HiddenElementBase, HiddenElementBaseProperties } from "./Base/HiddenElementBase";
+import { HiddenElementBase, HiddenElementBaseProperties } from "./base/HiddenElementBase";
 
 
 export interface PredefinedHidden extends HiddenElementBase {

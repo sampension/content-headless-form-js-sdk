@@ -1,4 +1,4 @@
-import { InputElementBase, InputElementBaseProperties } from "./Base/InputElementBase"
+import { InputElementBase, InputElementBaseProperties } from "./base/InputElementBase"
 
 export interface Textbox extends InputElementBase {
     properties: TextboxProperties

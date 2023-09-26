@@ -1,4 +1,4 @@
-import { SelectionBase, SelectionBaseProperties } from "./Base/SelectionBase";
+import { SelectionBase, SelectionBaseProperties } from "./base/SelectionBase";
 
 export interface Choice extends SelectionBase {
     propperties: ChoiceProperties

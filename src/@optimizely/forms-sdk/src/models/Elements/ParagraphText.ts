@@ -1,5 +1,5 @@
 import { Condition } from "../conditions/Conditions";
-import { FormElementBase, FormElementPropertiesBase } from "./Base/FormElementBase";
+import { FormElementBase, FormElementPropertiesBase } from "./base/FormElementBase";
 
 export interface ParagraphText extends FormElementBase {
     properties: ParagraphTextProperties

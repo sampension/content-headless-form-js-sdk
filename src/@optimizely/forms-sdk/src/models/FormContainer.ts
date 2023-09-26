@@ -1,4 +1,4 @@
-import { FormElementBase } from "./Elements/Base/FormElementBase"
+import { FormElementBase } from "./elements/base/FormElementBase"
 
 export interface FormContainer {
     key : string

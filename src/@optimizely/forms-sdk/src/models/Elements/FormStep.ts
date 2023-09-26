@@ -1,4 +1,4 @@
-import { FormElementBase, FormElementPropertiesBase } from "./Base/FormElementBase"
+import { FormElementBase, FormElementPropertiesBase } from "./base/FormElementBase"
 
 export interface FormStep extends FormElementBase {
     properties: FormStepProperties
@@ -6,11 +6,13 @@ export interface FormStep extends FormElementBase {
 
 export interface FormStepProperties extends FormElementPropertiesBase {
     attachedContentLink: string
-    dependField: {
-        key: string
-        locale: string
-        version: number
-    }
+    dependField: DependField
     dependCondition: number
     dependValue: number
+}
+
+export interface DependField {
+    key: string
+    locale: string
+    version: number
 }

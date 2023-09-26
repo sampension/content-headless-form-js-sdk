@@ -1,4 +1,4 @@
-import { ValidatableElementBase, ValidatableElementBaseProperties } from "./Base/ValidatableElementBase";
+import { ValidatableElementBase, ValidatableElementBaseProperties } from "./base/ValidatableElementBase";
 
 export interface Captcha extends ValidatableElementBase {
     properties: CaptchaProperties

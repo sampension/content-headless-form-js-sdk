@@ -1,5 +1,5 @@
 import { Condition } from "../conditions/Conditions"
-import { ButtonBase, ButtonBaseProperties } from "./Base/ButtonBase"
+import { ButtonBase, ButtonBaseProperties } from "./base/ButtonBase"
 
 export interface SubmitButton extends ButtonBase {
     properties: SubmitButtonProperties

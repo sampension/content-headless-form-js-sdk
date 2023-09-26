@@ -1,4 +1,4 @@
-import FormElementBase from "./Base/FormElementBase";
+import FormElementBase from "./base/FormElementBase";
 
 interface Textarea extends FormElementBase {
 
