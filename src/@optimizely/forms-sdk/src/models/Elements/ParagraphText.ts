@@ -1,14 +1,13 @@
-import { Condition } from "../conditions/Conditions";
+import { ConditionProperties } from "../conditions/ConditionProperties";
 import { FormElementBase, FormElementPropertiesBase } from "./base/FormElementBase";
-
+/**
+ * Rich text (with placeholder)
+ */
 export interface ParagraphText extends FormElementBase {
     properties: ParagraphTextProperties
 }
 
-export interface ParagraphTextProperties extends FormElementPropertiesBase {
+export interface ParagraphTextProperties extends FormElementPropertiesBase, ConditionProperties {
     paragraphText: string
-    satisfiedAction: string
-    conditionCombination: string
-    conditions: Condition[]
     disablePlaceholdersReplacement: boolean
 }

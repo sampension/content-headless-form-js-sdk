@@ -1,5 +1,7 @@
 import { ValidatableElementBase, ValidatableElementBaseProperties } from "./base/ValidatableElementBase";
-
+/**
+ * Include an image challenge that asks the user to identify numbers and characters 
+ */
 export interface Captcha extends ValidatableElementBase {
     properties: CaptchaProperties
 }

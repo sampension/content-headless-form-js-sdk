@@ -1,5 +1,8 @@
 import { InputElementBase, InputElementBaseProperties } from "./InputElementBase"
 
+/**
+ * Base class for selection elements such as radios, checkboxes, dropdown, listbox.
+ */
 export interface SelectionBase extends InputElementBase {
     properties: SelectionBaseProperties
 }

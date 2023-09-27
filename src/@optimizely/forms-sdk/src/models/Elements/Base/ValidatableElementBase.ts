@@ -1,6 +1,11 @@
 import { Validators } from "../../validators/Validators";
 import { FormElementBase, FormElementPropertiesBase } from "./FormElementBase";
 
+/**
+ * Base class for elements having semantic data (are data field of Form).
+ * Elements can be applied with the validator.
+ * Some validator types can be ignored.
+ */
 export interface ValidatableElementBase extends FormElementBase {
     properties: ValidatableElementBaseProperties
 }
