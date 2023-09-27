@@ -1,4 +1,4 @@
-import { ConditionBlock } from "../../conditions/ConditionBlock";
+import { ConditionProperties } from "../../conditions/ConditionProperties";
 import { DataElementBlockBase, DataElementBlockBaseProperties } from "./DataElementBase";
 
 /**
@@ -9,6 +9,6 @@ export interface InputElementBase extends DataElementBlockBase {
     properties: InputElementBaseProperties
 }
 
-export interface InputElementBaseProperties extends DataElementBlockBaseProperties, ConditionBlock {
+export interface InputElementBaseProperties extends DataElementBlockBaseProperties, ConditionProperties {
     placeHolder: string
 }
