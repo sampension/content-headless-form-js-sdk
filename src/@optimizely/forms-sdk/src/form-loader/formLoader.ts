@@ -1,12 +1,13 @@
 'use strict';
 
+import { FormContainer } from "../models";
 import { ApiClient } from "./apiClient";
 import { ApiClientConfig, defaultConfig } from "./apiClientConfig";
 
 /**
  * Class for load Form
  */
-export class FormLoader<T> {
+export class FormLoader<T extends FormContainer> {
     readonly client: ApiClient<T>;
 
     /**
@@ -26,7 +27,7 @@ export class FormLoader<T> {
      */
     getForm(key: string): Promise<T> {
         return new Promise<T>((resolve, reject) => {
-            this.client.get(`form/${key}`)
+            this.client.get(`_form/v1/form/${key}`)
                 .then((response: T) => {
                     resolve(response);
                 })
