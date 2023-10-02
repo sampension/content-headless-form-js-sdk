@@ -3,7 +3,7 @@ import { useFetch } from './hooks/useFetch';
 import Form from './components/Form';
 
 function App() {
-  const url = `https://localhost:8081/api/React/GetFormInPageByUrl?url=${window.location.pathname}`;
+  const url = `http://localhost:8000/api/React/GetFormInPageByUrl?url=${window.location.pathname}`;
   const {data, loading} = useFetch(url);
 
   return (

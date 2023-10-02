@@ -8,14 +8,15 @@ interface FormProps {
 export default function Form ({formKey}: FormProps) {
 
   const formLoader = new FormLoader({
-    baseURL:"https://localhost:8081/"
+    baseURL:"http://localhost:8000/"
   });
 
   const [form, setForm] = useState<FormContainer | null>(null);
 
   useEffect(()=>{
     if(!form){
-      formLoader.getForm(formKey).then((res)=>setForm(res));
+      formLoader.getForm(formKey, "en")
+        .then((res)=>setForm(res));
     }
   },[form, formKey]);
 
