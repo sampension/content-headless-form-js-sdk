@@ -2,10 +2,11 @@ import { FormContainer, FormLoader } from "@optimizely/forms-sdk";
 import React, { useEffect, useState } from "react";
 
 interface FormProps {
-    formKey: string
+    formKey: string,
+    language: string | undefined
 }
 
-export default function Form ({formKey}: FormProps) {
+export default function Form ({formKey, language}: FormProps) {
 
   const formLoader = new FormLoader({
     baseURL:"http://localhost:8000/"
@@ -15,10 +16,11 @@ export default function Form ({formKey}: FormProps) {
 
   useEffect(()=>{
     if(!form){
-      formLoader.getForm(formKey, "en")
+      formLoader.getForm(formKey, language ?? "en")
         .then((res)=>setForm(res));
     }
-  },[form, formKey]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[formKey]);
 
   return (
     <>
