@@ -27,6 +27,8 @@ export const FormBody = (props: FormBodyProps) => {
     const formTitleId = `${form.key}_label`;
     const statusMessage = useRef<string>("");
     const statusDisplay = useRef<string>("hide");
+    
+    const showForm = useRef<boolean>(true);
 
     const formCache = new FormCache();
     const localFormCache = new FormCache(window.localStorage);
@@ -140,10 +142,14 @@ export const FormBody = (props: FormBodyProps) => {
             dispatchFunctions.updateSubmissionKey(response.submissionKey);
             localFormCache.set(submissionStorageKey, response.submissionKey);
 
+            if (isProgressiveSubmit.current) {
+                message.current = response.messages.map(m => m.message).join("<br>");
+                showForm.current = false
+            }
+
             if (isFormFinalized.current) {
                 formCache.remove(FormConstants.FormCurrentStep + form.key);
                 localFormCache.remove(submissionStorageKey);
-                message.current = response.messages.map(m => m.message).join("<br>");
                 //redirect after submit
                 let redirectToPage = submitButton?.properties?.redirectToPage ?? form.properties?.redirectToPage;
                 if (!isNullOrEmpty(redirectToPage)) {
@@ -234,7 +240,7 @@ export const FormBody = (props: FormBodyProps) => {
                 </div>
             </div>
 
-            <div className="Form__MainBody">
+            <div className="Form__MainBody" style={{display: showForm.current ? 'flow' : 'none' }}>
                 {/* render element */}
                 {form.steps.map((e, i) => {
                     let stepDisplaying = (currentStepIndex === i && !isFormFinalized.current && isStepValidToDisplay && !isMalFormSteps) ? "" : "hide";
