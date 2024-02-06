@@ -30,7 +30,7 @@ export class FormLoader<T extends FormContainer> {
      */
     getForm(key: string, language: string): Promise<T> {
         return new Promise<T>((resolve, reject) => {
-            this.client.get(`${ApiConstant.apiEndpoint}/${key}`, { language })
+            this.client.get(`${ApiConstant.apiEndpoint}/${key}`, { locale: language })
                 .then((response: T) => {
                     resolve(response);
                 })
