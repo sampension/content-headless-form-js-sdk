@@ -19,4 +19,5 @@ export interface FormState {
     submissionKey?: string
     currentStepIndex: number
     isSubmitting?: boolean
+    history? : any
 }
