@@ -10,8 +10,15 @@ This is a JS SDK package that helps render a form based on metadata taken from t
 ## Getting Started
 
 ### Installation
-Install from the command line
+**From Azure Artifacts** 
 
+Source https://dev.azure.com/EpiserverEngineering/netCore/_artifacts/feed/headless_forms_beta
+
+To use packages from Azure Artifacts, configure your project to reference this feed. Create a new text file called .npmrc in the same directory as your package.json, then copy the snippet below.
+```
+   @episerver:registry=https://pkgs.dev.azure.com/EpiserverEngineering/netCore/_packaging/headless_forms_beta/npm/registry/
+```
+Install from the command line
 ```
    $ npm install @episerver/forms-sdk@0.1.0
 ```
