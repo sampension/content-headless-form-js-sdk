@@ -12,9 +12,6 @@
     "lint:fix": "eslint --cache --fix \"src/**/*.{js,jsx,ts,tsx}\"",
     "test": "jest"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/episerver"
-  },
   "files": [
     "dist"
   ],
