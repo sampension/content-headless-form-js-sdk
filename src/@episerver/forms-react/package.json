@@ -13,9 +13,6 @@
   "scripts": {
     "build": "rollup -c --context window"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/episerver"
-  },
   "keywords": [],
   "dependencies": {
     "@episerver/forms-sdk": "file:../forms-sdk"
