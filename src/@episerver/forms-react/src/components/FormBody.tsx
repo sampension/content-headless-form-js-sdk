@@ -118,6 +118,7 @@ export const FormBody = (props: FormBodyProps) => {
         // Confirm if user want to submit the form
         if (!isNull(submitButton) || isLastStep) {
             if (!handleConfirm()) {
+                isProgressiveSubmit.current = false
                 return
             }
         }

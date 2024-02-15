@@ -142,7 +142,7 @@ export class FormSubmitter {
 
                         // always send file name to server if existed to handle case upload file then click back
                         // charactor | cannot be used in filename and then is safe for splitting later
-                        if(idx > 0){
+                        if(idx > 0 && idx != files.length - 1){
                             fileNames += " | "
                         }
                         

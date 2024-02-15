@@ -17,6 +17,7 @@ permissions:
 
 env:
   NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
 
 jobs:
   build:
