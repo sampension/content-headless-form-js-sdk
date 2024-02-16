@@ -21,6 +21,8 @@ import {
     FormDependConditions,
     FormValidationResult,
     htmlDecodeEntities,
+    FormCache,
+    FormConstants,
     } from "@episerver/forms-sdk";
 import { DispatchFunctions } from "../context/dispatchFunctions";
 
@@ -36,6 +38,7 @@ export interface ElementContext {
 
 export const useElement = (element: FormElementBase) => {
     const formContext = useForms();
+    const formCache = new FormCache();
     const extraAttr = useRef<any>({});
     const formValidation = new FormValidator(element);
     const formCondition = new FormDependConditions(element)
@@ -190,6 +193,15 @@ export const useElement = (element: FormElementBase) => {
         const form = formContext?.formContainer ?? {} as FormContainer
         if (shouldResetForm(form.properties.resetConfirmationMessage)) {
             dispatchFuncs.resetForm(form);
+
+            formCache.set<number>(FormConstants.FormCurrentStep + form.key, 0);
+            dispatchFuncs.updateCurrentStepIndex(0);
+
+            var attachedContentLink = form.steps[0]?.formStep?.properties?.attachedContentLink;
+            if (!isNullOrEmpty(attachedContentLink)) {
+                let url = new URL(attachedContentLink);
+                formContext?.history && formContext?.history.push(url.pathname);
+            }
         }
     }
 
