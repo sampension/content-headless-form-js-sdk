@@ -7,6 +7,7 @@ This is a JS SDK package that helps render a form based on metadata taken from t
 | @episerver/forms-sdk           | JS SDK for models, client validation, form loader, form dependencies, form submit |
 | @episerver/forms-react         | React SDK for rendering a form as a React component |
 
+ref: https://docs.developers.optimizely.com/content-management-system/v1.2.0-forms/docs/get-started-with-headless-optimizely-forms
 ## Getting Started
 
 ### Installation
