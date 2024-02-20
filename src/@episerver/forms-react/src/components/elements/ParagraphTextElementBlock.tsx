@@ -1,4 +1,4 @@
-import { FormContainer, FormStorage, ParagraphText, getStringValue } from "@episerver/forms-sdk"
+import { FormContainer, FormStorage, ParagraphText, getAllowedContentTypesInRichtext, getStringValue } from "@episerver/forms-sdk"
 import React, { useMemo } from "react";
 import ElementWrapper from "./shared/ElementWrapper";
 import { useElement } from "../../hooks/useElement";
@@ -17,7 +17,7 @@ export const ParagraphTextElementBlock = (props: ParagraphTextElementBlockProps)
     const form = formContext?.formContainer as FormContainer
     const formKey = form.key;
     const formStorage = new FormStorage(form);
-    
+    const allowedContentTypes = getAllowedContentTypesInRichtext()
     const data = formStorage.loadFormDataFromStorage() ?? formContext?.formSubmissions ?? []
 
     const doReplaceText = element.properties.disablePlaceholdersReplacement ?? true
@@ -40,9 +40,9 @@ export const ParagraphTextElementBlock = (props: ParagraphTextElementBlockProps)
         const placeHolders = extractTextsWithFormat(replacedText, indicator)
         if (doReplaceText) {
             data.forEach(element => {
-                const friendlyName = form.formElements.find(fe => fe.key === element.elementKey)?.displayName
-
-                if (friendlyName && placeHolders.indexOf(friendlyName) !== -1) {
+                const formElements = form.formElements.find(fe => fe.key === element.elementKey)
+                const friendlyName = formElements?.displayName
+                if (formElements && allowedContentTypes.includes(formElements?.contentType) && friendlyName && placeHolders.indexOf(friendlyName) !== -1) {
                     replacedText = replacedText.replaceAll(`${indicator}${friendlyName}${indicator}`, getStringValue(element))
                 }
             });
