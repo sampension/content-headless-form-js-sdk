@@ -6,3 +6,4 @@ export * from "./fileHelper";
 export * from "./initFormState";
 export * from "./stepHelper";
 export * from "./buildConfirmationMessage"
+export * from "./getAllowedContentTypesInRichtext"
