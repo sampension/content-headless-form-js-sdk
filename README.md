@@ -50,35 +50,19 @@ Install from the command line
    npm run build
 ```
 
-4. Run unit tests
-
-```sh
-   npm run test
-```
-
-5. Start management site
+4. Start management site
 
 ```sh
    npm run start-backend
 ```
 
-6. Start react site
+5. Start react site
 
 ```sh
    npm run start-frontend
 ```
 
 ### View site on browser
-
-Access management site with credentials:
-
-|Name    |Password   
-|--------|------------|
-|cmsadmin|sparr0wHawk! 
-|emil    |sparr0wHawk! 
-|ida     |sparr0wHawk! 
-|alfred  |sparr0wHawk! 
-|lina    |sparr0wHawk!
 
 Create a form with some elements in MainContentArea of Start page.
 
