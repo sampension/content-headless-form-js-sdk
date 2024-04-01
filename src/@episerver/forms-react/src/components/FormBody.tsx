@@ -151,7 +151,10 @@ export const FormBody = (props: FormBodyProps) => {
             if (isFormFinalized.current) {
                 formCache.remove(FormConstants.FormCurrentStep + form.key);
                 localFormCache.remove(submissionStorageKey);
-                //redirect after submit
+            }
+
+            //redirect after submit
+            if (submitButton) {
                 let redirectToPage = submitButton?.properties?.redirectToPage ?? form.properties?.redirectToPage;
                 if (!isNullOrEmpty(redirectToPage)) {
                     let url = new URL(redirectToPage, "http://temp");
