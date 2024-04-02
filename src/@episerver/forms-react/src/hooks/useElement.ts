@@ -74,6 +74,11 @@ export const useElement = (element: FormElementBase) => {
     //reset form
     useEffect(()=>{
         if(formContext?.isReset){
+            // Reset input file upload ref value
+            if(equals(element.contentType, "FileUploadElementBlock") && elementRef.current){
+                elementRef.current.value = null;
+            }
+
             //update form state
             dispatchFuncs.resetFormDone();
         }
@@ -192,9 +197,12 @@ export const useElement = (element: FormElementBase) => {
         e.preventDefault()
         const form = formContext?.formContainer ?? {} as FormContainer
         if (shouldResetForm(form.properties.resetConfirmationMessage)) {
-            dispatchFuncs.resetForm(form);
+            // Remove data from form storage
+            formCache.remove(FormConstants.FormCurrentStep + form.key); 
+            formCache.remove(form.key);
 
-            formCache.set<number>(FormConstants.FormCurrentStep + form.key, 0);
+            // Dispatch func to reset Form state
+            dispatchFuncs.resetForm(form);
             dispatchFuncs.updateCurrentStepIndex(0);
 
             var attachedContentLink = form.steps[0]?.formStep?.properties?.attachedContentLink;

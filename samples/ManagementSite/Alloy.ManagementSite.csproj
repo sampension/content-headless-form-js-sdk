@@ -4,6 +4,7 @@
     <NoWarn>NU5100;NU1803;NU1605;NU1504;</NoWarn>
 	  <CmsUIVersion>12.23.0</CmsUIVersion>
 	  <CmsCoreVersion>12.20.1</CmsCoreVersion>
+	  <FormVersion>5.8.0</FormVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS.AspNetCore" Version="$(CmsCoreVersion)" />
@@ -11,7 +12,8 @@
     <PackageReference Include="EPiServer.CMS.AspNetCore.MVC" Version="$(CmsCoreVersion)" />
     <PackageReference Include="EPiServer.CMS.AspNetCore.Routing" Version="$(CmsCoreVersion)" />
     <PackageReference Include="EPiServer.CMS.AspNetCore.Templating" Version="$(CmsCoreVersion)" />
-    <PackageReference Include="EPiServer.CMS.Core" Version="$(CmsCoreVersion)" />
+	<PackageReference Include="EPiServer.CMS.Core" Version="$(CmsCoreVersion)" />
+	<PackageReference Include="EPiServer.Forms" Version="$(FormVersion)" />
     <PackageReference Include="EPiServer.Framework" Version="$(CmsCoreVersion)" />
     <PackageReference Include="EPiServer.Framework.AspNetCore" Version="$(CmsCoreVersion)" />
     <PackageReference Include="EPiServer.Hosting" Version="$(CmsCoreVersion)" />
@@ -20,7 +22,7 @@
     <PackageReference Include="EPiServer.CMS.UI.Core" Version="$(CmsUIVersion)" />
     <PackageReference Include="EPiServer.CMS.UI.VisitorGroups" Version="$(CmsUIVersion)" />
     <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="$(CmsUIVersion)" />
-	  <PackageReference Include="EPiServer.ImageLibrary.ImageSharp" Version="2.0.1" />
+	<PackageReference Include="EPiServer.ImageLibrary.ImageSharp" Version="2.0.1" />
   </ItemGroup>
 	<ItemGroup Label="HeadlessForm">
         <PackageReference Include="Optimizely.Headless.Form.Service" Version="0.1.0--inte-256" />
@@ -32,7 +34,7 @@
     <PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.3.0" />
     <PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.9.1" />
     <PackageReference Include="EPiServer.OpenIDConnect" Version="3.3.0" />
-    <PackageReference Include="EPiServer.CloudPlatform.Cms" Version="1.1.0" />
+    <PackageReference Include="EPiServer.CloudPlatform.Cms" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
