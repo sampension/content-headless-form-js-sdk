@@ -21,10 +21,10 @@ To use packages from Azure Artifacts, configure your project to reference this f
 ```
 Install from the command line
 ```
-   $ npm install @episerver/forms-sdk@0.1.0
+   $ npm install @episerver/forms-sdk@%verion%
 ```
 ```
-   $ npm install @episerver/forms-react@0.1.0
+   $ npm install @episerver/forms-react@%verion%
 ```
 
 **OR** clone source code and install dependencies, then build and view the site on the browser.
