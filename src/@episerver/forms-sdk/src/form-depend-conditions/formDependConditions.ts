@@ -23,10 +23,10 @@ export class FormDependConditions {
             }
             for (let i = 0; i < conditionProps.conditions.length; i++) {
                 const condition = conditionProps.conditions[i]
-                const fieldValue = formSubmissions.filter(s => equals(s.elementKey, condition.field))[0]?.value as string
+                const fieldValue = formSubmissions.filter(s => equals(s.elementKey, condition.field))[0]?.value;
                 const conditionFunction = ConditionFunctions[condition.operator];
                 if (!isNull(conditionFunction)){
-                    let checkResult = conditionFunction(fieldValue, condition.fieldValue)
+                    let checkResult = conditionFunction(fieldValue == null? "":fieldValue.toString(), condition.fieldValue)
                     if (conditionProps.conditionCombination === ConditionCombinationType.Any && checkResult) {
                         return true
                     }

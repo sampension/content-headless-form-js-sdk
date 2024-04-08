@@ -36,12 +36,15 @@ public class ReactController : ControllerBase
         var pageModel = new PageModel();
         var contentHeadless = await _contentRepositoryInteApi.GetAsync(key, content.LanguageBranch());
 
-        pageModel.Title = contentHeadless.DisplayName;
-        pageModel.PageUrl = UrlResolver.Current.GetUrl(content.ContentLink);
-
-        if (contentHeadless.Properties.ContainsKey("MainContentArea"))
+        if (contentHeadless is not null)
         {
-            pageModel.Childrens.AddRange(contentHeadless.Properties["MainContentArea"] as IList<IContentComponent>);
+            pageModel.Title = contentHeadless.DisplayName;
+            pageModel.PageUrl = UrlResolver.Current.GetUrl(content.ContentLink);
+
+            if (contentHeadless.Properties.ContainsKey("MainContentArea"))
+            {
+                pageModel.Childrens.AddRange(contentHeadless.Properties["MainContentArea"] as IList<IContentComponent>);
+            }
         }
 
         return Ok(pageModel);

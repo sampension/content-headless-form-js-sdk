@@ -11,7 +11,7 @@ export const extractParams = (urlPath: string) => {
     if (relativePath.endsWith('/')) {
         relativePath = relativePath.slice(0, -1)
     }
-    
+
     if (relativePath.includes(",")) {
         const [, , idString] = relativePath.split(",")
         if (idString.includes("_")) {
@@ -28,7 +28,12 @@ export const extractParams = (urlPath: string) => {
     }
 
     const urlSegments = relativePath.split('/')
-    const language = urlSegments.length ? urlSegments.find(s => s.length === 2) : "en"
+    let language = urlSegments.length ? 
+        urlSegments.find(s => 
+            s.length === 2 || //2 letter language code, ex: en, sv,...
+            (s.indexOf("-") === 2 && s.length === 5) //##-## format language code, ex: nl-BE, vi-VN,...
+        ) 
+        : "en"
 
     return { relativePath, locales: language, language, contentId, workId }
 }

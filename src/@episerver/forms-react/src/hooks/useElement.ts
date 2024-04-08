@@ -21,6 +21,8 @@ import {
     FormDependConditions,
     FormValidationResult,
     htmlDecodeEntities,
+    FormCache,
+    FormConstants,
     } from "@episerver/forms-sdk";
 import { DispatchFunctions } from "../context/dispatchFunctions";
 
@@ -36,6 +38,7 @@ export interface ElementContext {
 
 export const useElement = (element: FormElementBase) => {
     const formContext = useForms();
+    const formCache = new FormCache();
     const extraAttr = useRef<any>({});
     const formValidation = new FormValidator(element);
     const formCondition = new FormDependConditions(element)
@@ -71,6 +74,11 @@ export const useElement = (element: FormElementBase) => {
     //reset form
     useEffect(()=>{
         if(formContext?.isReset){
+            // Reset input file upload ref value
+            if(equals(element.contentType, "FileUploadElementBlock") && elementRef.current){
+                elementRef.current.value = null;
+            }
+
             //update form state
             dispatchFuncs.resetFormDone();
         }
@@ -189,7 +197,19 @@ export const useElement = (element: FormElementBase) => {
         e.preventDefault()
         const form = formContext?.formContainer ?? {} as FormContainer
         if (shouldResetForm(form.properties.resetConfirmationMessage)) {
+            // Remove data from form storage
+            formCache.remove(FormConstants.FormCurrentStep + form.key); 
+            formCache.remove(form.key);
+
+            // Dispatch func to reset Form state
             dispatchFuncs.resetForm(form);
+            dispatchFuncs.updateCurrentStepIndex(0);
+
+            var attachedContentLink = form.steps[0]?.formStep?.properties?.attachedContentLink;
+            if (!isNullOrEmpty(attachedContentLink)) {
+                let url = new URL(attachedContentLink);
+                formContext?.history && formContext?.history.push(url.pathname);
+            }
         }
     }
 
