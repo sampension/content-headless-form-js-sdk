@@ -4,9 +4,9 @@
     <NoWarn>NU5100;NU1803;NU1605;NU1504;</NoWarn>
 	  <CmsUIVersion>12.23.0</CmsUIVersion>
 	  <CmsCoreVersion>12.20.1</CmsCoreVersion>
-    <HeadlessFormVersion>0.1.0--inte-367</HeadlessFormVersion>
+    <HeadlessFormVersion>0.1.1--inte-370</HeadlessFormVersion>
     <ContentApiVersion>12.20.1</ContentApiVersion>
-	  <FormVersion>5.8.0</FormVersion>
+	  <FormVersion>5.8.2-pre-021286</FormVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS.AspNetCore" Version="$(CmsCoreVersion)" />
@@ -29,7 +29,7 @@
 	<ItemGroup Label="HeadlessForm">
         <PackageReference Include="Optimizely.Headless.Form.Service" Version="$(HeadlessFormVersion)" />
         <PackageReference Include="Optimizely.Headless.Form.ContentGraph" Version="$(HeadlessFormVersion)" />
-        <PackageReference Include="Optimizely.Cms.Preview2.Content.EPiServer" Version="$(ContentApiVersion)" />
+        <PackageReference Include="Optimizely.Cms.Preview1.Content.EPiServer" Version="$(ContentApiVersion)" />
         <PackageReference Include="Optimizely.ContentGraph.Cms" Version="3.5.1" />
 	</ItemGroup>
   <ItemGroup>

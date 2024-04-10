@@ -23,6 +23,7 @@ using Microsoft.Extensions.Options;
 using OpenIddict.Server;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Optimizely.Cms.DependencyInjection;
 
 namespace Alloy.ManagementSite
 {
@@ -137,6 +138,8 @@ namespace Alloy.ManagementSite
                     Authority = ClientEndpoint
                 });
             });
+
+            services.AddOptimizelyCmsContentOnEPiServerPreview1();
 
             //Register ContentGraph for HeadlessForm
             services.AddContentDeliveryApi(op =>
