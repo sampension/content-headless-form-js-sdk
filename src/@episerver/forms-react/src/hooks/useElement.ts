@@ -184,6 +184,16 @@ export const useElement = (element: FormElementBase) => {
         dispatchFuncs.updateValidation(element.key, formValidation.validate(value));
     }
 
+    const handleKeyPress = (e: any) => {
+        const { type } = e.target;
+        if (/number/.test(type)) {
+            if(e.keyCode === 69)
+            {
+                e.preventDefault()
+            }
+        }
+    }
+
     const shouldResetForm = (resetConfirmationMessage: string) => {
         if (isNullOrEmpty(resetConfirmationMessage)) {
           return true;
@@ -223,6 +233,6 @@ export const useElement = (element: FormElementBase) => {
             isVisible: isVisible.current,
             elementRef
         } as ElementContext, 
-        handleChange, handleBlur, handleReset 
+        handleChange, handleBlur, handleReset, handleKeyPress 
     };
 }
