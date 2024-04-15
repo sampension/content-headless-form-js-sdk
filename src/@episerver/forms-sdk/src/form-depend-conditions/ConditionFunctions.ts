@@ -18,7 +18,7 @@ export const ConditionFunctions: ConditionFunctionRecord = {
  * @returns 
  */
 function Equals(actualValue: any, dependencyFieldValue: string): boolean {
-    const _actualValue = !actualValue ? "" : getConcatString(actualValue, ",").toLocaleUpperCase();
+    const _actualValue = isNullOrEmpty(actualValue) ? "" : getConcatString(actualValue.toString(), ",").toLocaleUpperCase();
     dependencyFieldValue = !dependencyFieldValue ? "" : dependencyFieldValue.toLocaleUpperCase();
     return _actualValue === dependencyFieldValue;
 }
