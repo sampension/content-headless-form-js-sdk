@@ -6,3 +6,10 @@ App_Data/
 .vs/
 .vscode/
 coverage/
+
+/samples/musicfestival-backend-dotnet/modules/_protected/
+!samples/musicfestival-backend-dotnet/App_Data/
+
+/samples/netcoreapp/
+/samples/epiCloud/
+/samples/musicfestival-frontend-react/build/
