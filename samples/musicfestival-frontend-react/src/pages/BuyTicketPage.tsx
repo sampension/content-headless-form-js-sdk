@@ -1,4 +1,4 @@
-import { Form, FormLogin } from '@episerver/forms-react';
+import { Form, FormContainerBlock, FormLogin } from '@episerver/forms-react';
 import { FormCache, FormConstants, IdentityInfo, extractParams } from '@episerver/forms-sdk';
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -12,12 +12,6 @@ type BuyTicketPageProps = {
 }
 
 function BuyTicketPage({ content }: BuyTicketPageProps) {
-    const location = useLocation();
-    const { language } = extractParams(window.location.pathname)
-    const url = `${process.env.REACT_APP_ENDPOINT_GET_FORM_BY_PAGE_URL}${location.pathname}`;
-
-    const { data: pageData, loading } = useFetch(url);
-
     const formCache = new FormCache();
 
     const [identityInfo, setIdentityInfo] = useState<IdentityInfo>({
@@ -33,9 +27,7 @@ function BuyTicketPage({ content }: BuyTicketPageProps) {
     const history = useNavigate()
     return (
         <>
-            {loading && <div className='loading'>Loading...</div>}
-
-            {!loading && pageData &&
+            {content &&
                 <div>
                     <nav className="Page-container PageHeader NavBar">
                         <div className="nav-table">
@@ -45,7 +37,14 @@ function BuyTicketPage({ content }: BuyTicketPageProps) {
                                         onClick={() => {
                                             window.location.href = `${window.location.origin}/en/buy-ticket-now/`;
                                         }}
-                                    >{content?.Name}</button>
+                                    >Buy Ticket Now</button>
+                                </div>
+                                <div className="nav-table-cell">
+                                    <button className="Button buy-ticket-button"
+                                        onClick={() => {
+                                            window.location.href = `${window.location.origin}/en/sample-form/`;
+                                        }}
+                                    >Sample Form</button>
                                 </div>
                                 <div className="nav-table-cell search-button-block">
                                     <SearchButton />
@@ -54,17 +53,14 @@ function BuyTicketPage({ content }: BuyTicketPageProps) {
                         </div>
                     </nav>
                     <main className='Page-container'>
-                        {pageData.childrens.map((c: any) => (
-                            <Form
-                                key={c.reference.key}
-                                formKey={c.reference.key}
-                                language={language ?? "en"}
-                                baseUrl={process.env.REACT_APP_HEADLESS_FORM_BASE_URL ?? "/"}
+                        {content.MainContentArea.map((c: any) => (
+                            <FormContainerBlock
+                                form={JSON.parse(c.ContentLink.Expanded.FormRenderTemplate)}
+                                key={c.ContentLink.Expanded.ContentLink.GuidValue}
                                 identityInfo={identityInfo}
+                                baseUrl={process.env.REACT_APP_HEADLESS_FORM_BASE_URL ?? "/"}
                                 history={history}
-                                currentPageUrl={pageData.pageUrl}
-                                optiGraphUrl={process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL}
-                            />
+                                currentPageUrl={content.Url} />
                         ))}
                     </main>
                 </div>

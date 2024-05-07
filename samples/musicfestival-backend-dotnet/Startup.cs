@@ -151,7 +151,7 @@ public class Startup
             options.EnableOpenApiDocumentation = true;
             options.FormCorsPolicy = new FormCorsPolicy
             {
-                AllowOrigins = new string[] { "http://localhost:3000" }, //Enter '*' to allow any origins, multiple origins separate by comma
+                AllowOrigins = new string[] { _frontendUri }, //Enter '*' to allow any origins, multiple origins separate by comma
                 AllowCredentials = true
             };
             options.OpenIDConnectClients.Add(new()
