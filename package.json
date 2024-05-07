@@ -6,7 +6,8 @@
     "src/@episerver/forms-react",
     "src/@episerver/forms-sdk",
     "samples/sample-react-app",
-    "samples/managementsite"
+    "samples/managementsite",
+    "samples/musicfestival-frontend-react"
   ],
   "author": "Optimizely",
   "license": "ISC",
@@ -31,6 +32,13 @@
     "start-frontend": "npm start -w sample-react-app",
     "publish-forms-sdk": "npm publish -w @episerver/forms-sdk",
     "publish-forms-react": "npm publish -w @episerver/forms-react",
-    "publish": "npm run publish-forms-sdk && npm run publish-forms-react"
+    "publish": "npm run publish-forms-sdk && npm run publish-forms-react",
+    "build-musicfestival": "npm run build -w music-festival",
+    "start-musicfestival": "npm start -w music-festival"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.15"
   }
 }

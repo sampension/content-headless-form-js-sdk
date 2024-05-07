@@ -1,0 +1,8 @@
+schema: https://dev.cg.optimizely.com/content/v2?auth=3yUD03bcVMSICOruZKYBYcfnQu3TXaDIvQF0qvRgjCD3p5W5
+documents: './src/**/*.graphql'
+generates:
+  ./src/generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-query
