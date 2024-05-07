@@ -1245,6 +1245,7 @@ export type BuyTicketPage = IContent & IData & {
   StartPublish?: Maybe<Scalars['Date']>;
   Status?: Maybe<Scalars['String']>;
   StopPublish?: Maybe<Scalars['Date']>;
+  Title?: Maybe<Scalars['String']>;
   Url?: Maybe<Scalars['String']>;
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']>;
@@ -1286,6 +1287,7 @@ export type BuyTicketPageAutocomplete = {
   Shortcut?: Maybe<Array<Maybe<Scalars['String']>>>;
   SiteId?: Maybe<Array<Maybe<Scalars['String']>>>;
   Status?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Title?: Maybe<Array<Maybe<Scalars['String']>>>;
   Url?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
@@ -1332,6 +1334,12 @@ export type BuyTicketPageAutocompleteStatusArgs = {
 };
 
 
+export type BuyTicketPageAutocompleteTitleArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
 export type BuyTicketPageAutocompleteUrlArgs = {
   limit?: Scalars['Int'];
   value: Scalars['String'];
@@ -1360,6 +1368,7 @@ export type BuyTicketPageFacet = {
   StartPublish?: Maybe<Array<Maybe<DateFacet>>>;
   Status?: Maybe<Array<Maybe<StringFacet>>>;
   StopPublish?: Maybe<Array<Maybe<DateFacet>>>;
+  Title?: Maybe<Array<Maybe<StringFacet>>>;
   Url?: Maybe<Array<Maybe<StringFacet>>>;
 };
 
@@ -1466,6 +1475,14 @@ export type BuyTicketPageFacetStopPublishArgs = {
 };
 
 
+export type BuyTicketPageFacetTitleArgs = {
+  filters?: InputMaybe<Array<Scalars['String']>>;
+  limit?: Scalars['Int'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
 export type BuyTicketPageFacetUrlArgs = {
   filters?: InputMaybe<Array<Scalars['String']>>;
   limit?: Scalars['Int'];
@@ -1495,6 +1512,7 @@ export type BuyTicketPageOrderByInput = {
   StartPublish?: InputMaybe<OrderBy>;
   Status?: InputMaybe<OrderBy>;
   StopPublish?: InputMaybe<OrderBy>;
+  Title?: InputMaybe<OrderBy>;
   Url?: InputMaybe<OrderBy>;
   _minimumScore?: InputMaybe<Scalars['Float']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1537,6 +1555,7 @@ export type BuyTicketPageWhereInput = {
   StartPublish?: InputMaybe<DateFilterInput>;
   Status?: InputMaybe<StringFilterInput>;
   StopPublish?: InputMaybe<DateFilterInput>;
+  Title?: InputMaybe<StringFilterInput>;
   Url?: InputMaybe<StringFilterInput>;
   _and?: InputMaybe<Array<InputMaybe<BuyTicketPageWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
@@ -4223,6 +4242,7 @@ export type FormContainerBlock = IContent & IData & {
   ExistingLanguages?: Maybe<Array<Maybe<ContentLanguageModel>>>;
   FinalizedSubmissionRetentionPeriod?: Maybe<Scalars['String']>;
   FocusOnForm?: Maybe<Scalars['Bool']>;
+  FormRenderTemplate?: Maybe<Scalars['String']>;
   IsCommonDraft?: Maybe<Scalars['Bool']>;
   Language?: Maybe<ContentLanguageModel>;
   MasterLanguage?: Maybe<ContentLanguageModel>;
@@ -4321,6 +4341,7 @@ export type FormContainerBlockAutocomplete = {
   ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
   ContentType?: Maybe<Array<Maybe<Scalars['String']>>>;
   ExistingLanguages?: Maybe<ContentLanguageModelAutocomplete>;
+  FormRenderTemplate?: Maybe<Array<Maybe<Scalars['String']>>>;
   Language?: Maybe<ContentLanguageModelAutocomplete>;
   MasterLanguage?: Maybe<ContentLanguageModelAutocomplete>;
   ParentLink?: Maybe<ContentModelReferenceAutocomplete>;
@@ -4341,6 +4362,12 @@ export type FormContainerBlockAutocompleteAncestorsArgs = {
 
 
 export type FormContainerBlockAutocompleteContentTypeArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type FormContainerBlockAutocompleteFormRenderTemplateArgs = {
   limit?: Scalars['Int'];
   value: Scalars['String'];
 };
@@ -4405,6 +4432,7 @@ export type FormContainerBlockFacet = {
   ExistingLanguages?: Maybe<ContentLanguageModelFacet>;
   FinalizedSubmissionRetentionPeriod?: Maybe<Array<Maybe<StringFacet>>>;
   FocusOnForm?: Maybe<Array<Maybe<StringFacet>>>;
+  FormRenderTemplate?: Maybe<Array<Maybe<StringFacet>>>;
   IsCommonDraft?: Maybe<Array<Maybe<StringFacet>>>;
   Language?: Maybe<ContentLanguageModelFacet>;
   MasterLanguage?: Maybe<ContentLanguageModelFacet>;
@@ -4515,6 +4543,14 @@ export type FormContainerBlockFacetFinalizedSubmissionRetentionPeriodArgs = {
 
 
 export type FormContainerBlockFacetFocusOnFormArgs = {
+  filters?: InputMaybe<Array<Scalars['String']>>;
+  limit?: Scalars['Int'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type FormContainerBlockFacetFormRenderTemplateArgs = {
   filters?: InputMaybe<Array<Scalars['String']>>;
   limit?: Scalars['Int'];
   orderBy?: InputMaybe<OrderBy>;
@@ -4684,6 +4720,7 @@ export type FormContainerBlockOrderByInput = {
   ExistingLanguages?: InputMaybe<ContentLanguageModelOrderByInput>;
   FinalizedSubmissionRetentionPeriod?: InputMaybe<OrderBy>;
   FocusOnForm?: InputMaybe<OrderBy>;
+  FormRenderTemplate?: InputMaybe<OrderBy>;
   IsCommonDraft?: InputMaybe<OrderBy>;
   Language?: InputMaybe<ContentLanguageModelOrderByInput>;
   MasterLanguage?: InputMaybe<ContentLanguageModelOrderByInput>;
@@ -4742,6 +4779,7 @@ export type FormContainerBlockWhereInput = {
   ExistingLanguages?: InputMaybe<ContentLanguageModelWhereInput>;
   FinalizedSubmissionRetentionPeriod?: InputMaybe<SearchableStringFilterInput>;
   FocusOnForm?: InputMaybe<BoolFilterInput>;
+  FormRenderTemplate?: InputMaybe<StringFilterInput>;
   IsCommonDraft?: InputMaybe<BoolFilterInput>;
   Language?: InputMaybe<ContentLanguageModelWhereInput>;
   MasterLanguage?: InputMaybe<ContentLanguageModelWhereInput>;
@@ -12703,7 +12741,7 @@ export type StartQueryVariables = Exact<{
 }>;
 
 
-export type StartQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', items?: Array<{ __typename: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null, Url?: string | null, artists?: { __typename?: 'QueryRef', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null, facets?: { __typename?: 'ArtistDetailsPageFacet', ArtistGenre?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null, StageName?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null } | null } | null } | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ArtistDetailsPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'BuyTicketBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'BuyTicketPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, ContentLink?: { __typename?: 'ContentModelReference', Id?: number | null, WorkId?: number | null, GuidValue?: string | null, ProviderName?: string | null, Url?: string | null } | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'CaptchaElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ChoiceElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'Content', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null, Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'FileUploadElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'FormContainerBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'FormStepBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ImageChoiceElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ImageFile', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ImagePage', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'LandingPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, Title?: string | null, Subtitle?: string | null, HeroImage?: string | null, _children?: { __typename?: 'QueryRef', ArtistContainerPage?: { __typename?: 'ArtistContainerPageOutput', items?: Array<{ __typename?: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null, headlines?: { __typename?: 'QueryRef', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null } | null } | null } | null> | null } | null } | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null, BuyTicketBlock?: { __typename?: 'LandingPageBlockData', Heading?: string | null, Message?: string | null } | null, ArtistsLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename?: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ArtistDetailsPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'BuyTicketBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'BuyTicketPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'CaptchaElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ChoiceElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'Content', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ContentBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'FileUploadElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'FormContainerBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'FormStepBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImageChoiceElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImageFile', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImagePage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'LandingPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'NumberElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ParagraphTextElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'PredefinedHiddenElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'RangeElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ResetButtonElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'SelectionElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'SubmitButtonElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'TextareaElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'TextboxElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'UrlElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'VisitorDataHiddenElementBlock', Name?: string | null, RelativePath?: string | null } | null } | null, MainContentArea?: Array<{ __typename?: 'ContentAreaItemModel', ContentLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename: 'ArtistContainerPage' } | { __typename: 'ArtistDetailsPage' } | { __typename: 'BuyTicketBlock' } | { __typename: 'BuyTicketPage' } | { __typename: 'CaptchaElementBlock' } | { __typename: 'ChoiceElementBlock' } | { __typename: 'Content' } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null } | { __typename: 'FileUploadElementBlock' } | { __typename: 'FormContainerBlock' } | { __typename: 'FormStepBlock' } | { __typename: 'ImageChoiceElementBlock' } | { __typename: 'ImageFile', Content?: string | null, Url?: string | null, Thumbnail?: { __typename?: 'BlobModel', Url?: string | null } | null } | { __typename: 'ImagePage' } | { __typename: 'LandingPage' } | { __typename: 'NumberElementBlock' } | { __typename: 'ParagraphTextElementBlock' } | { __typename: 'PredefinedHiddenElementBlock' } | { __typename: 'RangeElementBlock' } | { __typename: 'ResetButtonElementBlock' } | { __typename: 'SelectionElementBlock' } | { __typename: 'SubmitButtonElementBlock' } | { __typename: 'TextareaElementBlock' } | { __typename: 'TextboxElementBlock' } | { __typename: 'UrlElementBlock' } | { __typename: 'VisitorDataHiddenElementBlock' } | null } | null } | null> | null, FooterContentArea?: Array<{ __typename?: 'ContentAreaItemModel', ContentLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename: 'ArtistContainerPage' } | { __typename: 'ArtistDetailsPage' } | { __typename: 'BuyTicketBlock' } | { __typename: 'BuyTicketPage' } | { __typename: 'CaptchaElementBlock' } | { __typename: 'ChoiceElementBlock' } | { __typename: 'Content' } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null } | { __typename: 'FileUploadElementBlock' } | { __typename: 'FormContainerBlock' } | { __typename: 'FormStepBlock' } | { __typename: 'ImageChoiceElementBlock' } | { __typename: 'ImageFile', Content?: string | null, Url?: string | null, Thumbnail?: { __typename?: 'BlobModel', Url?: string | null } | null } | { __typename: 'ImagePage' } | { __typename: 'LandingPage' } | { __typename: 'NumberElementBlock' } | { __typename: 'ParagraphTextElementBlock' } | { __typename: 'PredefinedHiddenElementBlock' } | { __typename: 'RangeElementBlock' } | { __typename: 'ResetButtonElementBlock' } | { __typename: 'SelectionElementBlock' } | { __typename: 'SubmitButtonElementBlock' } | { __typename: 'TextareaElementBlock' } | { __typename: 'TextboxElementBlock' } | { __typename: 'UrlElementBlock' } | { __typename: 'VisitorDataHiddenElementBlock' } | null } | null } | null> | null } | { __typename: 'NumberElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ParagraphTextElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'PredefinedHiddenElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'RangeElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ResetButtonElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'SelectionElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'SubmitButtonElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'TextareaElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'TextboxElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'UrlElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'VisitorDataHiddenElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null } | null };
+export type StartQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', items?: Array<{ __typename: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null, Url?: string | null, artists?: { __typename?: 'QueryRef', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null, facets?: { __typename?: 'ArtistDetailsPageFacet', ArtistGenre?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null, StageName?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null } | null } | null } | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ArtistDetailsPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'BuyTicketBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'BuyTicketPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, MainContentArea?: Array<{ __typename?: 'ContentAreaItemModel', ContentLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename?: 'ArtistContainerPage' } | { __typename?: 'ArtistDetailsPage' } | { __typename?: 'BuyTicketBlock' } | { __typename?: 'BuyTicketPage' } | { __typename?: 'CaptchaElementBlock' } | { __typename?: 'ChoiceElementBlock' } | { __typename?: 'Content' } | { __typename?: 'ContentBlock' } | { __typename?: 'FileUploadElementBlock' } | { __typename?: 'FormContainerBlock', FormRenderTemplate?: string | null, ContentLink?: { __typename?: 'ContentModelReference', GuidValue?: string | null } | null } | { __typename?: 'FormStepBlock' } | { __typename?: 'ImageChoiceElementBlock' } | { __typename?: 'ImageFile' } | { __typename?: 'ImagePage' } | { __typename?: 'LandingPage' } | { __typename?: 'NumberElementBlock' } | { __typename?: 'ParagraphTextElementBlock' } | { __typename?: 'PredefinedHiddenElementBlock' } | { __typename?: 'RangeElementBlock' } | { __typename?: 'ResetButtonElementBlock' } | { __typename?: 'SelectionElementBlock' } | { __typename?: 'SubmitButtonElementBlock' } | { __typename?: 'TextareaElementBlock' } | { __typename?: 'TextboxElementBlock' } | { __typename?: 'UrlElementBlock' } | { __typename?: 'VisitorDataHiddenElementBlock' } | null } | null } | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'CaptchaElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ChoiceElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'Content', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null, Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'FileUploadElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'FormContainerBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'FormStepBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ImageChoiceElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ImageFile', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ImagePage', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'LandingPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, Title?: string | null, Subtitle?: string | null, HeroImage?: string | null, _children?: { __typename?: 'QueryRef', ArtistContainerPage?: { __typename?: 'ArtistContainerPageOutput', items?: Array<{ __typename?: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null, headlines?: { __typename?: 'QueryRef', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null } | null } | null } | null> | null } | null } | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null, BuyTicketBlock?: { __typename?: 'LandingPageBlockData', Heading?: string | null, Message?: string | null } | null, ArtistsLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename?: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ArtistDetailsPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'BuyTicketBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'BuyTicketPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'CaptchaElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ChoiceElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'Content', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ContentBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'FileUploadElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'FormContainerBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'FormStepBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImageChoiceElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImageFile', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImagePage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'LandingPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'NumberElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ParagraphTextElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'PredefinedHiddenElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'RangeElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ResetButtonElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'SelectionElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'SubmitButtonElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'TextareaElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'TextboxElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'UrlElementBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'VisitorDataHiddenElementBlock', Name?: string | null, RelativePath?: string | null } | null } | null, MainContentArea?: Array<{ __typename?: 'ContentAreaItemModel', ContentLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename: 'ArtistContainerPage' } | { __typename: 'ArtistDetailsPage' } | { __typename: 'BuyTicketBlock' } | { __typename: 'BuyTicketPage' } | { __typename: 'CaptchaElementBlock' } | { __typename: 'ChoiceElementBlock' } | { __typename: 'Content' } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null } | { __typename: 'FileUploadElementBlock' } | { __typename: 'FormContainerBlock' } | { __typename: 'FormStepBlock' } | { __typename: 'ImageChoiceElementBlock' } | { __typename: 'ImageFile', Content?: string | null, Url?: string | null, Thumbnail?: { __typename?: 'BlobModel', Url?: string | null } | null } | { __typename: 'ImagePage' } | { __typename: 'LandingPage' } | { __typename: 'NumberElementBlock' } | { __typename: 'ParagraphTextElementBlock' } | { __typename: 'PredefinedHiddenElementBlock' } | { __typename: 'RangeElementBlock' } | { __typename: 'ResetButtonElementBlock' } | { __typename: 'SelectionElementBlock' } | { __typename: 'SubmitButtonElementBlock' } | { __typename: 'TextareaElementBlock' } | { __typename: 'TextboxElementBlock' } | { __typename: 'UrlElementBlock' } | { __typename: 'VisitorDataHiddenElementBlock' } | null } | null } | null> | null, FooterContentArea?: Array<{ __typename?: 'ContentAreaItemModel', ContentLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename: 'ArtistContainerPage' } | { __typename: 'ArtistDetailsPage' } | { __typename: 'BuyTicketBlock' } | { __typename: 'BuyTicketPage' } | { __typename: 'CaptchaElementBlock' } | { __typename: 'ChoiceElementBlock' } | { __typename: 'Content' } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null } | { __typename: 'FileUploadElementBlock' } | { __typename: 'FormContainerBlock' } | { __typename: 'FormStepBlock' } | { __typename: 'ImageChoiceElementBlock' } | { __typename: 'ImageFile', Content?: string | null, Url?: string | null, Thumbnail?: { __typename?: 'BlobModel', Url?: string | null } | null } | { __typename: 'ImagePage' } | { __typename: 'LandingPage' } | { __typename: 'NumberElementBlock' } | { __typename: 'ParagraphTextElementBlock' } | { __typename: 'PredefinedHiddenElementBlock' } | { __typename: 'RangeElementBlock' } | { __typename: 'ResetButtonElementBlock' } | { __typename: 'SelectionElementBlock' } | { __typename: 'SubmitButtonElementBlock' } | { __typename: 'TextareaElementBlock' } | { __typename: 'TextboxElementBlock' } | { __typename: 'UrlElementBlock' } | { __typename: 'VisitorDataHiddenElementBlock' } | null } | null } | null> | null } | { __typename: 'NumberElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ParagraphTextElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'PredefinedHiddenElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'RangeElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ResetButtonElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'SelectionElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'SubmitButtonElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'TextareaElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'TextboxElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'UrlElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'VisitorDataHiddenElementBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null } | null };
 
 export type ArtistDetailsPageFragment = { __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null };
 
@@ -13033,12 +13071,17 @@ export const StartDocument = `
         Content
       }
       ... on BuyTicketPage {
-        ContentLink {
-          Id
-          WorkId
-          GuidValue
-          ProviderName
-          Url
+        MainContentArea {
+          ContentLink {
+            Expanded {
+              ... on FormContainerBlock {
+                FormRenderTemplate
+                ContentLink {
+                  GuidValue
+                }
+              }
+            }
+          }
         }
       }
     }

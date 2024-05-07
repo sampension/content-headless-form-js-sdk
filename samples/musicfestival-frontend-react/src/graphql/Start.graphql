@@ -119,12 +119,17 @@ query Start(
                 Content
             }
             ... on BuyTicketPage {
-                ContentLink {
-                    Id
-                    WorkId
-                    GuidValue
-                    ProviderName
-                    Url
+                MainContentArea {
+                    ContentLink {
+                    Expanded {
+                        ... on FormContainerBlock {
+                            FormRenderTemplate
+                            ContentLink {
+                                GuidValue
+                            }
+                        }
+                    }
+                    }
                 }
             }
         }

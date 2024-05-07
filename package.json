@@ -34,7 +34,10 @@
     "publish-forms-react": "npm publish -w @episerver/forms-react",
     "publish": "npm run publish-forms-sdk && npm run publish-forms-react",
     "build-musicfestival": "npm run build -w music-festival",
-    "start-musicfestival": "npm start -w music-festival"
+    "start-musicfestival": "npm start -w music-festival",
+    "build-musicfestival-backend": "npm run build -w musicfestival-backend",
+    "start-musicfestival-backend": "npm start -w managementsite musicfestival-backend"
+    
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",

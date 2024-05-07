@@ -56,11 +56,22 @@ Install from the command line
    npm run start-backend
 ```
 
+for musicfestival sample site
+
+```sh
+   npm run start-musicfestival-backend
+``` 
 5. Start react site
 
 ```sh
    npm run start-frontend
 ```
+
+for musicfestival sample site
+
+```sh
+   npm run start-musicfestival
+``` 
 
 ### View site on browser
 
