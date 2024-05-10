@@ -4,9 +4,9 @@
     <NoWarn>NU5100;NU1803;NU1605;NU1504;</NoWarn>
 	  <CmsUIVersion>12.23.0</CmsUIVersion>
 	  <CmsCoreVersion>12.20.1</CmsCoreVersion>
-    <HeadlessFormVersion>0.1.1--inte-380</HeadlessFormVersion>
+    <HeadlessFormVersion>0.1.1-inte-380</HeadlessFormVersion>
     <ContentApiVersion>12.20.1</ContentApiVersion>
-	  <FormVersion>5.8.2-pre-021286</FormVersion>
+	  <FormVersion>5.8.2</FormVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS.AspNetCore" Version="$(CmsCoreVersion)" />
