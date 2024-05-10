@@ -13,3 +13,4 @@ coverage/
 /samples/netcoreapp/
 /samples/epiCloud/
 /samples/musicfestival-frontend-react/build/
+/samples/musicfestival-backend-dotnet/App_Data/
