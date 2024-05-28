@@ -44,6 +44,10 @@ Install from the command line
    npm run setup
 ```
 
+To setup musicfestival: 
+- https://github.com/episerver/content-headless-form-js-sdk/tree/develop/samples/musicfestival-backend-dotnet
+- https://github.com/episerver/content-headless-form-js-sdk/tree/develop/samples/musicfestival-frontend-react
+
 3. Build all projects
 
 ```sh

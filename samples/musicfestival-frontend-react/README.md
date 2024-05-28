@@ -61,6 +61,7 @@ This project uses:
         - `...`
     - `models/` contains models retrieving messages from CMS
     - `pages/` contains all pages of the site
+        - `BuyTicketPage.tsx` render form using data retrieved from Content Graph
     - `authService.js` contains OIDC config
     - `generated.ts` is generated file on folder `graphql/`
     - `...`
