@@ -7,7 +7,8 @@
     "src/@episerver/forms-sdk",
     "samples/sample-react-app",
     "samples/managementsite",
-    "samples/musicfestival-frontend-react"
+    "samples/musicfestival-frontend-react",
+    "samples/musicfestival-backend-dotnet"
   ],
   "author": "Optimizely",
   "license": "ISC",
@@ -36,7 +37,7 @@
     "build-musicfestival": "npm run build -w music-festival",
     "start-musicfestival": "npm start -w music-festival",
     "build-musicfestival-backend": "npm run build -w musicfestival-backend",
-    "start-musicfestival-backend": "npm start -w managementsite musicfestival-backend"
+    "start-musicfestival-backend": "npm start -w musicfestival-backend"
     
   },
   "dependencies": {

@@ -13,6 +13,7 @@ using EPiServer.Web.Routing;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using OpenIddict.Server;
+using Optimizely.Cms.DependencyInjection;
 using Optimizely.Headless.Form;
 using Optimizely.Headless.Form.DependencyInjection;
 
@@ -164,6 +165,8 @@ public class Startup
         services.AddHostedService<ProvisionDatabase>();
 
         services.AddOptimizelyHeadlessFormContentGraph();
+
+        services.AddOptimizelyCmsContentOnEPiServerPreview1();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

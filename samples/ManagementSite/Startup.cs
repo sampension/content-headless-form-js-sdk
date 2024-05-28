@@ -5,7 +5,6 @@ using EPiServer.Cms.UI.Admin;
 using EPiServer.Cms.UI.VisitorGroups;
 using EPiServer.ContentApi.Core.DependencyInjection;
 using EPiServer.Core;
-using EPiServer.DependencyInjection;
 using EPiServer.Shell.Telemetry;
 using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
@@ -152,9 +151,6 @@ namespace Alloy.ManagementSite
                 o.FlattenPropertyModel = true;
                 o.IncludeNumericContentIdentifier = true;
             });
-            services.AddContentGraph();
-
-            services.AddOptimizelyHeadlessFormContentGraph();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
