@@ -204,8 +204,8 @@ export const FormBody = (props: FormBodyProps) => {
     //reset when change page
     useEffect(() => {
         isSuccess.current = false;
-        if (form.properties.focusOnForm){            
-            dispatchFunctions.updateFocusOn(stepHelper.getFirstInputElement(currentStepIndex));
+        if (form.properties.focusOnForm || currentStepIndex > 0){            
+            dispatchFunctions.updateFocusOn(stepHelper.getFirstInputElement(currentStepIndex, inactiveElements));
         }
     }, [currentStepIndex]);
 
