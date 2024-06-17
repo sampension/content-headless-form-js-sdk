@@ -1,0 +1,24 @@
+fragment ArtistDetailsPage on ArtistDetailsPage {
+    PerformanceStartTime
+    PerformanceEndTime
+    StageName
+    ArtistName
+    ArtistPhoto
+    ArtistGenre
+    ArtistDescription
+    ArtistIsHeadliner
+    Name
+    RelativePath
+    ContentArea {
+        ContentLink {
+            Expanded {
+                ... on FormContainerBlock {
+                    FormRenderTemplate
+            }
+          }
+        }
+    }
+    ParentLink {
+        Url
+    }
+}
