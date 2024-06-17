@@ -25,7 +25,8 @@ export interface FormContainerProperties {
     allowMultipleSubmission: boolean
     showNavigationBar : boolean
     description: string
-    metadataAttribute: string
+    metadataAttribute: string,
+    focusOnForm: boolean;
 }
 
 export interface Step {

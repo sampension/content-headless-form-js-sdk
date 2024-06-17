@@ -98,4 +98,16 @@ export class StepHelper {
         }
         return !isNullOrEmpty(step.properties?.dependField?.key)
     }
+
+    /**
+     * Get the first input elementKey in the list element
+     * @param stepIndex 
+     * @returns
+     */
+    getFirstInputElement(stepIndex: number, inactiveElements: string[]): string {
+        const arrInputElement = this._form.steps[stepIndex].elements.find((e) =>
+            e.contentType.indexOf("ElementBlock") > 0 && inactiveElements.indexOf(e.key) < 0
+        );
+        return arrInputElement?.key ?? "";
+    }
 }

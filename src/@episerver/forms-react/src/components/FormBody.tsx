@@ -204,6 +204,9 @@ export const FormBody = (props: FormBodyProps) => {
     //reset when change page
     useEffect(() => {
         isSuccess.current = false;
+        if (form.properties.focusOnForm || currentStepIndex > 0){            
+            dispatchFunctions.updateFocusOn(stepHelper.getFirstInputElement(currentStepIndex, inactiveElements));
+        }
     }, [currentStepIndex]);
 
     //Run in-case change page by url. The currentStepIndex that get from cache is incorrect.
