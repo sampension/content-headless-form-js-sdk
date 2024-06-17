@@ -1,7 +1,7 @@
 import { FormStorage } from "../form-storage";
 import { FormValidator } from "../form-validator";
 import { equals, isNull } from "../helpers";
-import { FormConstants, FormContainer, FormSubmission, FormValidationResult, ProblemDetail } from "../models";
+import { FormConstants, FormContainer, FormFieldsData, FormSubmission, FormSubmissionData, FormValidationResult, ProblemDetail } from "../models";
 import { ApiConstant } from "../form-loader/apiConstant";
 
 export interface FormSubmitModel {
@@ -110,17 +110,20 @@ export class FormSubmitter {
         return new Promise<FormSubmitResult>((resolve, reject) => {
             // Post data to API
             let formData = new FormData();
-            formData.append("formKey", model.formKey);
-            formData.append("locale", model.locale);
-            formData.append("IsFinalized", model.isFinalized.toString());
-            formData.append("SubmissionKey", model.partialSubmissionKey);
-            formData.append("HostedPageUrl", model.hostedPageUrl);
-            formData.append("CurrentStep", model.currentStepIndex.toString());
+
+            let formSubmissionData: Partial<FormSubmissionData> = {};
+            formSubmissionData.FormKey = model.formKey;
+            formSubmissionData.Locale = model.locale;
+            formSubmissionData.IsFinalized = model.isFinalized;
+            formSubmissionData.SubmissionKey = model.partialSubmissionKey;
+            formSubmissionData.HostedPageUrl = model.hostedPageUrl;
+            formSubmissionData.CurrentStep = model.currentStepIndex;
+            let fieldsData: FormFieldsData = {}
 
             //append form submission to FormData object
             model.submissionData.forEach(data => {
                 let ovalue = data.value;
-                let key = `${FormConstants.FormFieldPrefix}${data.elementKey}`;
+                let key = data.elementKey;
 
                 if (isNull(ovalue)) {
                     return;
@@ -130,12 +133,13 @@ export class FormSubmitter {
                 // for using Object.getPrototypeOf(variable) variable must be object type
                 if (Array.isArray(ovalue) && ovalue.length > 0 &&
                         ovalue[0] !== null && typeof ovalue[0] === "object") {
-                        let files = ovalue,
+                    let files = ovalue,
                             fileNames = "";
                     // append each upload file with a unique key (bases on element's key) so that the server side can see it through the Request.Files,
                     // concat all the files' name and assign with the element's Id
                     for (var idx = 0; idx < files.length; idx++) {
                         let ofile = files[idx].file;
+                        
                         if (ofile && Object.getPrototypeOf(ofile) === File.prototype) {
                             formData.append(key + "_file_" + idx, ofile);
                         }
@@ -152,21 +156,24 @@ export class FormSubmitter {
                     data.prevValue = fileNames
                 }
                 else {
-                    formData.append(key, data.value);
+                    fieldsData[key] = data.value;
                 }
             });
+
+            formSubmissionData.Fields = fieldsData;
+            formData.append("data",JSON.stringify(formSubmissionData))
 
             // Save data to session storage
             let formStorage = new FormStorage(this._form);
             let currentData = formStorage.loadFormDataFromStorage();
             let dataCombined = this.combineData(currentData, model.submissionData);
             formStorage.saveFormDataToStorage(dataCombined);
-
+            
             //init a request and call ajax
             let requestInit: RequestInit = {
-                method: "POST",
+                method: "PUT",
                 headers: {
-                    'Authorization': `Bearer ${model.accessToken}`
+                    'Authorization': `Bearer ${model.accessToken}`,
                 },
                 body: formData
             }
