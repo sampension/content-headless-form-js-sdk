@@ -13,8 +13,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Optimizely.Headless.Form.DependencyInjection;
-using Optimizely.Headless.Form;
 using EPiServer.OpenIDConnect;
 using System;
 using static OpenIddict.Abstractions.OpenIddictConstants;
@@ -22,7 +20,9 @@ using Microsoft.Extensions.Options;
 using OpenIddict.Server;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Optimizely.Cms.DependencyInjection;
+using EPiServer.DependencyInjection;
+using Optimizely.Cms.Forms.DependencyInjection;
+using Optimizely.Cms.Forms;
 
 namespace Alloy.ManagementSite
 {
@@ -33,7 +33,7 @@ namespace Alloy.ManagementSite
         private readonly string _allowedOrigins = "_allowedOrigins";
         private const string TestClientId = "TestClient";
         private const string TestClientSecret = "TestClientSecret";
-        private const string ClientEndpoint = "http://localhost:8082";
+        private const string ClientEndpoint = "https://localhost:8082";
 
         public Startup(IWebHostEnvironment environment, IConfiguration configuration)
         {
@@ -46,7 +46,7 @@ namespace Alloy.ManagementSite
             if (_environment.IsDevelopment())
             {
                 //NETCORE: Consider add appsettings support for this
-                
+
                 services.Configure<StaticFileOptions>(o =>
                 {
                     o.OnPrepareResponse = context =>
@@ -57,7 +57,8 @@ namespace Alloy.ManagementSite
                 });
             }
 
-            services.Configure<TelemetryOptions>(o => {
+            services.Configure<TelemetryOptions>(o =>
+            {
                 o.Enabled = false;
             });
 
@@ -89,7 +90,8 @@ namespace Alloy.ManagementSite
                 .AddContentDelivery(managementSiteOptions)
                 .ConfigureDxp(managementSiteOptions, _configuration);
 
-            services.AddCors(opts => {
+            services.AddCors(opts =>
+            {
                 opts.AddPolicy(name: _allowedOrigins, builder =>
                 {
                     builder.WithOrigins(managementSiteOptions.DeliverySite.Url)
@@ -121,15 +123,15 @@ namespace Alloy.ManagementSite
                    });
                });
 
-            services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<HeadlessFormServiceOptions>, HeadlessFormServiceOptionsPostConfigure>());
+            services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<OptimizelyFormsServiceOptions>, HeadlessFormServiceOptionsPostConfigure>());
 
             // Register the Optimizely Headless Form API Services
-            services.AddOptimizelyHeadlessFormService(options =>
+            services.AddOptimizelyFormsService(options =>
             {
                 options.EnableOpenApiDocumentation = true;
                 options.FormCorsPolicy = new FormCorsPolicy
                 {
-                    AllowOrigins = new string[] { "http://localhost:3000" }, //Enter '*' to allow any origins, multiple origins separate by comma
+                    AllowOrigins = new string[] { "*" }, //Enter '*' to allow any origins, multiple origins separate by comma
                     AllowCredentials = true
                 };
                 options.OpenIDConnectClients.Add(new()
@@ -138,7 +140,7 @@ namespace Alloy.ManagementSite
                 });
             });
 
-            services.AddOptimizelyCmsContentOnEPiServerPreview1();
+            services.AddContentGraph(OpenIDConnectOptionsDefaults.AuthenticationScheme);
 
             //Register ContentGraph for HeadlessForm
             services.AddContentDeliveryApi(op =>
@@ -174,7 +176,7 @@ namespace Alloy.ManagementSite
         }
     }
 
-    public class HeadlessFormServiceOptionsPostConfigure : IPostConfigureOptions<HeadlessFormServiceOptions>
+    public class HeadlessFormServiceOptionsPostConfigure : IPostConfigureOptions<OptimizelyFormsServiceOptions>
     {
         private readonly OpenIddictServerOptions _options;
 
@@ -183,7 +185,7 @@ namespace Alloy.ManagementSite
             _options = options.Value;
         }
 
-        public void PostConfigure(string name, HeadlessFormServiceOptions options)
+        public void PostConfigure(string name, OptimizelyFormsServiceOptions options)
         {
             foreach (var client in options.OpenIDConnectClients)
             {
