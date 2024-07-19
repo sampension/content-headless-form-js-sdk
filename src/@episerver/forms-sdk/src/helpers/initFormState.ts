@@ -4,6 +4,7 @@ import { FormStorage } from "../form-storage";
 import { FormConstants, FormContainer, FormState, FormSubmission, FormValidationResult, StepDependencies } from "../models";
 import { getDefaultValue } from "./elementHelper";
 import { equals, isNullOrEmpty } from "./utils";
+import { ElementDependencies } from "../models/states/ElementDependencies";
 
 /**
  * Function to initialize FormState object
@@ -19,14 +20,18 @@ export function initFormState(formContainer: FormContainer, currentPageUrl?: str
     let formSubmissions = [] as FormSubmission[];
     let formValidationResults = [] as FormValidationResult[];
     let stepDependencies = [] as StepDependencies[];
+    let elementDependencies = [] as ElementDependencies[]
 
     formContainer.steps?.forEach(s => {
         s.elements.forEach(e => {
-            //init form submission
-            formSubmissions = formSubmissions.concat({ elementKey: e.key, value: getDefaultValue(e) } as FormSubmission);
-
-            //init form validation
-            formValidationResults = formValidationResults.concat({ elementKey: e.key, result: {valid: true, message: ""} });
+            if (e.key != s.formStep.key) {
+                //init form validation
+                formValidationResults = formValidationResults.concat({ elementKey: e.key, result: {valid: true, message: ""} });
+                //init form submission
+                formSubmissions = formSubmissions.concat({ elementKey: e.key, value: getDefaultValue(e) } as FormSubmission);
+                //init form elements dependencies
+                elementDependencies = elementDependencies.concat({ elementKey: e.key, isSatisfied: true });
+            }
         });
         stepDependencies = stepDependencies.concat({ elementKey: s.formStep.key, isSatisfied: false });
     });
@@ -53,6 +58,7 @@ export function initFormState(formContainer: FormContainer, currentPageUrl?: str
         formValidationResults,
         stepDependencies,
         formContainer,
-        history
+        history,
+        elementDependencies
     } as FormState;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { FormContainer, IdentityInfo, StepBuilder, initFormState } from "@episerver/forms-sdk";
+import { FormContainer, FormState, IdentityInfo, StepBuilder, initFormState } from "@episerver/forms-sdk";
 import { FormProvider } from "../context/FormProvider";
 import { FormBody } from "./FormBody";
 
@@ -34,7 +34,6 @@ export function FormContainerBlock(props: FormContainerProps){
     const stepBuilder = new StepBuilder(props.form);
     const form = stepBuilder.buildForm();
     const state = initFormState(form, props.currentPageUrl, props.history);
-
     {/* finally return the form */}
     return (
         <FormProvider initialState={state}>
