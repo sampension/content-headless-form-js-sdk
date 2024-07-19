@@ -1,9 +1,9 @@
 import { equals,
   FormState, 
   FormSubmission, 
-  FormValidationResult, 
-  StepDependencies} from "@episerver/forms-sdk";
-import { ElementDependencies } from "@episerver/forms-sdk/dist/models/states/ElementDependencies";
+  FormValidationResult,
+  ElementDependencies } from "@episerver/forms-sdk";
+
 
 export enum ActionType {
     UpdateValue = "UpdateValue",

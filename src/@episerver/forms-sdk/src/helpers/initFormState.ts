@@ -1,10 +1,9 @@
 import { FormCache } from "../form-cache";
 import { StepHelper } from "./stepHelper";
 import { FormStorage } from "../form-storage";
-import { FormConstants, FormContainer, FormState, FormSubmission, FormValidationResult, StepDependencies } from "../models";
+import { ElementDependencies, FormConstants, FormContainer, FormState, FormSubmission, FormValidationResult, StepDependencies } from "../models";
 import { getDefaultValue } from "./elementHelper";
 import { equals, isNullOrEmpty } from "./utils";
-import { ElementDependencies } from "../models/states/ElementDependencies";
 
 /**
  * Function to initialize FormState object
