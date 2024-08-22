@@ -1,5 +1,5 @@
 import React from "react";
-import { FormContainer, FormState, IdentityInfo, StepBuilder, initFormState } from "@episerver/forms-sdk";
+import { FormContainer, IdentityInfo, StepBuilder, initFormState } from "@episerver/forms-sdk";
 import { FormProvider } from "../context/FormProvider";
 import { FormBody } from "./FormBody";
 
