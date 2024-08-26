@@ -18,7 +18,7 @@ export class FormLoader<T extends FormContainer> {
      * @param config Optional config to use. This config will combined with the defaultConfig.
      */
     constructor(config?: Partial<ApiClientConfig>) {
-        this.client = new ApiClient<T>({ ...defaultConfig, ...config});
+        this.client = new ApiClient<T>({ ...defaultConfig, ...config });
     }
 
     /**
@@ -52,34 +52,37 @@ export class FormLoader<T extends FormContainer> {
         return new Promise<T>((resolve, reject) => {
             let query: string = `
             query FormQuery($key: String, $language: String) {
-                FormContainerBlock (
-                    where: {
-                        ContentLink: {
-                            GuidValue:{eq: $key}
-                        }
-                        Language: {
-                            Name: {eq: $language}
-                        }
-                    }
-                ){
+                FormContainer(where: { Key: { eq: $key }, Locale: { eq: $language } }) {
                     items {
-                        FormRenderTemplate
+                        Key
+                        Locale
+                        Properties
+                        Localizations
+                        FormElements {
+                            Key
+                            ContentType
+                            DisplayName
+                            Locale
+                            Localizations
+                            Properties
+                            Locale
+                        }
                     }
                 }
             }
             `;
-            let variables: any = { key: parseKeyToGuid(key), language };
+            let variables: any = { key: key, language };
             fetch(optiGraphUrl, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json",
-                    },
-                    body: JSON.stringify({
-                        query,
-                        variables,
-                    }),
-                })
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify({
+                    query,
+                    variables,
+                }),
+            })
                 .then(async (response: Response) => {
                     if(response.ok){
                         let json = await response.json();
