@@ -84,15 +84,12 @@ export class FormLoader<T extends FormContainer> {
                 }),
             })
                 .then(async (response: Response) => {
-                    if(response.ok){
+                    if (response.ok) {
                         let json = await response.json();
-                        let formStr = json.data.FormContainerBlock.items[0]?.FormRenderTemplate;
-                        if(formStr){
-                            resolve(JSON.parse(formStr) as T);
-                        }
-                        else {
-                            reject(response);
-                        }
+                        let formStr = json.data.FormContainer.items[0];
+                        console.log(formStr)
+                        let convertedFormStr = this.convertFirstLetterToLowerCase(formStr) as T
+                        resolve(convertedFormStr)
                     }
                     else {
                         reject(response);
@@ -102,5 +99,23 @@ export class FormLoader<T extends FormContainer> {
                     reject(error);
                 });
         });
+    }
+
+    /**
+     * Function to convert the first letter of object keys to lowercase
+     * @param data Data in json format
+     * **/
+    private convertFirstLetterToLowerCase(data: any): any {
+        const isObject = typeof data === 'object'
+        if (data && isObject && !Array.isArray(data)) {
+            return Object.keys(data).reduce((accumulator, key) => {
+                const normalizedKey = key.charAt(0).toLowerCase() + key.slice(1);
+                accumulator[normalizedKey] = isObject ? this.convertFirstLetterToLowerCase(data[key]) : data[key];
+                return accumulator;
+            }, {} as any);
+        } else if (Array.isArray(data)) {
+            return data.map(item => this.convertFirstLetterToLowerCase(item));
+        }
+        return data;
     }
 }
