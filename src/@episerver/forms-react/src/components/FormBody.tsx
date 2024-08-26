@@ -100,9 +100,14 @@ export const FormBody = (props: FormBodyProps) => {
 
         let isLastStep = currentStepIndex === form.steps.length - 1;
 
+        //get inactives element
+        let inactives = (formContext?.elementDependencies ?? [])
+            .filter(dependency => !dependency.isSatisfied)
+            .map(dependency => dependency.elementKey);
+
         //filter submissions by active elements and current step
         let formSubmissions = (formContext?.formSubmissions ?? [])
-            .filter(fs => !isInArray(fs.elementKey, formContext?.dependencyInactiveElements ?? []) && stepHelper.isInCurrentStep(fs.elementKey, currentStepIndex));
+            .filter(fs => !isInArray(fs.elementKey, inactives) && stepHelper.isInCurrentStep(fs.elementKey, currentStepIndex));
 
         //validate all submission data before submit
         let formValidationResults = formSubmitter.doValidate(formSubmissions);

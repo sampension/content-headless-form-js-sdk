@@ -1,7 +1,9 @@
 import { equals,
   FormState, 
   FormSubmission, 
-  FormValidationResult } from "@episerver/forms-sdk";
+  FormValidationResult,
+  ElementDependencies } from "@episerver/forms-sdk";
+
 
 export enum ActionType {
     UpdateValue = "UpdateValue",
@@ -14,7 +16,8 @@ export enum ActionType {
     UpdateIdentityInfo = "UpdateIdentityInfo",
     UpdateSubmissionKey = "UpdateSubmissionKey",
     UpdateCurrentStepIndex = "UpdateCurrentStepIndex",
-    UpdateIsSubmitting = "UpdateIsSubmitting"
+    UpdateIsSubmitting = "UpdateIsSubmitting",
+    UpdateElementDependencies = "UpdateElementDependencies"
 }
 
 export function formReducer(formState: FormState, action: any) {
@@ -26,6 +29,15 @@ export function formReducer(formState: FormState, action: any) {
                 elementKey: action.elementKey, 
                 value: action.value 
             } as FormSubmission : fs)
+        } as FormState;
+      }
+      case ActionType.UpdateElementDependencies: {
+        return {
+            ...formState,
+            elementDependencies: formState.elementDependencies.map(fs => equals(fs.elementKey, action.elementKey)  ? { 
+                elementKey: action.elementKey, 
+                isSatisfied: action.condition 
+            } as ElementDependencies : fs)
         } as FormState;
       }
       case ActionType.UpdateValidation: {

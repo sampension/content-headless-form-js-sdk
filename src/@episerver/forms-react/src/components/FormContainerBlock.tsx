@@ -34,7 +34,6 @@ export function FormContainerBlock(props: FormContainerProps){
     const stepBuilder = new StepBuilder(props.form);
     const form = stepBuilder.buildForm();
     const state = initFormState(form, props.currentPageUrl, props.history);
-
     {/* finally return the form */}
     return (
         <FormProvider initialState={state}>

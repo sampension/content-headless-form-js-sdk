@@ -16,6 +16,14 @@ export class DispatchFunctions {
         });
     }
 
+    UpdateElementDependencies = (elementKey: string, condition: boolean) => {
+        this._dispatch({
+            type: ActionType.UpdateElementDependencies,
+            elementKey: elementKey,
+            condition
+        });
+    }
+
     updateAllValidation = (formValidationResults: FormValidationResult[]) => {
         this._dispatch({
             type: ActionType.UpdateAllValidation,
