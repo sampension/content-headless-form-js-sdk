@@ -162,8 +162,9 @@ export const FormBody = (props: FormBodyProps) => {
             if (submitButton) {
                 let redirectToPage = submitButton?.properties?.redirectToPage ?? form.properties?.redirectToPage;
                 if (!isNullOrEmpty(redirectToPage)) {
-                    let url = new URL(redirectToPage, "http://temp");
-                    props.history && props.history.push(url.pathname);
+                    var cmsUrl = process.env.REACT_APP_HEADLESS_FORM_BASE_URL ?? "http://temp";
+                    let url = new URL(redirectToPage, cmsUrl);
+                    window.location.href = url.href;
                 }
             }
         }).catch((e: ProblemDetail) => {
