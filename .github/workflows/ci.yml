@@ -25,7 +25,7 @@ env:
   JIRA_PASSWORD: ${{ secrets.JIRA_BOT_PASSWORD }}
 
 jobs:
-  build:
+  build_test_pack:
     name: Build, test, and publish
     runs-on: windows-latest
     env:
