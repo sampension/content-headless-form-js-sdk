@@ -64,7 +64,7 @@ jobs:
         run: npm run publish
 
   jira-release:
-    if: ${{ contains(github.ref,'release/') }} || contains(github.head_ref, 'release/') }}
+    if: ${{ contains(github.ref,'release/') }} 
     runs-on: windows-latest
     name: Get release version & create JIRA release
     needs: build_test_pack
