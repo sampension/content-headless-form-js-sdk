@@ -8,7 +8,7 @@
     <CmsUIVersion>12.30.0</CmsUIVersion>
     <CmsCoreVersion>12.21.4</CmsCoreVersion>
     <FormVersion>5.9.0</FormVersion>
-    <HeadlessFormVersion>1.0.0-pre-500</HeadlessFormVersion>
+    <HeadlessFormVersion>1.0.0-pre-541</HeadlessFormVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,10 +27,10 @@
     <PackageReference Include="EPiServer.CMS.UI.Core" Version="$(CmsUIVersion)" />
     <PackageReference Include="EPiServer.CMS.UI.VisitorGroups" Version="$(CmsUIVersion)" />
     <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="$(CmsUIVersion)" />
-    <PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.9.1" />
-    <PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.9.1" />
-    <PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="3.9.1" />
-    <PackageReference Include="EPiServer.ContentManagementApi" Version="3.9.1" />
+    <PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.10.2" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.10.2" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="3.10.2" />
+    <PackageReference Include="EPiServer.ContentManagementApi" Version="3.10.2" />
     <PackageReference Include="EPiServer.OpenIDConnect" Version="3.9.1" />
     <PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.9.1" />
     <PackageReference Include="EPiServer.Forms" Version="$(FormVersion)" />
@@ -40,6 +40,6 @@
     <PackageReference Include="Optimizely.Cms.Forms.ContentGraph" Version="$(HeadlessFormVersion)" />
     <PackageReference Include="Optimizely.Cms.Forms.Core" Version="$(HeadlessFormVersion)" />
     <PackageReference Include="Optimizely.Cms.Forms.Service" Version="$(HeadlessFormVersion)" />
-    <PackageReference Include="Optimizely.ContentGraph.Cms" Version="3.5.1" />
+    <PackageReference Include="Optimizely.ContentGraph.Cms" Version="3.9.0" />
   </ItemGroup>
 </Project>
