@@ -1,10 +1,10 @@
-﻿{
+{
   "profiles": {
     "MusicFestival.Backend": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:8082",
+      "applicationUrl": "https://localhost:8082",
       "launchUrl": "episerver/cms",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
