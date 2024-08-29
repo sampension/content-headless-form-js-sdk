@@ -53,15 +53,20 @@ function BuyTicketPage({ content }: BuyTicketPageProps) {
                         </div>
                     </nav>
                     <main className='Page-container'>
-                        {content.MainContentArea.map((c: any) => (
-                            <FormContainerBlock
-                                form={JSON.parse(c.ContentLink.Expanded.FormRenderTemplate)}
-                                key={c.ContentLink.Expanded.ContentLink.GuidValue}
-                                identityInfo={identityInfo}
-                                baseUrl={process.env.REACT_APP_HEADLESS_FORM_BASE_URL ?? "/"}
-                                history={history}
-                                currentPageUrl={content.Url} />
-                        ))}
+                        {content.MainContentArea.map((c: any) => {
+                            const key = (c.ContentLink.Expanded.ContentLink.GuidValue as string).replace(/-/g,"")
+                            return (
+                                <Form
+                                    key={key}
+                                    formKey={key}
+                                    language={c.ContentLink.Ex}
+                                    baseUrl={process.env.REACT_APP_HEADLESS_FORM_BASE_URL ?? "/"}
+                                    identityInfo={identityInfo}
+                                    history={history}
+                                    optiGraphUrl={process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL}
+                                />
+                            )
+                        })}
                     </main>
                 </div>
             }
