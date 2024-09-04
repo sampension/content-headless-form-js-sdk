@@ -60,7 +60,7 @@ jobs:
           ${{ github.workspace}}/build/get-versionSuffix.ps1 ${{env.BRANCH_NAME}} ${{github.RUN_NUMBER}}
 
       - name: Publish
-        if: ${{ contains(github.ref,'release/') }}
+        if: ${{ contains(github.ref,'release/') || github.ref == 'refs/heads/master'}}
         run: npm run publish
 
   jira-release:
