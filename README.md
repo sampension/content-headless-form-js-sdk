@@ -13,11 +13,11 @@ ref: https://docs.developers.optimizely.com/content-management-system/v1.2.0-for
 ### Installation
 **From Azure Artifacts** 
 
-Source https://dev.azure.com/EpiserverEngineering/netCore/_artifacts/feed/headless_forms_beta
+Source https://dev.azure.com/EpiserverEngineering/netCore/_artifacts/feed/HeadlessForms 
 
 To use packages from Azure Artifacts, configure your project to reference this feed. Create a new text file called .npmrc in the same directory as your package.json, then copy the snippet below.
 ```
-   @episerver:registry=https://pkgs.dev.azure.com/EpiserverEngineering/netCore/_packaging/headless_forms_beta/npm/registry/
+   @episerver:registry=https://pkgs.dev.azure.com/EpiserverEngineering/netCore/_packaging/HeadlessForms/npm/registry/
 ```
 Install from the command line
 ```
