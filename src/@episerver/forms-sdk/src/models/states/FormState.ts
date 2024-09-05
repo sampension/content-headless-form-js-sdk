@@ -1,5 +1,6 @@
 import { FormContainer } from "../FormContainer"
 import { IdentityInfo } from "../IdentityInfo"
+import { ElementDependencies } from "./ElementDependencies"
 import { FormSubmission } from "./FormSubmission"
 import { FormValidationResult } from "./FormValidation"
 import { StepDependencies } from "./StepDependencies"
@@ -12,6 +13,7 @@ export interface FormState {
     formSubmissions: FormSubmission[]
     formValidationResults: FormValidationResult[]
     stepDependencies: StepDependencies[]
+    elementDependencies: ElementDependencies[];
     formContainer: FormContainer
     dependencyInactiveElements: string[]
     focusOn: string,

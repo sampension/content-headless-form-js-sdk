@@ -2,10 +2,10 @@
 
 This is a JS SDK package that helps render a form based on metadata taken from the Headless Form API. In this package, there are 2 main parts:
 
-| Project                         | Description             |
-| --------------------------------| ------------------------|
-| @episerver/forms-sdk           | JS SDK for models, client validation, form loader, form dependencies, form submit |
-| @episerver/forms-react         | React SDK for rendering a form as a React component |
+| Project                         | Description             | Doc                     |
+| --------------------------------| ------------------------| ------------------------|
+| @episerver/forms-sdk           | JS SDK for models, client validation, form loader, form dependencies, form submit | https://github.com/episerver/content-headless-form-js-sdk/tree/develop/src/%40episerver/forms-sdk#readme
+| @episerver/forms-react         | React SDK for rendering a form as a React component | https://github.com/episerver/content-headless-form-js-sdk/tree/develop/src/%40episerver/forms-react#readme
 
 ref: https://docs.developers.optimizely.com/content-management-system/v1.2.0-forms/docs/get-started-with-headless-optimizely-forms
 ## Getting Started
@@ -44,6 +44,10 @@ Install from the command line
    npm run setup
 ```
 
+To setup musicfestival: 
+- https://github.com/episerver/content-headless-form-js-sdk/tree/develop/samples/musicfestival-backend-dotnet
+- https://github.com/episerver/content-headless-form-js-sdk/tree/develop/samples/musicfestival-frontend-react
+
 3. Build all projects
 
 ```sh
@@ -56,11 +60,22 @@ Install from the command line
    npm run start-backend
 ```
 
+for musicfestival sample site
+
+```sh
+   npm run start-musicfestival-backend
+``` 
 5. Start react site
 
 ```sh
    npm run start-frontend
 ```
+
+for musicfestival sample site
+
+```sh
+   npm run start-musicfestival
+``` 
 
 ### View site on browser
 

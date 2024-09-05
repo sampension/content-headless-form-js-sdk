@@ -1,0 +1,14 @@
+{
+  "name": "musicfestival-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "dotnet run",
+    "setup": "dotnet restore",
+    "build": "dotnet build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -100,9 +100,14 @@ export const FormBody = (props: FormBodyProps) => {
 
         let isLastStep = currentStepIndex === form.steps.length - 1;
 
+        //get inactives element
+        let inactives = (formContext?.elementDependencies ?? [])
+            .filter(dependency => !dependency.isSatisfied)
+            .map(dependency => dependency.elementKey);
+
         //filter submissions by active elements and current step
         let formSubmissions = (formContext?.formSubmissions ?? [])
-            .filter(fs => !isInArray(fs.elementKey, formContext?.dependencyInactiveElements ?? []) && stepHelper.isInCurrentStep(fs.elementKey, currentStepIndex));
+            .filter(fs => !isInArray(fs.elementKey, inactives) && stepHelper.isInCurrentStep(fs.elementKey, currentStepIndex));
 
         //validate all submission data before submit
         let formValidationResults = formSubmitter.doValidate(formSubmissions);
@@ -157,8 +162,9 @@ export const FormBody = (props: FormBodyProps) => {
             if (submitButton) {
                 let redirectToPage = submitButton?.properties?.redirectToPage ?? form.properties?.redirectToPage;
                 if (!isNullOrEmpty(redirectToPage)) {
-                    let url = new URL(redirectToPage, "http://temp");
-                    props.history && props.history.push(url.pathname);
+                    var cmsUrl = process.env.REACT_APP_HEADLESS_FORM_BASE_URL ?? "http://temp";
+                    let url = new URL(redirectToPage, cmsUrl);
+                    window.location.href = url.href;
                 }
             }
         }).catch((e: ProblemDetail) => {
@@ -204,6 +210,9 @@ export const FormBody = (props: FormBodyProps) => {
     //reset when change page
     useEffect(() => {
         isSuccess.current = false;
+        if (form.properties.focusOnForm || currentStepIndex > 0){            
+            dispatchFunctions.updateFocusOn(stepHelper.getFirstInputElement(currentStepIndex, inactiveElements));
+        }
     }, [currentStepIndex]);
 
     //Run in-case change page by url. The currentStepIndex that get from cache is incorrect.

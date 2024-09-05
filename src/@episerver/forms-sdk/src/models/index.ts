@@ -6,3 +6,4 @@ export * from "./enums";
 export * from "./states";
 export * from "./IdentityInfo";
 export * from "./ProblemDetail";
+export * from "./FormSubmissionData";

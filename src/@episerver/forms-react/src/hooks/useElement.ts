@@ -103,22 +103,9 @@ export const useElement = (element: FormElementBase) => {
             isVisible.current = equals(conditionProps.satisfiedAction, SatisfiedActionType.Hide);
         }
 
-        //update form state
-        let inactives = formContext?.dependencyInactiveElements ?? [];
-        let needUpdate = false;
-        if(isVisible.current){
-            if(inactives.includes(element.key)){
-                inactives = inactives.filter(ek => !equals(ek, element.key));
-                needUpdate = true;
-            }
-        }
-        else {
-            if(!isInArray(element.key, inactives)){
-                inactives.push(element.key);
-                needUpdate = true;
-            }
-        }
-        needUpdate && dispatchFuncs.updateDependencies(inactives);
+        // Update element dependencies state
+        dispatchFuncs.UpdateElementDependencies(element.key,checkConditions);
+
     },[formContext?.formSubmissions]);
 
     //focus on element if validate fail before submitting
@@ -184,6 +171,16 @@ export const useElement = (element: FormElementBase) => {
         dispatchFuncs.updateValidation(element.key, formValidation.validate(value));
     }
 
+    const handleKeyPress = (e: any) => {
+        const { type } = e.target;
+        if (/number/.test(type)) {
+            if(e.keyCode === 69)
+            {
+                e.preventDefault()
+            }
+        }
+    }
+
     const shouldResetForm = (resetConfirmationMessage: string) => {
         if (isNullOrEmpty(resetConfirmationMessage)) {
           return true;
@@ -223,6 +220,6 @@ export const useElement = (element: FormElementBase) => {
             isVisible: isVisible.current,
             elementRef
         } as ElementContext, 
-        handleChange, handleBlur, handleReset 
+        handleChange, handleBlur, handleReset, handleKeyPress 
     };
 }

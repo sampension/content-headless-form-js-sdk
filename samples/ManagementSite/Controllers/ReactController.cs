@@ -1,9 +1,11 @@
-using EPiServer.Cms.Shell;
+using EPiServer;
+using EPiServer.Core;
+using EPiServer.Forms.Implementation.Elements;
+using EPiServer.ServiceLocation;
+using EPiServer.SpecializedProperties;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 using Microsoft.AspNetCore.Mvc;
-using Optimizely.Cms.Preview2.Content;
-using Optimizely.Cms.Preview2.Content.Models;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,11 +15,8 @@ namespace AlloyMvcTemplates.Controllers;
 [ApiController]
 public class ReactController : ControllerBase
 {
-    private readonly IContentRepository _contentRepositoryInteApi;
-
-    public ReactController(IContentRepository contentRepositoryInteApi)
+    public ReactController()
     {
-        _contentRepositoryInteApi = contentRepositoryInteApi;
     }
 
     [HttpGet("GetFormInPageByUrl")]
@@ -32,18 +31,30 @@ public class ReactController : ControllerBase
         }
         CancellationTokenSource source = new CancellationTokenSource();
         CancellationToken token = source.Token;
-        var key = ContentKey.FormatAsKey(content.ContentGuid);
-        var pageModel = new PageModel();
-        var contentHeadless = await _contentRepositoryInteApi.GetAsync(key, content.LanguageBranch());
 
-        if (contentHeadless is not null)
+        var contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
+
+        var pageContent = contentLoader.Get<IContent>(content.ContentGuid);
+
+        var pageModel = new PageModel();
+
+        if (pageContent is not null)
         {
-            pageModel.Title = contentHeadless.DisplayName;
+            pageModel.Title = pageContent.Name;
             pageModel.PageUrl = UrlResolver.Current.GetUrl(content.ContentLink);
 
-            if (contentHeadless.Properties.ContainsKey("MainContentArea"))
+            if (pageContent.Property.Keys.Contains("MainContentArea"))
             {
-                pageModel.Childrens.AddRange(contentHeadless.Properties["MainContentArea"] as IList<IContentComponent>);
+                var contentArea = pageContent.Property["MainContentArea"] as PropertyContentArea;
+                foreach (var item in contentArea.PublicContentArea.FilteredItems)
+                {
+                    var contentItem = contentLoader.Get<IContent>(item.ContentLink);
+
+                    if(contentItem is FormContainerBlock)
+                    {
+                        pageModel.FormKeys.Add(contentItem.ContentGuid.ToString("N"));
+                    }
+                }
             }
         }
 
@@ -55,5 +66,5 @@ public class PageModel
 {
     public string Title { get; set; }
     public string PageUrl { get; set; }
-    public List<IContentComponent> Childrens { get; set; } = new List<IContentComponent>();
+    public List<string> FormKeys { get; set; } = new List<string>();
 }

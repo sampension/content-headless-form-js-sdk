@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>MusicFestival.Backend</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <CmsUIVersion>12.30.0</CmsUIVersion>
+    <CmsCoreVersion>12.21.4</CmsCoreVersion>
+    <FormVersion>5.9.0</FormVersion>
+    <HeadlessFormVersion>1.0.0-pre-541</HeadlessFormVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPiServer.CloudPlatform.Cms" Version="1.6.1" />
+    <PackageReference Include="EPiServer.CMS" Version="12.30.0" />
+    <PackageReference Include="EPiServer.CMS.AspNetCore" Version="$(CmsCoreVersion)" />
+    <PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="$(CmsCoreVersion)" />
+    <PackageReference Include="EPiServer.CMS.AspNetCore.MVC" Version="$(CmsCoreVersion)" />
+    <PackageReference Include="EPiServer.CMS.AspNetCore.Routing" Version="$(CmsCoreVersion)" />
+    <PackageReference Include="EPiServer.CMS.AspNetCore.Templating" Version="$(CmsCoreVersion)" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="$(CmsCoreVersion)" />
+    <PackageReference Include="EPiServer.Framework" Version="$(CmsCoreVersion)" />
+    <PackageReference Include="EPiServer.Framework.AspNetCore" Version="$(CmsCoreVersion)" />
+    <PackageReference Include="EPiServer.Hosting" Version="$(CmsCoreVersion)" />
+    <PackageReference Include="EPiServer.CMS.UI" Version="$(CmsUIVersion)" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="$(CmsUIVersion)" />
+    <PackageReference Include="EPiServer.CMS.UI.VisitorGroups" Version="$(CmsUIVersion)" />
+    <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="$(CmsUIVersion)" />
+    <PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.10.2" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.10.2" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="3.10.2" />
+    <PackageReference Include="EPiServer.ContentManagementApi" Version="3.10.2" />
+    <PackageReference Include="EPiServer.OpenIDConnect" Version="3.9.1" />
+    <PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.9.1" />
+    <PackageReference Include="EPiServer.Forms" Version="$(FormVersion)" />
+  </ItemGroup>
+
+  <ItemGroup Label="HeadlessForm">
+    <PackageReference Include="Optimizely.Cms.Forms.ContentGraph" Version="$(HeadlessFormVersion)" />
+    <PackageReference Include="Optimizely.Cms.Forms.Core" Version="$(HeadlessFormVersion)" />
+    <PackageReference Include="Optimizely.Cms.Forms.Service" Version="$(HeadlessFormVersion)" />
+    <PackageReference Include="Optimizely.ContentGraph.Cms" Version="3.9.0" />
+  </ItemGroup>
+</Project>

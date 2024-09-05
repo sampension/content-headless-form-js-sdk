@@ -10,7 +10,7 @@ export interface NumberElementBlockProps {
 
 export const NumberElementBlock = (props: NumberElementBlockProps) => {
     const { element } = props;
-    const { elementContext, handleChange, handleBlur } = useElement(element);
+    const { elementContext, handleChange, handleBlur, handleKeyPress } = useElement(element);
     const { isVisible, validationResults, value, extraAttr, validatorClasses, elementRef } = elementContext;
 
     return useMemo(()=>(
@@ -30,6 +30,7 @@ export const NumberElementBlock = (props: NumberElementBlockProps) => {
                     autoComplete={element.properties.autoComplete}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    onKeyDown={ handleKeyPress }
                     ref={elementRef}
                 />
                 

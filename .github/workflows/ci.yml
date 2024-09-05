@@ -5,10 +5,13 @@ on:
     branches:
       - master
       - develop
-      - feature/*
-      - bugfix/*
+      - release/**
   pull_request:
-    branches: [ "develop" ]
+    branches:
+      - "*"
+      - master
+      - feature/**
+      - release/**
 
 permissions:
   contents: write
@@ -18,9 +21,11 @@ permissions:
 env:
   NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
+  JIRA_USERNAME: ${{ secrets.JIRA_BOT_USERNAME }}
+  JIRA_PASSWORD: ${{ secrets.JIRA_BOT_PASSWORD }}
 
 jobs:
-  build:
+  build_test_pack:
     name: Build, test, and publish
     runs-on: windows-latest
     env:
@@ -33,13 +38,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-          
+          cache: "npm"
+
       - name: Setup dependencies
         run: npm ci
 
@@ -55,5 +60,27 @@ jobs:
           ${{ github.workspace}}/build/get-versionSuffix.ps1 ${{env.BRANCH_NAME}} ${{github.RUN_NUMBER}}
 
       - name: Publish
-        if: ${{ github.ref == 'refs/heads/master' }}
+        if: ${{ contains(github.ref,'release/') || github.ref == 'refs/heads/master'}}
         run: npm run publish
+
+  jira-release:
+    if: ${{ contains(github.ref,'release/') }} 
+    runs-on: windows-latest
+    name: Get release version & create JIRA release
+    needs: build_test_pack
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Get release version
+        uses: episerver/addons-jira-automation/releaseversion@v1
+        id: branchVersion
+
+      - name: Create JIRA release
+        uses: episerver/addons-jira-automation/release@v1
+        with:
+          jira-project: AFORM
+          jira-package: Optimizely.Forms.Headless.Js.Sdk
+          jira-host: jira.sso.episerver.net
+          version: ${{ steps.branchVersion.outputs.manifestSafeVersionString }}
+          versionSuffix: ${{needs.build_test_pack.outputs.versionSuffix}}
