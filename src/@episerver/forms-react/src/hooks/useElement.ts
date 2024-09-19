@@ -82,13 +82,14 @@ export const useElement = (element: FormElementBase) => {
             //update form state
             dispatchFuncs.resetFormDone();
         }
-    },[formContext?.isReset]);
+    }, [formContext?.isReset]);
 
     //update visible
-    useEffect(()=>{
+    useEffect(() => {
         const conditionProps = (element.properties as unknown) as ConditionProperties;
 
-        if (isNull(conditionProps.satisfiedAction)) {
+        if (isNull(conditionProps.satisfiedAction) || isNull(conditionProps.conditions)) {
+            // No conditions and satisfied actions to take, no need to update dependencies
             return;
         }
 
@@ -102,16 +103,19 @@ export const useElement = (element: FormElementBase) => {
             //if isDependenciesSatisfied = false, and if SatisfiedAction = hide, then show element. otherwise hide element.
             isVisible.current = equals(conditionProps.satisfiedAction, SatisfiedActionType.Hide);
         }
+        var currentCondition = formContext?.elementDependencies.find(e => e.elementKey === element.key)?.isSatisfied;
+        
+        if (currentCondition != checkConditions) {
+            // Update element dependencies state
+            dispatchFuncs.UpdateElementDependencies(element.key, checkConditions);
+        }
 
-        // Update element dependencies state
-        dispatchFuncs.UpdateElementDependencies(element.key,checkConditions);
-
-    },[formContext?.formSubmissions]);
+    }, [formContext?.formSubmissions, formContext?.elementDependencies]);
 
     //focus on element if validate fail before submitting
-    useEffect(()=>{
+    useEffect(() => {
         let focusOn = formContext?.focusOn ?? "";
-        if(equals(focusOn, element.key)){
+        if (equals(focusOn, element.key)) {
             elementRef.current && elementRef.current.focus();
             dispatchFuncs.updateFocusOn("");
         }
