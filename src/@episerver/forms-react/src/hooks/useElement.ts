@@ -94,7 +94,7 @@ export const useElement = (element: FormElementBase) => {
         }
 
         //check form field dependencies
-        const checkConditions = formCondition.checkConditions(formContext?.formSubmissions as FormSubmission[]);
+        const checkConditions = formCondition.checkConditions(formContext?.formSubmissions as FormSubmission[], formContext?.elementDependencies);
         if (checkConditions) {
             //if isDependenciesSatisfied = true, and if SatisfiedAction = show, then show element. otherwise hide element.
             isVisible.current = equals(conditionProps.satisfiedAction, SatisfiedActionType.Show);
