@@ -13,9 +13,8 @@ using EPiServer.Web.Routing;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using OpenIddict.Server;
-using Optimizely.Cms.DependencyInjection;
-using Optimizely.Headless.Form;
-using Optimizely.Headless.Form.DependencyInjection;
+using Optimizely.Cms.Forms;
+using Optimizely.Cms.Forms.DependencyInjection;
 
 // using Optimizely.ContentGraph.Cms.NetCore.ProxyUtils;
 
@@ -30,7 +29,7 @@ public class Startup
     private readonly string _allowedOrigins = "_allowedOrigins";
     private const string TestClientId = "TestClient";
     private const string TestClientSecret = "TestClientSecret";
-    private const string ClientEndpoint = "http://localhost:8082";
+    private const string ClientEndpoint = "https://localhost:8082";
 
     public Startup(IWebHostEnvironment webHostingEnvironment, IConfiguration configuration)
     {
@@ -144,10 +143,11 @@ public class Startup
             o.IncludeInternalContentRoots = true;
             o.IncludeNumericContentIdentifier = true;
         });
-        services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<HeadlessFormServiceOptions>, HeadlessFormServiceOptionsPostConfigure>());
+
+        services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<OptimizelyFormsServiceOptions>, HeadlessFormServiceOptionsPostConfigure>());
 
         // Register the Optimizely Headless Form API Services
-        services.AddOptimizelyHeadlessFormService(options =>
+        services.AddOptimizelyFormsService(options =>
         {
             options.EnableOpenApiDocumentation = true;
             options.FormCorsPolicy = new FormCorsPolicy
@@ -164,9 +164,8 @@ public class Startup
         services.AddContentGraph(OpenIDConnectOptionsDefaults.AuthenticationScheme);
         services.AddHostedService<ProvisionDatabase>();
 
-        services.AddOptimizelyHeadlessFormContentGraph();
+        services.AddOptimizelyFormsContentGraph();
 
-        services.AddOptimizelyCmsContentOnEPiServerPreview1();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -213,7 +212,7 @@ public class Startup
         });
     }
 
-    public class HeadlessFormServiceOptionsPostConfigure : IPostConfigureOptions<HeadlessFormServiceOptions>
+    public class HeadlessFormServiceOptionsPostConfigure : IPostConfigureOptions<OptimizelyFormsServiceOptions>
     {
         private readonly OpenIddictServerOptions _options;
 
@@ -222,7 +221,7 @@ public class Startup
             _options = options.Value;
         }
 
-        public void PostConfigure(string name, HeadlessFormServiceOptions options)
+        public void PostConfigure(string name, OptimizelyFormsServiceOptions options)
         {
             foreach (var client in options.OpenIDConnectClients)
             {

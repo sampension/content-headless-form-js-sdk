@@ -24,7 +24,7 @@ export function getStringValue(element: FormSubmission) {
         let fileNames = ""
         for (let i = 0; i < numberOfFiles; i++) {
             fileNames += `${fileList[i].name}`
-            if (i > 0 && i != numberOfFiles - 1) {
+            if (numberOfFiles > 1 && i != numberOfFiles - 1) {
                 fileNames += " | "
             }
         }
