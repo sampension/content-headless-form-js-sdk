@@ -59,7 +59,7 @@ function BuyTicketPage({ content }: BuyTicketPageProps) {
                                 <Form
                                     key={key}
                                     formKey={key}
-                                    language={c.ContentLink.Ex}
+                                    language={c.ContentLink.Expanded.Language.Name}
                                     baseUrl={process.env.REACT_APP_HEADLESS_FORM_BASE_URL ?? "/"}
                                     identityInfo={identityInfo}
                                     history={history}
