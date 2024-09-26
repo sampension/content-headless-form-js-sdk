@@ -14,3 +14,6 @@ coverage/
 /samples/epiCloud/
 /samples/musicfestival-frontend-react/build/
 /samples/musicfestival-backend-dotnet/App_Data/
+
+.env.local
+appsettings.development.json
