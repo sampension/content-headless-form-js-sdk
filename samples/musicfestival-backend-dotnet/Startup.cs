@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using EPiServer.Cms.Shell;
+using EPiServer.Cms.Shell.UI;
 using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.ContentApi.Cms;
 using EPiServer.ContentApi.Core.DependencyInjection;
@@ -59,7 +60,8 @@ public class Startup
         services
             .AddCmsAspNetIdentity<ApplicationUser>()
             .AddCms()
-            .AddAdminUserRegistration()
+            .AddAdminUserRegistration(options => options.Behavior = RegisterAdminUserBehaviors.Enabled |
+                                                        RegisterAdminUserBehaviors.LocalRequestsOnly)
             .AddEmbeddedLocalization<Program>()
             .ConfigureForExternalTemplates()
             .Configure<ExternalApplicationOptions>(options => options.OptimizeForDelivery = true)
