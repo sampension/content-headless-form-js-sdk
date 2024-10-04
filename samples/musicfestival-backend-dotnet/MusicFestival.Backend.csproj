@@ -8,7 +8,7 @@
     <CmsUIVersion>12.30.0</CmsUIVersion>
     <CmsCoreVersion>12.21.4</CmsCoreVersion>
     <FormVersion>5.9.0</FormVersion>
-    <HeadlessFormVersion>1.0.0-pre-541</HeadlessFormVersion>
+    <HeadlessFormVersion>1.0.0</HeadlessFormVersion>
   </PropertyGroup>
 
   <ItemGroup>
