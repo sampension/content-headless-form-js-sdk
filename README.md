@@ -13,7 +13,7 @@ ref: https://docs.developers.optimizely.com/content-management-system/v1.2.0-for
 ### Installation
 **From Azure Artifacts** 
 
-Source https://dev.azure.com/EpiserverEngineering/netCore/_artifacts/feed/HeadlessForms 
+Source https://dev.azure.com/EpiserverEngineering/netCore/_artifacts/feed/HeadlessForms
 
 To use packages from Azure Artifacts, configure your project to reference this feed. Create a new text file called .npmrc in the same directory as your package.json, then copy the snippet below.
 ```
@@ -28,7 +28,16 @@ Install from the command line
 ```
 
 **OR** clone source code and install dependencies, then build and view the site on the browser.
+#### Sample site structures
+This repository contains two sample sites 
+* Site render using Headless Form Api
+   - `/samples/ManagementSite` Backend decouples site that hosts the Headless Form API
+   - `/samples/sample-react-app` Frontend React site that render form using Headless Form API
+* Site render using Content Graph
+   - `/samples/musicfestival-backend-dotnet` Backend site that fully index using Content Graph
+   - `/samples/musicfestival-frontend-react` Frontend React site that renders the full site, including the Form, using Content Graph
 
+#### Installing and running sample sites
 1. Clone repo
 
 ```sh

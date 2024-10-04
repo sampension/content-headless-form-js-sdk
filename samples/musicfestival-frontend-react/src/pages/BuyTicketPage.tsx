@@ -1,11 +1,8 @@
 import { Form, FormContainerBlock, FormLogin } from '@episerver/forms-react';
 import { FormCache, FormConstants, IdentityInfo, extractParams } from '@episerver/forms-sdk';
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useFetch } from '../useFetch';
+import { useHistoryCompatible } from '../hooks/useHistoryCompatible';
 import SearchButton from '../components/SearchButton';
-import { getImageUrl } from '../helpers/urlHelper';
-import authService from '../authService';
 
 type BuyTicketPageProps = {
     content: any,
@@ -24,7 +21,7 @@ function BuyTicketPage({ content }: BuyTicketPageProps) {
         } as IdentityInfo)
     }, [formCache.get<string>(FormConstants.FormAccessToken)]);
 
-    const history = useNavigate()
+    const history = useHistoryCompatible()
     return (
         <>
             {content &&
@@ -53,15 +50,20 @@ function BuyTicketPage({ content }: BuyTicketPageProps) {
                         </div>
                     </nav>
                     <main className='Page-container'>
-                        {content.MainContentArea.map((c: any) => (
-                            <FormContainerBlock
-                                form={JSON.parse(c.ContentLink.Expanded.FormRenderTemplate)}
-                                key={c.ContentLink.Expanded.ContentLink.GuidValue}
-                                identityInfo={identityInfo}
-                                baseUrl={process.env.REACT_APP_HEADLESS_FORM_BASE_URL ?? "/"}
-                                history={history}
-                                currentPageUrl={content.Url} />
-                        ))}
+                        {content.MainContentArea.map((c: any) => {
+                            const key = (c.ContentLink.Expanded.ContentLink.GuidValue as string).replace(/-/g,"")
+                            return (
+                                <Form
+                                    key={key}
+                                    formKey={key}
+                                    language={c.ContentLink.Expanded.Language.Name}
+                                    baseUrl={process.env.REACT_APP_HEADLESS_FORM_BASE_URL ?? "/"}
+                                    identityInfo={identityInfo}
+                                    history={history}
+                                    optiGraphUrl={process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL}
+                                />
+                            )
+                        })}
                     </main>
                 </div>
             }

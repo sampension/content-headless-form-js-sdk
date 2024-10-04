@@ -32,16 +32,16 @@ function App() {
                     <h1>{pageData.title}</h1>
                     <div className='main'>
                         <div className='left'>
-                            {pageData.childrens.map((c: any) => (
+                            {pageData.formKeys.map((formKey: any) => (
                                 <Form
-                                    key={c.reference.key}
-                                    formKey={c.reference.key}
+                                    key={formKey}
+                                    formKey={formKey}
                                     language={language ?? "en"}
                                     baseUrl={process.env.REACT_APP_HEADLESS_FORM_BASE_URL ?? "/"}
                                     identityInfo={identityInfo} 
                                     history={history}
                                     currentPageUrl={pageData.pageUrl}
-                                    optiGraphUrl={process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL}
+                                    // optiGraphUrl={process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL}
                                 />
                             ))}
                         </div>

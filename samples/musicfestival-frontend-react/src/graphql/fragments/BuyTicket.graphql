@@ -2,7 +2,8 @@ fragment LandingPage on LandingPage {
     Title
     Subtitle
     BuyTicketBlock {
-        ...LandingPageBlockData
+        Heading
+        Message
     }
     HeroImage
     ArtistsLink {

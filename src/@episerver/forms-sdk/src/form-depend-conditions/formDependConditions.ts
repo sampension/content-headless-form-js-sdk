@@ -1,5 +1,6 @@
 import { equals, isNull } from "../helpers";
-import { ConditionCombinationType, ConditionProperties, FormElementBase, FormSubmission } from "../models";
+import { getValueOfDependeeElement } from "../helpers/dependencyHelper";
+import { Condition, ConditionCombinationType, ConditionProperties, ElementDependencies, FormElementBase, FormSubmission } from "../models";
 import { ConditionFunctions } from "./ConditionFunctions";
 /**
  * Class to check if a element conditions is met
@@ -14,7 +15,7 @@ export class FormDependConditions {
      * @param formSubmissions 
      * @returns 
      */
-    checkConditions = (formSubmissions: FormSubmission[]): boolean => {
+    checkConditions = (formSubmissions: FormSubmission[], elementDependencies: ElementDependencies[] = []): boolean => {
         if (!isNull(formSubmissions)) {
             const conditionProps = (this._element.properties as unknown) as ConditionProperties;
             if (isNull(conditionProps?.conditions)) {
@@ -23,10 +24,10 @@ export class FormDependConditions {
             }
             for (let i = 0; i < conditionProps.conditions.length; i++) {
                 const condition = conditionProps.conditions[i]
-                const fieldValue = formSubmissions.filter(s => equals(s.elementKey, condition.field))[0]?.value;
+                const dependeeFieldValue = getValueOfDependeeElement(condition,formSubmissions,elementDependencies);
                 const conditionFunction = ConditionFunctions[condition.operator];
                 if (!isNull(conditionFunction)){
-                    let checkResult = conditionFunction(fieldValue == null? "":fieldValue.toString(), condition.fieldValue)
+                    let checkResult = conditionFunction(dependeeFieldValue == null? "" : dependeeFieldValue.toString(), condition.fieldValue)
                     if (conditionProps.conditionCombination === ConditionCombinationType.Any && checkResult) {
                         return true
                     }

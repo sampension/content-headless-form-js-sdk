@@ -87,7 +87,6 @@ export class FormLoader<T extends FormContainer> {
                     if (response.ok) {
                         let json = await response.json();
                         let formStr = json.data.FormContainer.items[0];
-                        console.log(formStr)
                         let convertedFormStr = this.convertFirstLetterToLowerCase(formStr) as T
                         resolve(convertedFormStr)
                     }
