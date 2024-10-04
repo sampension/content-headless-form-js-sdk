@@ -1,6 +1,6 @@
 {
   "name": "content-headless-form-js-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Workspace root",
   "workspaces": [
     "src/@episerver/forms-react",
