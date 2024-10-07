@@ -31,6 +31,7 @@
 		<PackageReference Include="Optimizely.Cms.Forms.Core" Version="$(HeadlessFormVersion)" />
 		<PackageReference Include="Optimizely.Cms.Forms.Service" Version="$(HeadlessFormVersion)" />
 		<PackageReference Include="Optimizely.ContentGraph.Cms" Version="3.9.0" />
+		<PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="$(ContentApiVersion)" />
 		<PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="$(ContentApiVersion)" />
 	</ItemGroup>
 	<ItemGroup>
