@@ -29,7 +29,7 @@ export function initFormState(formContainer: FormContainer, currentPageUrl?: str
                 //init form submission
                 formSubmissions = formSubmissions.concat({ elementKey: e.key, value: getDefaultValue(e) } as FormSubmission);
                 //init form elements dependencies
-                elementDependencies = elementDependencies.concat({ elementKey: e.key, isSatisfied: true });
+                elementDependencies = elementDependencies.concat({ elementKey: e.key, isSatisfied: true, sastisfiedAction : (e.properties as any).satisfiedAction });
             }
         });
         stepDependencies = stepDependencies.concat({ elementKey: s.formStep.key, isSatisfied: false });

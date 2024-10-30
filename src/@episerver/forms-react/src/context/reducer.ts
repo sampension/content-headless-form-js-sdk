@@ -36,7 +36,8 @@ export function formReducer(formState: FormState, action: any) {
             ...formState,
             elementDependencies: formState.elementDependencies.map(fs => equals(fs.elementKey, action.elementKey)  ? { 
                 elementKey: action.elementKey, 
-                isSatisfied: action.condition 
+                isSatisfied: action.condition,
+                sastisfiedAction: action.satisfiedAction
             } as ElementDependencies : fs)
         } as FormState;
       }

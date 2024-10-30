@@ -16,11 +16,12 @@ export class DispatchFunctions {
         });
     }
 
-    UpdateElementDependencies = (elementKey: string, condition: boolean) => {
+    UpdateElementDependencies = (elementKey: string, condition: boolean, satisfiedAction: string) => {
         this._dispatch({
             type: ActionType.UpdateElementDependencies,
             elementKey: elementKey,
-            condition
+            condition,
+            satisfiedAction
         });
     }
 
