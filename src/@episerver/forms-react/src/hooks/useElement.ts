@@ -107,7 +107,7 @@ export const useElement = (element: FormElementBase) => {
         
         if (currentCondition != checkConditions) {
             // Update element dependencies state
-            dispatchFuncs.UpdateElementDependencies(element.key, checkConditions);
+            dispatchFuncs.UpdateElementDependencies(element.key, checkConditions, conditionProps.satisfiedAction);
         }
 
     }, [formContext?.formSubmissions, formContext?.elementDependencies]);

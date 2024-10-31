@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { useForms } from "../context/store";
 import { StepHelper, FormContainer, FormSubmitter, IdentityInfo, isInArray, isNull, 
     isNullOrEmpty, FormSubmitModel, FormSubmitResult, SubmitButton, FormCache, 
-    FormConstants, ProblemDetail, StepDependCondition, getConfirmationData } from "@episerver/forms-sdk";
+    FormConstants, ProblemDetail, StepDependCondition, getConfirmationData, 
+    SatisfiedActionType} from "@episerver/forms-sdk";
 import { RenderElementInStep } from "./RenderElementInStep";
 import { DispatchFunctions } from "../context/dispatchFunctions";
 import { FormStepNavigation } from "./FormStepNavigation";
@@ -102,7 +103,10 @@ export const FormBody = (props: FormBodyProps) => {
 
         //get inactives element
         let inactives = (formContext?.elementDependencies ?? [])
-            .filter(dependency => !dependency.isSatisfied)
+            .filter(dependency =>
+                (!dependency.isSatisfied && dependency.sastisfiedAction === SatisfiedActionType.Show)
+                || (dependency.isSatisfied && dependency.sastisfiedAction === SatisfiedActionType.Hide)
+            )
             .map(dependency => dependency.elementKey);
 
         //filter submissions by active elements and current step
