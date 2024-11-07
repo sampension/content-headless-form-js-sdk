@@ -29,7 +29,7 @@ function Equals(actualValue: any, dependencyFieldValue: string): boolean {
  * @returns 
 */
 function NotEquals(actualValue: any, dependencyFieldValue: string): boolean {
-    const _actualValue = !actualValue ? "" : getConcatString(actualValue, ",").toLocaleUpperCase();
+    const _actualValue = !actualValue ? "" : getConcatString(actualValue.toString(), ",").toLocaleUpperCase();
     dependencyFieldValue = !dependencyFieldValue ? "" : dependencyFieldValue.toLocaleUpperCase();
     return _actualValue !== dependencyFieldValue;
 }
@@ -40,7 +40,7 @@ function NotEquals(actualValue: any, dependencyFieldValue: string): boolean {
  * @returns 
  */
 function Contains(actualValue: any, dependencyFieldValue: string): boolean {
-    const _actualValue = isNull(actualValue) ? "" : getConcatString(actualValue, ",").toLocaleUpperCase();
+    const _actualValue = isNull(actualValue) ? "" : getConcatString(actualValue.toString(), ",").toLocaleUpperCase();
     dependencyFieldValue = !dependencyFieldValue ? "" : dependencyFieldValue.toLocaleUpperCase();
     return _actualValue.indexOf(dependencyFieldValue) >= 0;
 }
@@ -51,7 +51,7 @@ function Contains(actualValue: any, dependencyFieldValue: string): boolean {
  * @returns 
  */
 function NotContains(actualValue: any, dependencyFieldValue: string): boolean {
-    const _actualValue = !actualValue ? "" : getConcatString(actualValue, ",").toLocaleUpperCase();
+    const _actualValue = !actualValue ? "" : getConcatString(actualValue.toString(), ",").toLocaleUpperCase();
     const actualValueNull = isNullOrEmpty(_actualValue)
     const dependencyFieldValueNull = isNullOrEmpty(dependencyFieldValue)
     return (!actualValueNull && dependencyFieldValueNull) ||
@@ -66,6 +66,6 @@ function NotContains(actualValue: any, dependencyFieldValue: string): boolean {
  */
 function MatchRegularExpression(actualValue: any, patternOfExpected: string): boolean {
     var regex = new RegExp(patternOfExpected, "igm");
-    const _actualValue = !actualValue ? "" : getConcatString(actualValue, ",");
+    const _actualValue = !actualValue ? "" : getConcatString(actualValue.toString(), ",");
     return isNullOrEmpty(patternOfExpected) || (!isNullOrEmpty(patternOfExpected) && regex.test(_actualValue));
 }

@@ -1,11 +1,8 @@
 import { Form, FormContainerBlock, FormLogin } from '@episerver/forms-react';
 import { FormCache, FormConstants, IdentityInfo, extractParams } from '@episerver/forms-sdk';
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useFetch } from '../useFetch';
+import { useHistoryCompatible } from '../hooks/useHistoryCompatible';
 import SearchButton from '../components/SearchButton';
-import { getImageUrl } from '../helpers/urlHelper';
-import authService from '../authService';
 
 type BuyTicketPageProps = {
     content: any,
@@ -24,7 +21,7 @@ function BuyTicketPage({ content }: BuyTicketPageProps) {
         } as IdentityInfo)
     }, [formCache.get<string>(FormConstants.FormAccessToken)]);
 
-    const history = useNavigate()
+    const history = useHistoryCompatible()
     return (
         <>
             {content &&
@@ -59,7 +56,7 @@ function BuyTicketPage({ content }: BuyTicketPageProps) {
                                 <Form
                                     key={key}
                                     formKey={key}
-                                    language={c.ContentLink.Ex}
+                                    language={c.ContentLink.Expanded.Language.Name}
                                     baseUrl={process.env.REACT_APP_HEADLESS_FORM_BASE_URL ?? "/"}
                                     identityInfo={identityInfo}
                                     history={history}
