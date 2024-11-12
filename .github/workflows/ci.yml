@@ -40,6 +40,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@sampension'
           cache: "npm"
 
       - name: Setup dependencies
