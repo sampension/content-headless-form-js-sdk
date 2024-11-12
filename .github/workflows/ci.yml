@@ -61,5 +61,3 @@ jobs:
       - name: Publish
         if: ${{ contains(github.ref,'release/') || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' }}
         run: npm run publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
