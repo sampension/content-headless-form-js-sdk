@@ -57,5 +57,5 @@ jobs:
           ${{ github.workspace}}/build/get-versionSuffix.ps1 ${{env.BRANCH_NAME}} ${{github.RUN_NUMBER}}
 
       - name: Publish
-        if: ${{ contains(github.ref,'release/') || github.ref == 'refs/heads/main'} || github.ref == 'refs/heads/develop'}}
+        if: ${{ contains(github.ref,'release/') || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' }}
         run: npm run publish
