@@ -1,5 +1,5 @@
 {
-  "name": "@episerver/forms-react",
+  "name": "@sampension/forms-react",
   "version": "1.0.1",
   "description": "Forms react components render a form from JSON data",
   "author": "Optimizely",
@@ -15,7 +15,7 @@
   },
   "keywords": [],
   "dependencies": {
-    "@episerver/forms-sdk": "file:../forms-sdk"
+    "@sampension/forms-sdk": "file:../forms-sdk"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.4",

@@ -1,11 +1,11 @@
-﻿# Headless Form JS SDK (beta release)
+﻿# Headless Form JS SDK (beta release) - Forked
 
 This JS SDK package helps render a form based on metadata taken from the Headless Form API. In this package, there are 2 main parts:
 
 | Project                         | Description             | Doc                     |
 | --------------------------------| ------------------------| ------------------------|
-| @episerver/forms-sdk           | JS SDK for models, client validation, form loader, form dependencies, form submit | https://github.com/episerver/content-headless-form-js-sdk/tree/develop/src/%40episerver/forms-sdk#readme
-| @episerver/forms-react         | React SDK for rendering a form as a React component | https://github.com/episerver/content-headless-form-js-sdk/tree/develop/src/%40episerver/forms-react#readme
+| @sampension/forms-sdk           | JS SDK for models, client validation, form loader, form dependencies, form submit | https://github.com/episerver/content-headless-form-js-sdk/tree/develop/src/%40episerver/forms-sdk#readme
+| @sampension/forms-react         | React SDK for rendering a form as a React component | https://github.com/episerver/content-headless-form-js-sdk/tree/develop/src/%40episerver/forms-react#readme
 
 ref: 
 
