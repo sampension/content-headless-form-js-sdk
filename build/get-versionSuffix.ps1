@@ -7,22 +7,22 @@ if (!$branchName -or !$buildCounter) {
 
 switch -wildcard ($branchName) {
     "master" {
-        $preReleaseInfo = ""
+        $preReleaseInfo = "-sp-{0:D6}"
     }
     "main" {
-        $preReleaseInfo = ""
+        $preReleaseInfo = "-sp-{0:D6}"
     }
     "develop" {
-        $preReleaseInfo = "-inte-{0:D6}"
+        $preReleaseInfo = "-sp-inte-{0:D6}"
     }
     "hotfix/*" {
-        $preReleaseInfo = "-ci-{0:D6}"
+        $preReleaseInfo = "-sp-ci-{0:D6}"
     }
     "bugfix/*" {
-        $preReleaseInfo = "-ci-{0:D6}"
+        $preReleaseInfo = "-sp-ci-{0:D6}"
     }
     "release/*" {
-        $preReleaseInfo = "-pre-{0:D6}"
+        $preReleaseInfo = "-sp-pre-{0:D6}"
     }
     "feature/*" {
         $isMatch = $branchName -match ".*/([A-Z]+-[\d]+)-"
