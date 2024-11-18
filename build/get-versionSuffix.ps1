@@ -9,6 +9,9 @@ switch -wildcard ($branchName) {
     "master" {
         $preReleaseInfo = ""
     }
+    "main" {
+        $preReleaseInfo = ""
+    }
     "develop" {
         $preReleaseInfo = "-inte-{0:D6}"
     }

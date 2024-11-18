@@ -3,13 +3,13 @@ name: Optimizely Headless Form CI
 on:
   push:
     branches:
-      - master
+      - main
       - develop
       - release/**
   pull_request:
     branches:
       - "*"
-      - master
+      - main
       - feature/**
       - release/**
 
@@ -19,10 +19,7 @@ permissions:
   id-token: write
 
 env:
-  NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
-  JIRA_USERNAME: ${{ secrets.JIRA_BOT_USERNAME }}
-  JIRA_PASSWORD: ${{ secrets.JIRA_BOT_PASSWORD }}
+  NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
 
 jobs:
   build_test_pack:
@@ -32,7 +29,7 @@ jobs:
       BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -43,6 +40,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@sampension'
           cache: "npm"
 
       - name: Setup dependencies
@@ -60,27 +59,5 @@ jobs:
           ${{ github.workspace}}/build/get-versionSuffix.ps1 ${{env.BRANCH_NAME}} ${{github.RUN_NUMBER}}
 
       - name: Publish
-        if: ${{ contains(github.ref,'release/') || github.ref == 'refs/heads/master'}}
+        if: ${{ contains(github.ref,'release/') || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' }}
         run: npm run publish
-
-  jira-release:
-    if: ${{ contains(github.ref,'release/') }} 
-    runs-on: windows-latest
-    name: Get release version & create JIRA release
-    needs: build_test_pack
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v1
-
-      - name: Get release version
-        uses: episerver/addons-jira-automation/releaseversion@v1
-        id: branchVersion
-
-      - name: Create JIRA release
-        uses: episerver/addons-jira-automation/release@v1
-        with:
-          jira-project: AFORM
-          jira-package: Optimizely.Forms.Headless.Js.Sdk
-          jira-host: jira.sso.episerver.net
-          version: ${{ steps.branchVersion.outputs.manifestSafeVersionString }}
-          versionSuffix: ${{needs.build_test_pack.outputs.versionSuffix}}
