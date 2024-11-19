@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IdentityInfo } from '@episerver/forms-sdk';
 import { FormContainerBlock } from './components/FormContainerBlock';
 import { UseFormLoaderProps, useFormLoader } from './hooks/useFormLoader';
@@ -33,6 +33,7 @@ interface FormProps {
    * The endpoint url of Optimizely Graph
    */
   optiGraphUrl?: string;
+  onLoadingChange?: (loading: boolean) => void;
 }
 
 export const Form = ({
@@ -43,24 +44,27 @@ export const Form = ({
   history,
   currentPageUrl,
   optiGraphUrl,
+  onLoadingChange,
 }: FormProps) => {
   const { data: formData, loading } = useFormLoader({ formKey, language, baseUrl, optiGraphUrl } as UseFormLoaderProps);
 
+  useEffect(() => {
+    if (onLoadingChange) {
+      onLoadingChange(loading);
+    }
+  }, [loading, onLoadingChange]);
+
   return (
     <>
-      {loading ? (
-        <>Loading optimizely form</>
-      ) : (
-        formData && (
-          <FormContainerBlock
-            form={formData}
-            key={formData.key}
-            identityInfo={identityInfo}
-            baseUrl={baseUrl}
-            history={history}
-            currentPageUrl={currentPageUrl}
-          />
-        )
+      {formData && (
+        <FormContainerBlock
+          form={formData}
+          key={formData.key}
+          identityInfo={identityInfo}
+          baseUrl={baseUrl}
+          history={history}
+          currentPageUrl={currentPageUrl}
+        />
       )}
     </>
   );
