@@ -34,6 +34,7 @@ interface FormProps {
    */
   optiGraphUrl?: string;
   onLoadingChange?: (loading: boolean) => void;
+  onError?: (error: unknown) => void;
 }
 
 export const Form = ({
@@ -45,14 +46,25 @@ export const Form = ({
   currentPageUrl,
   optiGraphUrl,
   onLoadingChange,
+  onError,
 }: FormProps) => {
-  const { data: formData, loading } = useFormLoader({ formKey, language, baseUrl, optiGraphUrl } as UseFormLoaderProps);
+  const {
+    data: formData,
+    loading,
+    error,
+  } = useFormLoader({ formKey, language, baseUrl, optiGraphUrl } as UseFormLoaderProps);
 
   useEffect(() => {
     if (onLoadingChange) {
       onLoadingChange(loading);
     }
   }, [loading, onLoadingChange]);
+
+  useEffect(() => {
+    if (onError) {
+      onError(error);
+    }
+  }, [error, onError]);
 
   return (
     <>
