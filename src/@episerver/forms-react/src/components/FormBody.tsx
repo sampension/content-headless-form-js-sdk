@@ -48,6 +48,9 @@ export const FormBody = (props: FormBodyProps) => {
   const localFormCache = new FormCache(window.localStorage);
   const currentStepIndex = formContext?.currentStepIndex ?? 0;
 
+  // @sampension - check for redirect to page after submit to prevent rendering of (default) success message before redirect
+  const shouldRedirectToPage = !!form.properties?.redirectToPage;
+
   //TODO: these variables should be get from api or sdk
   const validateFail = useRef<boolean>(false),
     isFormFinalized = useRef<boolean>(false),
@@ -59,7 +62,8 @@ export const FormBody = (props: FormBodyProps) => {
     isStepValidToDisplay = stepDependCondition.isStepValidToDisplay(currentStepIndex, currentPageUrl),
     isMalFormSteps = stepHelper.isMalFormSteps();
 
-  if ((isFormFinalized.current || isProgressiveSubmit.current) && isSuccess.current) {
+  // @sampension - added check for redirect to page
+  if ((isFormFinalized.current || isProgressiveSubmit.current) && isSuccess.current && !shouldRedirectToPage) {
     statusDisplay.current = 'Form__Success__Message';
     statusMessage.current = form.properties.submitSuccessMessage ?? message.current;
   } else if ((submissionWarning.current || !isSuccess.current) && !isNullOrEmpty(message.current)) {
