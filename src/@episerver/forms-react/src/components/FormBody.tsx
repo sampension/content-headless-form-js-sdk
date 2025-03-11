@@ -278,20 +278,6 @@ export const FormBody = (props: FormBodyProps) => {
       {form.properties.description && (
         <aside className="body-lg color-txt-primary body--400 Form__Description">{form.properties.description}</aside>
       )}
-      {/* area for showing Form's status or validation */}
-      <div className="Form__Status">
-        <div
-          role="status"
-          className={`Form__Status__Message ${statusDisplay.current}`}
-        >
-          <div
-            dangerouslySetInnerHTML={{
-              __html: statusMessage.current,
-            }}
-          />
-        </div>
-      </div>
-
       <div
         className="Form__MainBody"
         style={{ display: showForm.current ? 'flow' : 'none' }}
@@ -323,6 +309,19 @@ export const FormBody = (props: FormBodyProps) => {
           isStepValidToDisplay={isStepValidToDisplay}
           isSuccess={isSuccess.current}
         />
+      </div>
+      {/* area for showing Form's status or validation */}
+      <div className="Form__Status">
+        <div
+          role="status"
+          className={`Form__Status__Message ${statusDisplay.current}`}
+        >
+          <div
+            dangerouslySetInnerHTML={{
+              __html: statusMessage.current,
+            }}
+          />
+        </div>
       </div>
     </form>
   );
