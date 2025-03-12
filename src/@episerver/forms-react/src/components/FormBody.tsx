@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { useForms } from '../context/store';
+import React, { useEffect, useRef } from "react";
+import { useForms } from "../context/store";
 import {
   StepHelper,
   FormContainer,
@@ -16,10 +16,10 @@ import {
   ProblemDetail,
   StepDependCondition,
   getConfirmationData,
-} from '@episerver/forms-sdk';
-import { RenderElementInStep } from './RenderElementInStep';
-import { DispatchFunctions } from '../context/dispatchFunctions';
-import { FormStepNavigation } from './FormStepNavigation';
+} from "@episerver/forms-sdk";
+import { RenderElementInStep } from "./RenderElementInStep";
+import { DispatchFunctions } from "../context/dispatchFunctions";
+import { FormStepNavigation } from "./FormStepNavigation";
 
 interface FormBodyProps {
   identityInfo?: IdentityInfo;
@@ -39,13 +39,16 @@ export const FormBody = (props: FormBodyProps) => {
   const currentPageUrl = props.currentPageUrl ?? window.location.href;
 
   const formTitleId = `${form.key}_label`;
-  const statusMessage = useRef<string>('');
-  const statusDisplay = useRef<string>('hide');
+  const statusMessage = useRef<string>("");
+  const statusDisplay = useRef<string>("hide");
 
   const showForm = useRef<boolean>(true);
 
-  const formCache = new FormCache();
-  const localFormCache = new FormCache(window.localStorage);
+  const formCache = new FormCache(undefined, props.identityInfo?.username);
+  const localFormCache = new FormCache(
+    window.localStorage,
+    props.identityInfo?.username
+  );
   const currentStepIndex = formContext?.currentStepIndex ?? 0;
 
   // @sampension - check for redirect to page after submit to prevent rendering of (default) success message before redirect
@@ -57,24 +60,37 @@ export const FormBody = (props: FormBodyProps) => {
     isProgressiveSubmit = useRef<boolean>(false),
     isSuccess = useRef<boolean>(false),
     submissionWarning = useRef<boolean>(false),
-    message = useRef<string>(''),
+    message = useRef<string>(""),
     submissionStorageKey = FormConstants.FormSubmissionId + form.key,
-    isStepValidToDisplay = stepDependCondition.isStepValidToDisplay(currentStepIndex, currentPageUrl),
+    isStepValidToDisplay = stepDependCondition.isStepValidToDisplay(
+      currentStepIndex,
+      currentPageUrl
+    ),
     isMalFormSteps = stepHelper.isMalFormSteps();
 
   // @sampension - added check for redirect to page
-  if ((isFormFinalized.current || isProgressiveSubmit.current) && isSuccess.current && !shouldRedirectToPage) {
-    statusDisplay.current = 'Form__Success__Message';
-    statusMessage.current = form.properties.submitSuccessMessage ?? message.current;
-  } else if ((submissionWarning.current || !isSuccess.current) && !isNullOrEmpty(message.current)) {
-    statusDisplay.current = 'Form__Warning__Message';
+  if (
+    (isFormFinalized.current || isProgressiveSubmit.current) &&
+    isSuccess.current &&
+    !shouldRedirectToPage
+  ) {
+    statusDisplay.current = "Form__Success__Message";
+    statusMessage.current =
+      form.properties.submitSuccessMessage ?? message.current;
+  } else if (
+    (submissionWarning.current || !isSuccess.current) &&
+    !isNullOrEmpty(message.current)
+  ) {
+    statusDisplay.current = "Form__Warning__Message";
     statusMessage.current = message.current;
   } else {
-    statusDisplay.current = 'hide';
-    statusMessage.current = '';
+    statusDisplay.current = "hide";
+    statusMessage.current = "";
   }
 
-  const validationCssClass = validateFail.current ? 'ValidationFail' : 'ValidationSuccess';
+  const validationCssClass = validateFail.current
+    ? "ValidationFail"
+    : "ValidationSuccess";
 
   const showError = (error: string) => {
     submissionWarning.current = !isNullOrEmpty(error);
@@ -83,15 +99,22 @@ export const FormBody = (props: FormBodyProps) => {
 
   const handleConfirm = () => {
     const form = formContext?.formContainer ?? ({} as FormContainer);
-    const confirmationMessage = form.properties.confirmationMessage ?? '';
+    const confirmationMessage = form.properties.confirmationMessage ?? "";
     let confimStatus = true;
 
     if (form.properties.showSummarizedData) {
       const data = formContext?.formSubmissions ?? [];
-      const messageData = getConfirmationData(data, form, currentStepIndex, inactiveElements);
-      const showConfirmationMessage = !(isNullOrEmpty(confirmationMessage) && isNullOrEmpty(messageData));
+      const messageData = getConfirmationData(
+        data,
+        form,
+        currentStepIndex,
+        inactiveElements
+      );
+      const showConfirmationMessage = !(
+        isNullOrEmpty(confirmationMessage) && isNullOrEmpty(messageData)
+      );
       if (showConfirmationMessage) {
-        confimStatus = confirm(confirmationMessage + '\n\n' + messageData);
+        confimStatus = confirm(confirmationMessage + "\n\n" + messageData);
       }
     }
 
@@ -101,13 +124,18 @@ export const FormBody = (props: FormBodyProps) => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    if (!form.properties.allowAnonymousSubmission && isNullOrEmpty(formContext?.identityInfo?.accessToken)) {
+    if (
+      !form.properties.allowAnonymousSubmission &&
+      isNullOrEmpty(formContext?.identityInfo?.accessToken)
+    ) {
       return;
     }
 
     //Find submit button, if found then check property 'finalizeForm' of submit button. Otherwise, button Next/Previous was clicked.
     const buttonId = e.nativeEvent.submitter?.id;
-    const submitButton = form.formElements.find((fe) => fe.key === buttonId) as SubmitButton;
+    const submitButton = form.formElements.find(
+      (fe) => fe.key === buttonId
+    ) as SubmitButton;
     if (!isNull(submitButton)) {
       //when submitting by SubmitButton, isProgressiveSubmit default is true
       isProgressiveSubmit.current = true;
@@ -122,7 +150,9 @@ export const FormBody = (props: FormBodyProps) => {
 
     //filter submissions by active elements and current step
     const formSubmissions = (formContext?.formSubmissions ?? []).filter(
-      (fs) => !isInArray(fs.elementKey, inactives) && stepHelper.isInCurrentStep(fs.elementKey, currentStepIndex)
+      (fs) =>
+        !isInArray(fs.elementKey, inactives) &&
+        stepHelper.isInCurrentStep(fs.elementKey, currentStepIndex)
     );
 
     //validate all submission data before submit
@@ -130,7 +160,10 @@ export const FormBody = (props: FormBodyProps) => {
     dispatchFunctions.updateAllValidation(formValidationResults);
 
     //set focus on the 1st invalid element of current step
-    const invalid = stepHelper.getFirstInvalidElement(formValidationResults, currentStepIndex);
+    const invalid = stepHelper.getFirstInvalidElement(
+      formValidationResults,
+      currentStepIndex
+    );
     if (!isNullOrEmpty(invalid)) {
       dispatchFunctions.updateFocusOn(invalid);
       return;
@@ -148,7 +181,13 @@ export const FormBody = (props: FormBodyProps) => {
       formKey: form.key,
       locale: form.locale,
       isFinalized: submitButton?.properties?.finalizeForm || isLastStep,
-      partialSubmissionKey: localFormCache.get(submissionStorageKey) ?? formContext?.submissionKey ?? '',
+      partialSubmissionKey:
+        localFormCache.get(
+          submissionStorageKey,
+          props.identityInfo?.username
+        ) ??
+        formContext?.submissionKey ??
+        "",
       hostedPageUrl: currentPageUrl,
       submissionData: formSubmissions,
       accessToken: formContext?.identityInfo?.accessToken,
@@ -162,32 +201,51 @@ export const FormBody = (props: FormBodyProps) => {
       .then((response: FormSubmitResult) => {
         //go here, response.success always is true
         isSuccess.current = response.success;
-        isFormFinalized.current = (submitButton?.properties?.finalizeForm || isLastStep) && response.success;
+        isFormFinalized.current =
+          (submitButton?.properties?.finalizeForm || isLastStep) &&
+          response.success;
         dispatchFunctions.updateSubmissionKey(response.submissionKey);
-        localFormCache.set(submissionStorageKey, response.submissionKey);
+        localFormCache.set(
+          submissionStorageKey,
+          response.submissionKey,
+          props.identityInfo?.username
+        );
 
         if (isProgressiveSubmit.current) {
-          message.current = response.messages.map((m) => m.message).join('<br>');
+          message.current = response.messages
+            .map((m) => m.message)
+            .join("<br>");
           showForm.current = false;
         }
 
         // Custom redirect message
-        const redirectMessage = response.messages.find((message) => message.section === 'redirect');
+        const redirectMessage = response.messages.find(
+          (message) => message.section === "redirect"
+        );
         if (redirectMessage && !isNullOrEmpty(redirectMessage.message)) {
           window.location.href = redirectMessage.message;
           return;
         }
 
         if (isFormFinalized.current) {
-          formCache.remove(FormConstants.FormCurrentStep + form.key);
-          localFormCache.remove(submissionStorageKey);
+          formCache.remove(
+            FormConstants.FormCurrentStep + form.key,
+            props.identityInfo?.username
+          );
+          localFormCache.remove(
+            submissionStorageKey,
+            props.identityInfo?.username
+          );
         }
 
         //redirect after submit
         if (submitButton) {
-          const redirectToPage = submitButton?.properties?.redirectToPage ?? form.properties?.redirectToPage;
+          const redirectToPage =
+            submitButton?.properties?.redirectToPage ??
+            form.properties?.redirectToPage;
           if (!isNullOrEmpty(redirectToPage)) {
-            const cmsUrl = process.env.REACT_APP_HEADLESS_FORM_BASE_URL ?? 'http://temp';
+            const cmsUrl =
+              process.env.REACT_APP_HEADLESS_FORM_BASE_URL ?? "http://temp";
             const url = new URL(redirectToPage, cmsUrl);
             window.location.href = url.href;
           }
@@ -198,7 +256,10 @@ export const FormBody = (props: FormBodyProps) => {
           case 401:
             //clear access token to ask login again
             dispatchFunctions.updateIdentity({} as IdentityInfo);
-            formCache.remove(FormConstants.FormAccessToken);
+            formCache.remove(
+              FormConstants.FormAccessToken,
+              props.identityInfo?.username
+            );
             break;
           case 400:
             if (e.errors) {
@@ -210,7 +271,10 @@ export const FormBody = (props: FormBodyProps) => {
                     ? fr
                     : {
                         ...fr,
-                        result: { valid: false, message: e.errors[fr.elementKey].join('<br/>') },
+                        result: {
+                          valid: false,
+                          message: e.errors[fr.elementKey].join("<br/>"),
+                        },
                       }
                 ) ?? [];
 
@@ -218,7 +282,10 @@ export const FormBody = (props: FormBodyProps) => {
 
               //set focus on the 1st invalid element of current step
               dispatchFunctions.updateFocusOn(
-                stepHelper.getFirstInvalidElement(formValidationResults, currentStepIndex)
+                stepHelper.getFirstInvalidElement(
+                  formValidationResults,
+                  currentStepIndex
+                )
               );
             }
             break;
@@ -233,10 +300,13 @@ export const FormBody = (props: FormBodyProps) => {
 
   useEffect(() => {
     dispatchFunctions.updateIdentity(props.identityInfo);
-    if (isNullOrEmpty(props.identityInfo?.accessToken) && !form.properties.allowAnonymousSubmission) {
+    if (
+      isNullOrEmpty(props.identityInfo?.accessToken) &&
+      !form.properties.allowAnonymousSubmission
+    ) {
       showError(form.localizations.allowAnonymousSubmissionErrorMessage);
     } else {
-      showError('');
+      showError("");
     }
   }, [props.identityInfo?.accessToken]);
 
@@ -244,18 +314,23 @@ export const FormBody = (props: FormBodyProps) => {
   useEffect(() => {
     isSuccess.current = false;
     if (form.properties.focusOnForm || currentStepIndex > 0) {
-      dispatchFunctions.updateFocusOn(stepHelper.getFirstInputElement(currentStepIndex, inactiveElements));
+      dispatchFunctions.updateFocusOn(
+        stepHelper.getFirstInputElement(currentStepIndex, inactiveElements)
+      );
     }
   }, [currentStepIndex]);
 
   //Run in-case change page by url. The currentStepIndex that get from cache is incorrect.
   useEffect(() => {
     if (!isStepValidToDisplay) {
-      dispatchFunctions.updateCurrentStepIndex(stepHelper.getCurrentStepIndex(currentPageUrl));
+      dispatchFunctions.updateCurrentStepIndex(
+        stepHelper.getCurrentStepIndex(currentPageUrl)
+      );
     }
   }, []);
 
-  isMalFormSteps && showError(form.localizations.malformstepconfigruationErrorMessage);
+  isMalFormSteps &&
+    showError(form.localizations.malformstepconfigruationErrorMessage);
 
   return (
     <form
@@ -276,26 +351,30 @@ export const FormBody = (props: FormBodyProps) => {
         </h2>
       )}
       {form.properties.description && (
-        <aside className="body-lg color-txt-primary body--400 Form__Description">{form.properties.description}</aside>
+        <aside className="body-lg color-txt-primary body--400 Form__Description">
+          {form.properties.description}
+        </aside>
       )}
       <div
         className="Form__MainBody"
-        style={{ display: showForm.current ? 'flow' : 'none' }}
+        style={{ display: showForm.current ? "flow" : "none" }}
       >
         {/* render element */}
         {form.steps.map((e, i) => {
           const stepDisplaying =
-            currentStepIndex === i && !isFormFinalized.current && isStepValidToDisplay && !isMalFormSteps ? '' : 'hide';
+            currentStepIndex === i &&
+            !isFormFinalized.current &&
+            isStepValidToDisplay &&
+            !isMalFormSteps
+              ? ""
+              : "hide";
           return (
             <section
               key={e.formStep.key}
               id={e.formStep.key}
               className={`Form__Element__Step ${stepDisplaying}`}
             >
-              <RenderElementInStep
-                elements={e.elements}
-                stepIndex={i}
-              />
+              <RenderElementInStep elements={e.elements} stepIndex={i} />
             </section>
           );
         })}
@@ -311,7 +390,7 @@ export const FormBody = (props: FormBodyProps) => {
         />
       </div>
       {/* area for showing Form's status or validation */}
-      <div className="Form__Status">
+      <div className="Form__Status alert-bar alert-bar--urgency--high">
         <div
           role="status"
           className={`Form__Status__Message ${statusDisplay.current}`}

@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { useForms } from '../context/store';
+import React, { useEffect, useRef } from "react";
+import { useForms } from "../context/store";
 import {
   FormCache,
   FormConstants,
@@ -9,8 +9,8 @@ import {
   SubmitButtonType,
   isNull,
   isNullOrEmpty,
-} from '@episerver/forms-sdk';
-import { DispatchFunctions } from '../context/dispatchFunctions';
+} from "@episerver/forms-sdk";
+import { DispatchFunctions } from "../context/dispatchFunctions";
 
 interface FormStepNavigationProps {
   isFormFinalized: boolean;
@@ -23,13 +23,27 @@ interface FormStepNavigationProps {
 
 export const FormStepNavigation = (props: FormStepNavigationProps) => {
   const formContext = useForms();
-  const formCache = new FormCache();
+  const formCache = new FormCache(
+    undefined,
+    formContext?.identityInfo?.username
+  );
   const form = formContext?.formContainer ?? ({} as FormContainer);
-  const depend = new StepDependCondition(form, formContext?.dependencyInactiveElements ?? []);
-  const { isFormFinalized, history, handleSubmit, isMalFormSteps, isStepValidToDisplay, isSuccess } = props;
+  const depend = new StepDependCondition(
+    form,
+    formContext?.dependencyInactiveElements ?? []
+  );
+  const {
+    isFormFinalized,
+    history,
+    handleSubmit,
+    isMalFormSteps,
+    isStepValidToDisplay,
+    isSuccess,
+  } = props;
   const dispatchFuncs = new DispatchFunctions();
   const stepLocalizations = useRef<Record<string, string>>(
-    form.steps?.filter((s) => !isNull(s.formStep.localizations))[0]?.formStep.localizations
+    form.steps?.filter((s) => !isNull(s.formStep.localizations))[0]?.formStep
+      .localizations
   ).current;
   const isNextStep = useRef<boolean>(false);
   const formStorage = new FormStorage(form);
@@ -40,8 +54,9 @@ export const FormStepNavigation = (props: FormStepNavigationProps) => {
   const currentStepIndex = formContext?.currentStepIndex ?? 0;
   const currentDisplayStepIndex = currentStepIndex + 1;
   const prevButtonDisableState = currentStepIndex == 0 || !submittable;
-  const nextButtonDisableState = currentStepIndex == stepCount - 1 || !submittable;
-  const progressWidth = (100 * currentDisplayStepIndex) / stepCount + '%';
+  const nextButtonDisableState =
+    currentStepIndex == stepCount - 1 || !submittable;
+  const progressWidth = (100 * currentDisplayStepIndex) / stepCount + "%";
 
   const isShowStepNavigation =
     stepCount > 1 &&
@@ -65,7 +80,8 @@ export const FormStepNavigation = (props: FormStepNavigationProps) => {
   };
 
   const goToStep = (stepIndex: number) => {
-    const attachedContentLink = form.steps[stepIndex]?.formStep?.properties?.attachedContentLink;
+    const attachedContentLink =
+      form.steps[stepIndex]?.formStep?.properties?.attachedContentLink;
 
     formCache.set<number>(FormConstants.FormCurrentStep + form.key, stepIndex);
     dispatchFuncs.updateCurrentStepIndex(stepIndex);
@@ -85,10 +101,7 @@ export const FormStepNavigation = (props: FormStepNavigationProps) => {
   return (
     <>
       {isShowStepNavigation && form.properties.showNavigationBar && (
-        <nav
-          role="navigation"
-          className="Form__NavigationBar"
-        >
+        <nav role="navigation" className="Form__NavigationBar">
           <button
             type="submit"
             name="submit"
@@ -109,8 +122,13 @@ export const FormStepNavigation = (props: FormStepNavigationProps) => {
               <span className="Form__NavigationBar__ProgressBar__ProgressLabel">
                 {stepLocalizations.pageButtonLabel}
               </span>
-              <span className="Form__NavigationBar__ProgressBar__CurrentStep">{currentDisplayStepIndex}</span>/
-              <span className="Form__NavigationBar__ProgressBar__StepsCount">{stepCount}</span>
+              <span className="Form__NavigationBar__ProgressBar__CurrentStep">
+                {currentDisplayStepIndex}
+              </span>
+              /
+              <span className="Form__NavigationBar__ProgressBar__StepsCount">
+                {stepCount}
+              </span>
             </div>
           </div>
 

@@ -3,12 +3,19 @@
  */
 export class FormCache{
     readonly _storage: Storage
+    readonly _cacheKey: string
 
-    constructor(storage?: Storage){
+    constructor(storage?: Storage, cacheKey?: string){
         this._storage = storage ?? window.sessionStorage;
+        this._cacheKey = cacheKey ?? "";
+    }
+
+    private getCachekey(key: string): string{
+        return key + this._cacheKey;
     }
 
     get<T>(key: string): T | undefined{
+        key = this.getCachekey(key);
         let data = this._storage[key];
         if (!data) {
             return undefined;
@@ -27,6 +34,7 @@ export class FormCache{
 
     set<T>(key: string, data: T): T{
         try { // safari private mode does not allow local storage
+            key = this.getCachekey(key);
             if(typeof data === "object"){
                 this._storage.setItem(key, JSON.stringify(data));
             }
@@ -40,6 +48,7 @@ export class FormCache{
     }
 
     remove(key: string): void{
+        key = this.getCachekey(key);
         this._storage.removeItem(key);
     }
 }
