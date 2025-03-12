@@ -38,7 +38,7 @@ export interface ElementContext {
 
 export const useElement = (element: FormElementBase) => {
     const formContext = useForms();
-    const formCache = new FormCache();
+    const formCache = new FormCache(undefined, formContext?.identityInfo?.username);
     const extraAttr = useRef<any>({});
     const formValidation = new FormValidator(element);
     const formCondition = new FormDependConditions(element)

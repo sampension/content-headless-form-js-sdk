@@ -10,10 +10,10 @@ import { equals, isNullOrEmpty } from "./utils";
  * @param formContainer A form container
  * @returns An object of FormState
  */
-export function initFormState(formContainer: FormContainer, currentPageUrl?: string, history? : any): FormState {
+export function initFormState(formContainer: FormContainer, currentPageUrl?: string, history? : any, cachekey? : string): FormState {
     const formStorage = new FormStorage(formContainer);
     const formData = formStorage.loadFormDataFromStorage();
-    const formCache = new FormCache();
+    const formCache = new FormCache(undefined, cachekey);
     const stepHelper = new StepHelper(formContainer);
 
     let formSubmissions = [] as FormSubmission[];

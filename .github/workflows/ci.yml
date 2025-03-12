@@ -8,10 +8,8 @@ on:
       - release/**
   pull_request:
     branches:
-      - "*"
       - main
-      - feature/**
-      - release/**
+      - develop
 
 permissions:
   contents: write
