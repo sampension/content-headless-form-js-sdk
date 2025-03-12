@@ -18,9 +18,9 @@ export class StepDependCondition {
      * @param form Current form container
      * @param inactiveElements List of inactive elements. This param can passed from {@link FormState}.
      */
-    constructor(form: FormContainer, inactiveElements: string[]){
+    constructor(form: FormContainer, inactiveElements: string[], cacheKey?: string){
         this._form = form;
-        this._formStorage = new FormStorage(form);
+        this._formStorage = new FormStorage(form, cacheKey);
         this._inactiveElements = inactiveElements;
         this._stepHelper = new StepHelper(form);
     }

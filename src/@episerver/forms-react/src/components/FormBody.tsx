@@ -34,7 +34,11 @@ export const FormBody = (props: FormBodyProps) => {
   const inactiveElements = formContext?.dependencyInactiveElements ?? [];
   const formSubmitter = new FormSubmitter(form, props.baseUrl);
   const dispatchFunctions = new DispatchFunctions();
-  const stepDependCondition = new StepDependCondition(form, inactiveElements);
+  const stepDependCondition = new StepDependCondition(
+    form,
+    inactiveElements,
+    formContext.identityInfo?.username
+  );
   const stepHelper = new StepHelper(form);
   const currentPageUrl = props.currentPageUrl ?? window.location.href;
 
@@ -44,10 +48,13 @@ export const FormBody = (props: FormBodyProps) => {
 
   const showForm = useRef<boolean>(true);
 
-  const formCache = new FormCache(undefined, props.identityInfo?.username);
+  const formCache = new FormCache(
+    undefined,
+    formContext.identityInfo?.username
+  );
   const localFormCache = new FormCache(
     window.localStorage,
-    props.identityInfo?.username
+    formContext.identityInfo?.username
   );
   const currentStepIndex = formContext?.currentStepIndex ?? 0;
 
@@ -194,7 +201,7 @@ export const FormBody = (props: FormBodyProps) => {
     //submit data to API
     dispatchFunctions.updateIsSubmitting(true);
     formSubmitter
-      .doSubmit(model)
+      .doSubmit(model, formContext?.identityInfo?.username)
       .then((response: FormSubmitResult) => {
         //go here, response.success always is true
         isSuccess.current = response.success;

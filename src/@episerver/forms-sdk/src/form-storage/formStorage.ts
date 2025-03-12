@@ -5,9 +5,15 @@ import { FormContainer, FormSubmission } from "../models";
  */
 export class FormStorage {
     readonly _form: FormContainer
+    readonly _cacheKey: string
 
-    constructor(form: FormContainer){
+    constructor(form: FormContainer, cacheKey?: string) {
         this._form = form;
+        this._cacheKey = cacheKey ? ":" + cacheKey : "";
+    }
+
+    private getCachekey(key: string): string{
+        return key + this._cacheKey;
     }
 
     /**
@@ -25,9 +31,9 @@ export class FormStorage {
      */
     saveFormDataToStorage(data: FormSubmission[]): FormSubmission[] {
         let storage = this.getStorage();
-
         try { // safari private mode does not allow local storage
-            storage.setItem(this._form.key, JSON.stringify(data));
+            let key = this.getCachekey(this._form.key);
+            storage.setItem(key, JSON.stringify(data));
         } catch (e: any) {
             console.log("Local Storage not supported: " + e.message);
         }
@@ -40,7 +46,7 @@ export class FormStorage {
      */
     loadFormDataFromStorage(): FormSubmission[] {
         let storage = this.getStorage(),
-            data = storage[this._form.key];
+            data = storage[this.getCachekey(this._form.key)];
         if (!data) {
             return [];
         }
@@ -57,6 +63,7 @@ export class FormStorage {
      * Clear saved data of specified Form in storage
      */
     removeFormDataInStorage(): void {
-        this.getStorage().removeItem(this._form.key);
+        let key = this.getCachekey(this._form.key);
+        this.getStorage().removeItem(key);
     }
 }
