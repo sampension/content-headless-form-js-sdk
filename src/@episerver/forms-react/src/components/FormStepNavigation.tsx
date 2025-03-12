@@ -46,7 +46,10 @@ export const FormStepNavigation = (props: FormStepNavigationProps) => {
       .localizations
   ).current;
   const isNextStep = useRef<boolean>(false);
-  const formStorage = new FormStorage(form);
+  const formStorage = new FormStorage(
+    form,
+    formContext?.identityInfo?.username
+  );
 
   const submittable = true;
   const stepCount = form.steps.length;

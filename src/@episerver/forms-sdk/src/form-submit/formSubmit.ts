@@ -106,7 +106,7 @@ export class FormSubmitter {
      * Post an array of form submission to the Headless Form API
      * @param formSubmission the array of form submission to post
      */
-    doSubmit(model: FormSubmitModel): Promise<FormSubmitResult> {
+    doSubmit(model: FormSubmitModel, cacheKey?: string): Promise<FormSubmitResult> {
         return new Promise<FormSubmitResult>((resolve, reject) => {
             // Post data to API
             let formData = new FormData();
@@ -164,7 +164,7 @@ export class FormSubmitter {
             formData.append("data",JSON.stringify(formSubmissionData))
 
             // Save data to session storage
-            let formStorage = new FormStorage(this._form);
+            let formStorage = new FormStorage(this._form, cacheKey);
             let currentData = formStorage.loadFormDataFromStorage();
             let dataCombined = this.combineData(currentData, model.submissionData);
             formStorage.saveFormDataToStorage(dataCombined);

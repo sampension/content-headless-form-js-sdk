@@ -11,7 +11,7 @@ import { equals, isNullOrEmpty } from "./utils";
  * @returns An object of FormState
  */
 export function initFormState(formContainer: FormContainer, currentPageUrl?: string, history? : any, cachekey? : string): FormState {
-    const formStorage = new FormStorage(formContainer);
+    const formStorage = new FormStorage(formContainer, cachekey);
     const formData = formStorage.loadFormDataFromStorage();
     const formCache = new FormCache(undefined, cachekey);
     const stepHelper = new StepHelper(formContainer);
