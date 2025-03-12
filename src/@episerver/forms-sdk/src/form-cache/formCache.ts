@@ -7,7 +7,7 @@ export class FormCache{
 
     constructor(storage?: Storage, cacheKey?: string){
         this._storage = storage ?? window.sessionStorage;
-        this._cacheKey = cacheKey ?? "";
+        this._cacheKey = cacheKey ? ":" + cacheKey : "";
     }
 
     private getCachekey(key: string): string{
