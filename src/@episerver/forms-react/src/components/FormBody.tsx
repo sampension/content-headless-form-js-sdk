@@ -374,10 +374,10 @@ export const FormBody = (props: FormBodyProps) => {
         />
       </div>
       {/* area for showing Form's status or validation */}
-      <div className="Form__Status alert-bar alert-bar--urgency--high">
+      <div className="Form__Status">
         <div
           role="status"
-          className={`Form__Status__Message ${statusDisplay.current}`}
+          className={`Form__Status__Message alert-bar alert-bar--urgency--high ${statusDisplay.current}`}
         >
           <div
             dangerouslySetInnerHTML={{
