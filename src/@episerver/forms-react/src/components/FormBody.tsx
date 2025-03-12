@@ -182,10 +182,7 @@ export const FormBody = (props: FormBodyProps) => {
       locale: form.locale,
       isFinalized: submitButton?.properties?.finalizeForm || isLastStep,
       partialSubmissionKey:
-        localFormCache.get(
-          submissionStorageKey,
-          props.identityInfo?.username
-        ) ??
+        localFormCache.get(submissionStorageKey) ??
         formContext?.submissionKey ??
         "",
       hostedPageUrl: currentPageUrl,
@@ -205,17 +202,18 @@ export const FormBody = (props: FormBodyProps) => {
           (submitButton?.properties?.finalizeForm || isLastStep) &&
           response.success;
         dispatchFunctions.updateSubmissionKey(response.submissionKey);
-        localFormCache.set(
-          submissionStorageKey,
-          response.submissionKey,
-          props.identityInfo?.username
-        );
+        localFormCache.set(submissionStorageKey, response.submissionKey);
 
         if (isProgressiveSubmit.current) {
           message.current = response.messages
             .map((m) => m.message)
             .join("<br>");
           showForm.current = false;
+        }
+
+        if (isFormFinalized.current) {
+          formCache.remove(FormConstants.FormCurrentStep + form.key);
+          localFormCache.remove(submissionStorageKey);
         }
 
         // Custom redirect message
@@ -225,17 +223,6 @@ export const FormBody = (props: FormBodyProps) => {
         if (redirectMessage && !isNullOrEmpty(redirectMessage.message)) {
           window.location.href = redirectMessage.message;
           return;
-        }
-
-        if (isFormFinalized.current) {
-          formCache.remove(
-            FormConstants.FormCurrentStep + form.key,
-            props.identityInfo?.username
-          );
-          localFormCache.remove(
-            submissionStorageKey,
-            props.identityInfo?.username
-          );
         }
 
         //redirect after submit
@@ -256,10 +243,7 @@ export const FormBody = (props: FormBodyProps) => {
           case 401:
             //clear access token to ask login again
             dispatchFunctions.updateIdentity({} as IdentityInfo);
-            formCache.remove(
-              FormConstants.FormAccessToken,
-              props.identityInfo?.username
-            );
+            formCache.remove(FormConstants.FormAccessToken);
             break;
           case 400:
             if (e.errors) {
