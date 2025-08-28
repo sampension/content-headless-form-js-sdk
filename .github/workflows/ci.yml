@@ -58,4 +58,4 @@ jobs:
 
       - name: Publish
         if: ${{ contains(github.ref,'release/') || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' }}
-        run: npm run publish --tag latest
+        run: npm run publish
