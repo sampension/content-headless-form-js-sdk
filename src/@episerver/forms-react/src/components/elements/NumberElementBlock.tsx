@@ -17,12 +17,13 @@ export const NumberElementBlock = (props: NumberElementBlockProps) => {
         <ElementWrapper className={`FormTextbox FormTextbox--Number ${validatorClasses}`} validationResults={validationResults} isVisible={isVisible}>
             <div lang={element.locale}>
                 <ElementCaption element={element} />
-                    <label className={`input-text__field --horizontal-padding${validationResults.result.valid ? '' : ' --error'}`}>
+                    <label className={`input-number__field --horizontal-padding${validationResults.result.valid ? '' : ' --error'}`}>
                         <input
                             name={element.key}
                             id={element.key}
                             type="number"
                             step="any"
+                            className="input-number__input"
                             placeholder={element.properties.placeHolder}
                             {...extraAttr}
                             value={value}
