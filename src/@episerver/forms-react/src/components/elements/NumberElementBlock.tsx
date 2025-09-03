@@ -15,28 +15,26 @@ export const NumberElementBlock = (props: NumberElementBlockProps) => {
 
     return useMemo(()=>(
         <ElementWrapper className={`FormTextbox FormTextbox--Number ${validatorClasses}`} validationResults={validationResults} isVisible={isVisible}>
-            <div lang={element.locale}>
-                <ElementCaption element={element} />
-                    <label className={`input-text__field --horizontal-padding${validationResults.result.valid ? '' : ' --error'}`}>
-                        <input
-                            name={element.key}
-                            id={element.key}
-                            type="number"
-                            step="any"
-                            className="input-text__input"
-                            placeholder={element.properties.placeHolder}
-                            {...extraAttr}
-                            value={value}
-                            aria-describedby={`${element.key}_desc`}
-                            autoComplete={element.properties.autoComplete}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            onKeyDown={ handleKeyPress }
-                            ref={elementRef}
-                        />
-                    </label>
-                <ValidationMessage element={element} validationResults={validationResults} />
-            </div>
+            <ElementCaption element={element} />
+            <label className={`input-text__field --horizontal-padding${validationResults.result.valid ? '' : ' --error'}`}>
+                <input
+                    name={element.key}
+                    id={element.key}
+                    type="number"
+                    step="any"
+                    className="input-text__input"
+                    placeholder={element.properties.placeHolder}
+                    {...extraAttr}
+                    value={value}
+                    aria-describedby={`${element.key}_desc`}
+                    autoComplete={element.properties.autoComplete}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    onKeyDown={ handleKeyPress }
+                    ref={elementRef}
+                />
+            </label>
+            <ValidationMessage element={element} validationResults={validationResults} />
         </ElementWrapper>
     ),[isVisible, validationResults, value]);
 }
