@@ -16,13 +16,13 @@ export const NumberElementBlock = (props: NumberElementBlockProps) => {
     return useMemo(()=>(
         <ElementWrapper className={`${validatorClasses}`} validationResults={validationResults} isVisible={isVisible}>
             <ElementCaption element={element} />
-            <label className={`input-number__field --horizontal-padding${validationResults.result.valid ? '' : ' --error'}`}>
+            <label className={`input-text__field --horizontal-padding${validationResults.result.valid ? '' : ' --error'}`}>
                 <input
                     name={element.key}
                     id={element.key}
                     type="number"
                     step="any"
-                    className="input-number__input"
+                    className="input-text__input"
                     placeholder={element.properties.placeHolder}
                     {...extraAttr}
                     value={value}
