@@ -26,7 +26,7 @@ interface FormBodyProps {
   baseUrl: string;
   history?: any;
   currentPageUrl?: string;
-  onValidateBeforeSubmit?: (handleSubmit: (e:any) => void, handleSubmitArgs: any) => void;
+  onValidateBeforeSubmit?: () => Promise<boolean>;
 }
 
 export const FormBody = (props: FormBodyProps) => {
@@ -129,13 +129,18 @@ export const FormBody = (props: FormBodyProps) => {
     return confimStatus;
   };
 
-  const handleSubmitWithOptionalValidation = (e: any) => {
+  const handleSubmitWithOptionalValidation = async (e: any) => {
+    e.preventDefault();
     if (props.onValidateBeforeSubmit === undefined) {
       handleSubmit(e);
       return;
     }
 
-    props.onValidateBeforeSubmit(handleSubmit, e);
+    props.onValidateBeforeSubmit().then(validationResult => {
+      if (validationResult) {
+        handleSubmit(e);
+      }
+    });
   }
 
   const handleSubmit = (e: any) => {
