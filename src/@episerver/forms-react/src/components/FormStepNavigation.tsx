@@ -15,7 +15,7 @@ import { DispatchFunctions } from "../context/dispatchFunctions";
 interface FormStepNavigationProps {
   isFormFinalized: boolean;
   history?: any;
-  handleSubmit: (e: any) => void;
+  handleSubmit: (e: any) => Promise<void>;
   isMalFormSteps: boolean;
   isStepValidToDisplay: boolean;
   isSuccess: boolean;
@@ -78,7 +78,7 @@ export const FormStepNavigation = (props: FormStepNavigationProps) => {
 
   const handleNextStep = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    handleSubmit(event);
+    await handleSubmit(event);
     isNextStep.current = true;
   };
 
