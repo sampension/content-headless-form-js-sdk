@@ -15,7 +15,7 @@ import { DispatchFunctions } from "../context/dispatchFunctions";
 interface FormStepNavigationProps {
   isFormFinalized: boolean;
   history?: any;
-  handleSubmit: (e: any) => Promise<void>;
+  handleSubmit: (e: any) => void;
   isMalFormSteps: boolean;
   isStepValidToDisplay: boolean;
   isSuccess: boolean;

@@ -37,7 +37,7 @@ export interface FormContainerProps {
   /**
    * Optional validation method to execute before allowing submission. Return true if submission should continue.
    */
-  onValidateBeforeSubmit?: () => Promise<boolean>;
+  onValidateBeforeSubmit?: (handleSubmit: (e:any) => void) => void;
 }
 
 export function FormContainerBlock(props: FormContainerProps) {
