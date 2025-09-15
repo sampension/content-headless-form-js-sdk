@@ -131,16 +131,14 @@ export const FormBody = (props: FormBodyProps) => {
 
   const handleSubmitWithOptionalValidation = async (e: any) => {
     if (!props.onValidateBeforeSubmit) {
-      return handleSubmit(e);
+      handleSubmit(e);
+      return;
     }
 
     const validationResult = await props.onValidateBeforeSubmit();
     if (validationResult) {
-      return handleSubmit(e);
+      handleSubmit(e);
     }
-
-    // Return empty function if validation failed
-    return (e: any) => {};
   }
 
   const handleSubmit = (e: any) => {
