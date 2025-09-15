@@ -135,10 +135,11 @@ export const FormBody = (props: FormBodyProps) => {
       return;
     }
 
-    const validationResult = await props.onValidateBeforeSubmit();
-    if (validationResult) {
-      handleSubmit(e);
-    }
+    props.onValidateBeforeSubmit().then(validationResult => {
+      if (validationResult) {
+        handleSubmit(e);
+      }
+    });
   }
 
   const handleSubmit = (e: any) => {
