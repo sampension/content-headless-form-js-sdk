@@ -26,7 +26,7 @@ interface FormBodyProps {
   baseUrl: string;
   history?: any;
   currentPageUrl?: string;
-  onValidateBeforeSubmit?: (handleSubmit: (e:any) => void) => void;
+  onValidateBeforeSubmit?: (handleSubmit: (e:any) => void, handleSubmitArgs: any) => void;
 }
 
 export const FormBody = (props: FormBodyProps) => {
@@ -135,7 +135,7 @@ export const FormBody = (props: FormBodyProps) => {
       return;
     }
 
-    props.onValidateBeforeSubmit(handleSubmit);
+    props.onValidateBeforeSubmit(handleSubmit, e);
   }
 
   const handleSubmit = (e: any) => {
