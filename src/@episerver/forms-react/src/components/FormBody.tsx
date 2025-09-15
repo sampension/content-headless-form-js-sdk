@@ -26,7 +26,7 @@ interface FormBodyProps {
   baseUrl: string;
   history?: any;
   currentPageUrl?: string;
-  onValidateBeforeSubmit?: () => boolean;
+  onValidateBeforeSubmit?: () => Promise<boolean>;
 }
 
 export const FormBody = (props: FormBodyProps) => {
@@ -129,6 +129,20 @@ export const FormBody = (props: FormBodyProps) => {
     return confimStatus;
   };
 
+  const handleSubmitWithOptionalValidation = async (e: any) => {
+    if (!props.onValidateBeforeSubmit) {
+      return handleSubmit(e);
+    }
+
+    const validationResult = await props.onValidateBeforeSubmit();
+    if (validationResult) {
+      return handleSubmit(e);
+    }
+
+    // Return empty function if validation failed
+    return (e: any) => {};
+  }
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
@@ -136,10 +150,6 @@ export const FormBody = (props: FormBodyProps) => {
       !form.properties.allowAnonymousSubmission &&
       isNullOrEmpty(formContext?.identityInfo?.accessToken)
     ) {
-      return;
-    }
-
-    if (props.onValidateBeforeSubmit !== undefined && props.onValidateBeforeSubmit() === false) {
       return;
     }
 
@@ -336,7 +346,7 @@ export const FormBody = (props: FormBodyProps) => {
       encType="multipart/form-data"
       className={`EPiServerForms ${validationCssClass}`}
       id={form.key}
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmitWithOptionalValidation}
     >
       {form.properties.title && (
         <h2
@@ -379,7 +389,7 @@ export const FormBody = (props: FormBodyProps) => {
         <FormStepNavigation
           isFormFinalized={isFormFinalized.current}
           history={props.history}
-          handleSubmit={handleSubmit}
+          handleSubmit={handleSubmitWithOptionalValidation}
           isMalFormSteps={isMalFormSteps}
           isStepValidToDisplay={isStepValidToDisplay}
           isSuccess={isSuccess.current}
