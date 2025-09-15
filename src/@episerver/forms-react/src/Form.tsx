@@ -34,9 +34,9 @@ interface FormProps {
    */
   optiGraphUrl?: string;
   /**
-   * Disable the submission of the form
+   * Optional validation method to execute before allowing submission. Return true if submission should continue.
    */
-  disableSubmit?: boolean;
+  onValidateBeforeSubmit?: () => boolean;
   onLoadingChange?: (loading: boolean) => void;
   onError?: (error: unknown) => void;
 }
@@ -49,7 +49,7 @@ export const Form = ({
   history,
   currentPageUrl,
   optiGraphUrl,
-  disableSubmit,
+  onValidateBeforeSubmit,
   onLoadingChange,
   onError,
 }: FormProps) => {
@@ -81,7 +81,7 @@ export const Form = ({
           baseUrl={baseUrl}
           history={history}
           currentPageUrl={currentPageUrl}
-          disableSubmit={disableSubmit}
+          onValidateBeforeSubmit={onValidateBeforeSubmit}
         />
       )}
     </>

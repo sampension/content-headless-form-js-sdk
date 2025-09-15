@@ -26,7 +26,7 @@ interface FormBodyProps {
   baseUrl: string;
   history?: any;
   currentPageUrl?: string;
-  disableSubmit?: boolean;
+  onValidateBeforeSubmit?: () => boolean;
 }
 
 export const FormBody = (props: FormBodyProps) => {
@@ -139,7 +139,7 @@ export const FormBody = (props: FormBodyProps) => {
       return;
     }
 
-    if (props.disableSubmit) {
+    if (props.onValidateBeforeSubmit !== undefined && props.onValidateBeforeSubmit() === false) {
       return;
     }
 

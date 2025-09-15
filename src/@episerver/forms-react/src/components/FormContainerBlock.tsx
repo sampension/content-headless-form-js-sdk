@@ -35,9 +35,9 @@ export interface FormContainerProps {
   currentPageUrl?: string;
 
   /**
-   * Disable the submission of the form
+   * Optional validation method to execute before allowing submission. Return true if submission should continue.
    */
-  disableSubmit?: boolean;
+  onValidateBeforeSubmit?: () => boolean;
 }
 
 export function FormContainerBlock(props: FormContainerProps) {
@@ -59,7 +59,7 @@ export function FormContainerBlock(props: FormContainerProps) {
         baseUrl={props.baseUrl}
         history={props.history}
         currentPageUrl={props.currentPageUrl}
-        disableSubmit={props.disableSubmit}
+        onValidateBeforeSubmit={props.onValidateBeforeSubmit}
       />
     </FormProvider>
   );
