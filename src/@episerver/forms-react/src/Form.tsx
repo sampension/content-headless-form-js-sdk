@@ -36,7 +36,7 @@ interface FormProps {
   /**
    * Optional validation method to execute before allowing submission. Return true if submission should continue.
    */
-  onValidateBeforeSubmit?: () => Promise<boolean>;
+  onValidateBeforeSubmit?: (handleSubmit: (e:any) => void, handleSubmitArgs: any) => void;
   onLoadingChange?: (loading: boolean) => void;
   onError?: (error: unknown) => void;
 }
