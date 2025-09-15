@@ -33,6 +33,10 @@ interface FormProps {
    * The endpoint url of Optimizely Graph
    */
   optiGraphUrl?: string;
+  /**
+   * Disable the submission of the form
+   */
+  disableSubmit?: boolean;
   onLoadingChange?: (loading: boolean) => void;
   onError?: (error: unknown) => void;
 }
@@ -45,6 +49,7 @@ export const Form = ({
   history,
   currentPageUrl,
   optiGraphUrl,
+  disableSubmit,
   onLoadingChange,
   onError,
 }: FormProps) => {
@@ -76,6 +81,7 @@ export const Form = ({
           baseUrl={baseUrl}
           history={history}
           currentPageUrl={currentPageUrl}
+          disableSubmit={disableSubmit}
         />
       )}
     </>

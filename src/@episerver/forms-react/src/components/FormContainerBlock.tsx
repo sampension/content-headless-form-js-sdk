@@ -33,6 +33,11 @@ export interface FormContainerProps {
    * The public url of current page
    */
   currentPageUrl?: string;
+
+  /**
+   * Disable the submission of the form
+   */
+  disableSubmit?: boolean;
 }
 
 export function FormContainerBlock(props: FormContainerProps) {
@@ -54,6 +59,7 @@ export function FormContainerBlock(props: FormContainerProps) {
         baseUrl={props.baseUrl}
         history={props.history}
         currentPageUrl={props.currentPageUrl}
+        disableSubmit={props.disableSubmit}
       />
     </FormProvider>
   );

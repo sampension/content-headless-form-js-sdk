@@ -26,6 +26,7 @@ interface FormBodyProps {
   baseUrl: string;
   history?: any;
   currentPageUrl?: string;
+  disableSubmit?: boolean;
 }
 
 export const FormBody = (props: FormBodyProps) => {
@@ -135,6 +136,10 @@ export const FormBody = (props: FormBodyProps) => {
       !form.properties.allowAnonymousSubmission &&
       isNullOrEmpty(formContext?.identityInfo?.accessToken)
     ) {
+      return;
+    }
+
+    if (props.disableSubmit) {
       return;
     }
 
