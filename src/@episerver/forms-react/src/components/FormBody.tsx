@@ -130,7 +130,7 @@ export const FormBody = (props: FormBodyProps) => {
   };
 
   const handleSubmitWithOptionalValidation = async (e: any) => {
-    if (!props.onValidateBeforeSubmit) {
+    if (props.onValidateBeforeSubmit === undefined) {
       handleSubmit(e);
       return;
     }
