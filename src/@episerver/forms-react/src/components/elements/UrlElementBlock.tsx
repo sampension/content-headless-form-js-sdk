@@ -13,7 +13,7 @@ export const UrlElementBlock = (props: UrlElementBlockProps) => {
     const { elementContext, handleChange, handleBlur } = useElement(element);
     const { isVisible, validationResults, value, extraAttr, validatorClasses, elementRef } = elementContext;
     return useMemo(()=>(
-        <ElementWrapper className={`FormTextbox__Input FormUrl__Input ${validatorClasses}`} validationResults={validationResults} isVisible={isVisible}>
+        <ElementWrapper className={`FormTextbox__Input FormUrl__Input formular-fieldset ${validatorClasses}`} validationResults={validationResults} isVisible={isVisible}>
             <ElementCaption element={element} />
 
             <input
