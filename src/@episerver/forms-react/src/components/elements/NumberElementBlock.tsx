@@ -14,7 +14,7 @@ export const NumberElementBlock = (props: NumberElementBlockProps) => {
     const { isVisible, validationResults, value, extraAttr, validatorClasses, elementRef } = elementContext;
 
     return useMemo(()=>(
-        <ElementWrapper className={`${validatorClasses}`} validationResults={validationResults} isVisible={isVisible}>
+        <ElementWrapper className={`formular-fieldset ${validatorClasses}`} validationResults={validationResults} isVisible={isVisible}>
             <ElementCaption element={element} />
             <label className={`input-text__field --horizontal-padding${validationResults.result.valid ? '' : ' --error'}`}>
                 <input

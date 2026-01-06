@@ -15,8 +15,9 @@
   },
   "keywords": [],
   "dependencies": {
+    "@sampension/design-system-react": "1.164.0",
     "@sampension/forms-sdk": "^1.0.1",
-    "@sampension/design-system-react": "1.164.0"
+    "sass": "^1.97.2"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.4",

@@ -15,7 +15,7 @@ export const ImageChoiceElementBlock = (props: ImageChoiceElementBlockProps) => 
     const { isVisible, validationResults, value, validatorClasses, extraAttr } = elementContext;
 
     return useMemo(()=>(
-        <ElementWrapper className={`FormChoice FormChoice--Image ${validatorClasses}`} validationResults={validationResults} isVisible={isVisible} extraAttr={extraAttr}>
+        <ElementWrapper className={`FormChoice FormChoice--Image formular-fieldset ${validatorClasses}`} validationResults={validationResults} isVisible={isVisible} extraAttr={extraAttr}>
             <fieldset aria-describedby={`${element.key}_desc`}>
                 {
                     isNullOrEmpty(element.properties.label) &&

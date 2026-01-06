@@ -15,7 +15,7 @@ export const TextboxElementBlock = (props: TextboxElementBlockProps) => {
   return useMemo(
     () => (
       <ElementWrapper
-        className={`${validatorClasses}`}
+        className={`formular-fieldset ${validatorClasses}`}
         validationResults={validationResults}
         isVisible={isVisible}
       >

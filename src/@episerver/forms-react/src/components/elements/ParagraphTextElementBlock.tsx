@@ -78,7 +78,7 @@ export const ParagraphTextElementBlock = (
   return useMemo(
     () => (
       <ElementWrapper
-        className={`richtext FormParagraphText Form__Element--NonData ${validatorClasses}`}
+        className={`richtext formular-fieldset FormParagraphText Form__Element--NonData ${validatorClasses}`}
         validationResults={validationResults}
         isVisible={isVisible}
       >
