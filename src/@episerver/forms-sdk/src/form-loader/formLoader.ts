@@ -50,6 +50,7 @@ export class FormLoader<T extends FormContainer> {
    * @returns A promise with a form
    */
   queryForm(optiGraphUrl: string, key: string, language: string): Promise<T> {
+    language = language.replace('-', '_');
     return new Promise<T>((resolve, reject) => {
       let query: string = `
             query FormQuery($key: String, $language: [Locales]) {
