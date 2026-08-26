@@ -175,6 +175,20 @@ export const useElement = (element: FormElementBase) => {
         dispatchFuncs.updateValidation(element.key, formValidation.validate(value));
     }
 
+    const handleRemoveAttachment = (fileName: string) => {
+        const remainingFiles = ((value as any[]) ?? []).filter((f: any) => !equals(f.name, fileName));
+
+        // keep the native file input in sync so a removed file isn't re-submitted
+        if (elementRef.current) {
+            const dataTransfer = new DataTransfer();
+            remainingFiles.forEach((f: any) => dataTransfer.items.add(f.file));
+            elementRef.current.files = dataTransfer.files;
+        }
+
+        dispatchFuncs.updateValidation(element.key, formValidation.validate(remainingFiles));
+        dispatchFuncs.updateValue(element.key, remainingFiles);
+    }
+
     const handleKeyPress = (e: any) => {
         const { type } = e.target;
         if (/number/.test(type)) {
@@ -224,6 +238,6 @@ export const useElement = (element: FormElementBase) => {
             isVisible: isVisible.current,
             elementRef
         } as ElementContext, 
-        handleChange, handleBlur, handleReset, handleKeyPress 
+        handleChange, handleBlur, handleReset, handleKeyPress, handleRemoveAttachment 
     };
 }
