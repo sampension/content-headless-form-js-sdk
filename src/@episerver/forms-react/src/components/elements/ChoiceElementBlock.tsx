@@ -57,8 +57,8 @@ export const ChoiceElementBlock = (props: ChoiceElementBlockProps) => {
                       style={{ color: 'var(--semantic-color-txt-primary, #000)' }}
                     >
                       <div
-                        className={`input-checkbox__icon-wrapper ${
-                          !validationResults?.result?.valid && 'input-checkbox__icon-wrapper--error'
+                        className={`input-checkbox__icon-wrapper${
+                          !validationResults?.result?.valid ? ' input-checkbox__icon-wrapper--has-error' : ''
                         }`}
                       >
                         <svg
@@ -79,8 +79,8 @@ export const ChoiceElementBlock = (props: ChoiceElementBlockProps) => {
                   </div>
                 ) : (
                   <div
-                    className={`input-radio input-radio--md ${
-                      !validationResults?.result?.valid && 'input-radio--error'
+                    className={`input-radio input-radio--md${
+                      !validationResults?.result?.valid ? ' input-radio--error' : ''
                     }`}
                   >
                     <input
