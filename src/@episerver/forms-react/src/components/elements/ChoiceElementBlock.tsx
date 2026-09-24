@@ -53,9 +53,14 @@ export const ChoiceElementBlock = (props: ChoiceElementBlockProps) => {
                     />
                     <label
                       htmlFor={choiceId}
-                      className="input-checkbox__label "
+                      className="input-checkbox__label"
+                      style={{ color: 'var(--semantic-color-txt-primary, #000)' }}
                     >
-                      <div className="input-checkbox__icon-wrapper">
+                      <div
+                        className={`input-checkbox__icon-wrapper ${
+                          !validationResults?.result?.valid && 'input-checkbox__icon-wrapper--error'
+                        }`}
+                      >
                         <svg
                           height="24"
                           width="24"
@@ -73,7 +78,11 @@ export const ChoiceElementBlock = (props: ChoiceElementBlockProps) => {
                     </label>
                   </div>
                 ) : (
-                  <div className="input-radio input-radio--md">
+                  <div
+                    className={`input-radio input-radio--md ${
+                      !validationResults?.result?.valid && 'input-radio--error'
+                    }`}
+                  >
                     <input
                       type="radio"
                       id={choiceId}
@@ -87,6 +96,7 @@ export const ChoiceElementBlock = (props: ChoiceElementBlockProps) => {
                     <label
                       htmlFor={choiceId}
                       className="input-radio__label"
+                      style={{ color: 'var(--semantic-color-txt-primary, #000)' }}
                     >
                       {item.caption}
                     </label>
@@ -103,6 +113,6 @@ export const ChoiceElementBlock = (props: ChoiceElementBlockProps) => {
         />
       </ElementWrapper>
     ),
-    [isVisible, validationResults, value]
+    [isVisible, validationResults, value],
   );
 };
