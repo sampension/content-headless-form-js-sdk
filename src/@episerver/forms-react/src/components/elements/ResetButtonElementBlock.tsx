@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { ResetButton } from '@episerver/forms-sdk';
+import { ResetButton } from '@sampension/forms-sdk';
 import { useElement } from '../../hooks/useElement';
 
 interface ResetButtonElementBlockProps {

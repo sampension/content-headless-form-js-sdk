@@ -1,4 +1,4 @@
-import { FormContainer, ElementValidationResult, FormValidationResult, initFormState, IdentityInfo } from "@episerver/forms-sdk";
+import { FormContainer, ElementValidationResult, FormValidationResult, initFormState, IdentityInfo } from "@sampension/forms-sdk";
 import { ActionType } from "./reducer";
 import { useFormsDispatch } from "./store";
 

@@ -1,4 +1,4 @@
-import { SubmitButton, isNullOrEmpty } from '@episerver/forms-sdk';
+import { SubmitButton, isNullOrEmpty } from '@sampension/forms-sdk';
 import React, { useMemo } from 'react';
 import { useElement } from '../../hooks/useElement';
 

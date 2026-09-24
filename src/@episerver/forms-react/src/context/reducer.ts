@@ -2,7 +2,7 @@ import { equals,
   FormState, 
   FormSubmission, 
   FormValidationResult,
-  ElementDependencies } from "@episerver/forms-sdk";
+  ElementDependencies } from "@sampension/forms-sdk";
 
 
 export enum ActionType {

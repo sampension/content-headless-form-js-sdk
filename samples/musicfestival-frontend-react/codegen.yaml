@@ -1,8 +1,0 @@
-schema: https://dev.cg.optimizely.com/content/v2?auth=INPUT_SINGLE_KEY_HERE
-documents: './src/**/*.graphql'
-generates:
-  ./src/generated.ts:
-    plugins:
-      - typescript
-      - typescript-operations
-      - typescript-react-query

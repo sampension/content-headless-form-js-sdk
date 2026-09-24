@@ -4,7 +4,7 @@ import {
   IdentityInfo,
   StepBuilder,
   initFormState,
-} from '@episerver/forms-sdk';
+} from '@sampension/forms-sdk';
 import { FormProvider } from '../context/FormProvider';
 import { FormBody } from './FormBody';
 

@@ -1,4 +1,4 @@
-import { ValidatableElementBase, FormValidationResult } from '@episerver/forms-sdk';
+import { ValidatableElementBase, FormValidationResult } from '@sampension/forms-sdk';
 import React from 'react';
 
 interface ValidationMessageProps {

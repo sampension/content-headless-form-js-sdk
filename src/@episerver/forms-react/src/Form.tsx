@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { IdentityInfo } from '@episerver/forms-sdk';
+import { IdentityInfo } from '@sampension/forms-sdk';
 import { FormContainerBlock } from './components/FormContainerBlock';
 import { UseFormLoaderProps, useFormLoader } from './hooks/useFormLoader';
 import './Form.scss';

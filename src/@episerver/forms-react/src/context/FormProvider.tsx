@@ -1,5 +1,5 @@
 import React, { ReactNode, useReducer } from "react";
-import { FormState } from "@episerver/forms-sdk";
+import { FormState } from "@sampension/forms-sdk";
 import { formReducer } from "./reducer";
 import { FormContext, FormDispatchContext } from "./store";
 

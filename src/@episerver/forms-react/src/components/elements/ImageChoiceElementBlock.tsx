@@ -1,4 +1,4 @@
-import { ImageChoice, equals, isNullOrEmpty } from "@episerver/forms-sdk";
+import { ImageChoice, equals, isNullOrEmpty } from "@sampension/forms-sdk";
 import React, { useMemo } from "react";
 import ElementWrapper from "./shared/ElementWrapper";
 import { useElement } from "../../hooks/useElement";

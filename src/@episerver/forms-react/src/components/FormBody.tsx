@@ -16,7 +16,7 @@ import {
   ProblemDetail,
   StepDependCondition,
   getConfirmationData,
-} from "@episerver/forms-sdk";
+} from "@sampension/forms-sdk";
 import { RenderElementInStep } from "./RenderElementInStep";
 import { DispatchFunctions } from "../context/dispatchFunctions";
 import { FormStepNavigation } from "./FormStepNavigation";
@@ -38,7 +38,7 @@ export const FormBody = (props: FormBodyProps) => {
   const stepDependCondition = new StepDependCondition(
     form,
     inactiveElements,
-    formContext.identityInfo?.username
+    formContext?.identityInfo?.username
   );
   const stepHelper = new StepHelper(form);
   const currentPageUrl = props.currentPageUrl ?? window.location.href;
@@ -51,11 +51,11 @@ export const FormBody = (props: FormBodyProps) => {
 
   const formCache = new FormCache(
     undefined,
-    formContext.identityInfo?.username
+    formContext?.identityInfo?.username
   );
   const localFormCache = new FormCache(
     window.localStorage,
-    formContext.identityInfo?.username
+    formContext?.identityInfo?.username
   );
   const currentStepIndex = formContext?.currentStepIndex ?? 0;
 

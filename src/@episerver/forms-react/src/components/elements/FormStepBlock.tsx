@@ -1,4 +1,4 @@
-import { FormStep } from '@episerver/forms-sdk';
+import { FormStep } from '@sampension/forms-sdk';
 import React from 'react';
 
 export interface FormStepBlockProps {
