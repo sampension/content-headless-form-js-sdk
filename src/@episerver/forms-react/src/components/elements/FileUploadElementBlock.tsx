@@ -43,7 +43,7 @@ export const FileUploadElementBlock = (props: FileUploadElementBlockProps) => {
   return useMemo(
     () => (
       <ElementWrapper
-        className={`FormFileUpload ${validatorClasses}`}
+        className={`FormFileUpload formular-fieldset ${validatorClasses}`}
         validationResults={validationResults}
         isVisible={isVisible}
       >

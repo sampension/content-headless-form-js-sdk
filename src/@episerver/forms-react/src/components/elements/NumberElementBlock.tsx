@@ -14,15 +14,15 @@ export const NumberElementBlock = (props: NumberElementBlockProps) => {
     const { isVisible, validationResults, value, extraAttr, validatorClasses, elementRef } = elementContext;
 
     return useMemo(()=>(
-        <ElementWrapper className={`FormTextbox FormTextbox--Number ${validatorClasses}`} validationResults={validationResults} isVisible={isVisible}>
-            <div lang={element.locale}>
-                <ElementCaption element={element} />
-                
+        <ElementWrapper className={`formular-fieldset ${validatorClasses}`} validationResults={validationResults} isVisible={isVisible}>
+            <ElementCaption element={element} />
+            <label className={`input-text__field --horizontal-padding${validationResults.result.valid ? '' : ' --error'}`}>
                 <input
                     name={element.key}
                     id={element.key}
                     type="number"
                     step="any"
+                    className="input-text__input"
                     placeholder={element.properties.placeHolder}
                     {...extraAttr}
                     value={value}
@@ -33,9 +33,8 @@ export const NumberElementBlock = (props: NumberElementBlockProps) => {
                     onKeyDown={ handleKeyPress }
                     ref={elementRef}
                 />
-                
-                <ValidationMessage element={element} validationResults={validationResults} />
-            </div>
+            </label>
+            <ValidationMessage element={element} validationResults={validationResults} />
         </ElementWrapper>
     ),[isVisible, validationResults, value]);
 }

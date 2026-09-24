@@ -26,6 +26,7 @@ interface FormBodyProps {
   baseUrl: string;
   history?: any;
   currentPageUrl?: string;
+  onValidateBeforeSubmit?: () => Promise<boolean>;
 }
 
 export const FormBody = (props: FormBodyProps) => {
@@ -127,6 +128,20 @@ export const FormBody = (props: FormBodyProps) => {
 
     return confimStatus;
   };
+
+  const handleSubmitWithOptionalValidation = async (e: any) => {
+    e.preventDefault();
+    if (props.onValidateBeforeSubmit === undefined) {
+      handleSubmit(e);
+      return;
+    }
+
+    props.onValidateBeforeSubmit().then(validationResult => {
+      if (validationResult) {
+        handleSubmit(e);
+      }
+    });
+  }
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -331,7 +346,7 @@ export const FormBody = (props: FormBodyProps) => {
       encType="multipart/form-data"
       className={`EPiServerForms ${validationCssClass}`}
       id={form.key}
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmitWithOptionalValidation}
     >
       {form.properties.title && (
         <h2
@@ -374,7 +389,7 @@ export const FormBody = (props: FormBodyProps) => {
         <FormStepNavigation
           isFormFinalized={isFormFinalized.current}
           history={props.history}
-          handleSubmit={handleSubmit}
+          handleSubmit={handleSubmitWithOptionalValidation}
           isMalFormSteps={isMalFormSteps}
           isStepValidToDisplay={isStepValidToDisplay}
           isSuccess={isSuccess.current}

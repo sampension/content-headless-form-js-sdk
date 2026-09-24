@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 import {
   FormContainer,
   IdentityInfo,
   StepBuilder,
   initFormState,
-} from "@episerver/forms-sdk";
-import { FormProvider } from "../context/FormProvider";
-import { FormBody } from "./FormBody";
+} from '@episerver/forms-sdk';
+import { FormProvider } from '../context/FormProvider';
+import { FormBody } from './FormBody';
 
 export interface FormContainerProps {
   /**
@@ -33,6 +33,11 @@ export interface FormContainerProps {
    * The public url of current page
    */
   currentPageUrl?: string;
+
+  /**
+   * Optional validation method to execute before allowing submission. Return true if submission should continue.
+   */
+  onValidateBeforeSubmit?: () => Promise<boolean>;
 }
 
 export function FormContainerBlock(props: FormContainerProps) {
@@ -54,6 +59,7 @@ export function FormContainerBlock(props: FormContainerProps) {
         baseUrl={props.baseUrl}
         history={props.history}
         currentPageUrl={props.currentPageUrl}
+        onValidateBeforeSubmit={props.onValidateBeforeSubmit}
       />
     </FormProvider>
   );

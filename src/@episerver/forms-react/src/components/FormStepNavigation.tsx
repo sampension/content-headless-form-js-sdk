@@ -78,7 +78,7 @@ export const FormStepNavigation = (props: FormStepNavigationProps) => {
 
   const handleNextStep = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    handleSubmit(event);
+    await handleSubmit(event);
     isNextStep.current = true;
   };
 

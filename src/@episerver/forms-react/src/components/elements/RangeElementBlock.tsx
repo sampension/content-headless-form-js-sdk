@@ -33,7 +33,7 @@ export const RangeElementBlock = (props: RangeElementBlockProps) => {
     }
 
     return useMemo(()=>(
-        <ElementWrapper className={`FormRange ${validatorClasses}`} validationResults={validationResults} isVisible={isVisible}>
+        <ElementWrapper className={`FormRange formular-fieldset ${validatorClasses}`} validationResults={validationResults} isVisible={isVisible}>
             <ElementCaption element={element} />
             <span className="FormRange__Wrapper">
                 <span className="FormRange__Slider__Wrapper">

@@ -33,6 +33,10 @@ interface FormProps {
    * The endpoint url of Optimizely Graph
    */
   optiGraphUrl?: string;
+  /**
+   * Optional validation method to execute before allowing submission. Return true if submission should continue.
+   */
+  onValidateBeforeSubmit?: () => Promise<boolean>;
   onLoadingChange?: (loading: boolean) => void;
   onError?: (error: unknown) => void;
 }
@@ -45,6 +49,7 @@ export const Form = ({
   history,
   currentPageUrl,
   optiGraphUrl,
+  onValidateBeforeSubmit,
   onLoadingChange,
   onError,
 }: FormProps) => {
@@ -76,6 +81,7 @@ export const Form = ({
           baseUrl={baseUrl}
           history={history}
           currentPageUrl={currentPageUrl}
+          onValidateBeforeSubmit={onValidateBeforeSubmit}
         />
       )}
     </>
