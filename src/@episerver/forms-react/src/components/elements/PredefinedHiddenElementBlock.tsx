@@ -1,4 +1,4 @@
-import { PredefinedHidden } from "@episerver/forms-sdk";
+import { PredefinedHidden } from "@sampension/forms-sdk";
 import React from "react";
 import { useElement } from "../../hooks/useElement";
 

@@ -1,4 +1,4 @@
-import { FormContainer, FormLoader } from "@episerver/forms-sdk";
+import { FormContainer, FormLoader } from "@sampension/forms-sdk";
 import { useEffect, useState } from "react";
 
 export interface UseFormLoaderProps {

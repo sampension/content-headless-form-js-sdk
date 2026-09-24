@@ -1,4 +1,4 @@
-import { Textbox } from '@episerver/forms-sdk';
+import { Textbox } from '@sampension/forms-sdk';
 import React, { useMemo } from 'react';
 import ElementWrapper from './shared/ElementWrapper';
 import { useElement } from '../../hooks/useElement';

@@ -1,4 +1,4 @@
-import { FormAuthenticate, FormAuthenticateConfig, FormCache, FormConstants, IdentityInfo, isNullOrEmpty } from "@episerver/forms-sdk";
+import { FormAuthenticate, FormAuthenticateConfig, FormCache, FormConstants, IdentityInfo, isNullOrEmpty } from "@sampension/forms-sdk";
 import React, { useEffect, useState } from "react";
 
 interface FormLoginProps{

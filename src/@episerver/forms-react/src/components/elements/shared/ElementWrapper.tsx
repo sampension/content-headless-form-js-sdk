@@ -1,4 +1,4 @@
-import { FormValidationResult } from "@episerver/forms-sdk";
+import { FormValidationResult } from "@sampension/forms-sdk";
 import React, { ReactNode } from "react";
 
 export interface ElementWrapperProps{

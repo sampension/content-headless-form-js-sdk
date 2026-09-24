@@ -1,4 +1,4 @@
-import { Number } from "@episerver/forms-sdk"
+import { Number } from "@sampension/forms-sdk"
 import React, { useMemo } from "react";
 import ElementWrapper from "./shared/ElementWrapper";
 import { useElement } from "../../hooks/useElement";

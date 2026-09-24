@@ -1,4 +1,4 @@
-import { DataElementBlockBase } from "@episerver/forms-sdk";
+import { DataElementBlockBase } from "@sampension/forms-sdk";
 import React from "react";
 
 interface DataListProps {

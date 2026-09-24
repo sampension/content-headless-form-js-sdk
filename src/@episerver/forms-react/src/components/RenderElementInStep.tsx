@@ -1,4 +1,4 @@
-import { FormElementBase } from "@episerver/forms-sdk";
+import { FormElementBase } from "@sampension/forms-sdk";
 import React from "react";
 import { RenderElement } from "./RenderElement";
 

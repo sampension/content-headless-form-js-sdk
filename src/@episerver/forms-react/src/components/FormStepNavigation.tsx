@@ -9,7 +9,7 @@ import {
   SubmitButtonType,
   isNull,
   isNullOrEmpty,
-} from "@episerver/forms-sdk";
+} from "@sampension/forms-sdk";
 import { DispatchFunctions } from "../context/dispatchFunctions";
 
 interface FormStepNavigationProps {

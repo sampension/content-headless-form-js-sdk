@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormElementBase, isNull } from '@episerver/forms-sdk';
+import { FormElementBase, isNull } from '@sampension/forms-sdk';
 import { components } from './elements';
 
 export interface ElementProps {

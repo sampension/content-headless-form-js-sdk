@@ -23,7 +23,7 @@ import {
     htmlDecodeEntities,
     FormCache,
     FormConstants,
-    } from "@episerver/forms-sdk";
+    } from "@sampension/forms-sdk";
 import { DispatchFunctions } from "../context/dispatchFunctions";
 
 export interface ElementContext {

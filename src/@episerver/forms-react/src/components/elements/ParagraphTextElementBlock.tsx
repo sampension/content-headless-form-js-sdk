@@ -4,7 +4,7 @@ import {
   ParagraphText,
   getAllowedContentTypesInRichtext,
   getStringValue,
-} from "@episerver/forms-sdk";
+} from "@sampension/forms-sdk";
 import React, { useMemo } from "react";
 import ElementWrapper from "./shared/ElementWrapper";
 import { useElement } from "../../hooks/useElement";
