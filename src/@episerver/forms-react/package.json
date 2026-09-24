@@ -15,7 +15,7 @@
   },
   "keywords": [],
   "dependencies": {
-    "@sampension/design-system-react": "1.164.0",
+    "@sampension/design-system-react": "1.170.5",
     "@sampension/forms-sdk": "^1.0.1",
     "sass": "^1.97.2"
   },
